@@ -165,12 +165,16 @@ export class SupabaseService {
   }
 
   public async isAdmin(): Promise<boolean> {
+    const user = this.currentUser();
+    if (!user) return false;
+    
     const { data, error } = await this.client
       .from('admins')
       .select('id')
-      .eq('id', this.currentUser()!.id)
-      .single();
+      .eq('id', user.id)
+      .maybeSingle();
     if (!this.currentUser()) return false;
+    
     return !error && !!data;
   }
 
