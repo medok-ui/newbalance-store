@@ -1,0 +1,25 @@
+.products-grid {
+  padding: 60px 20px;
+}
+
+.products-grid__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.products-grid__title {
+  font-size: 24px;
+}
+
+.products-grid__view-all {
+  font-size: 14px;
+  color: #888;
+}
+
+.products-grid__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

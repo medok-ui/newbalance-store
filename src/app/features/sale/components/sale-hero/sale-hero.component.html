@@ -1,0 +1,55 @@
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-grid__left">
+        <p class="hero-grid__label">Сезонная распродажа 2026</p>
+        <h1 class="hero-grid__title">
+          До <span class="hero-grid__title-accent">-{{ discountedProducts() }}%</span> на всё
+        </h1>
+        <p class="hero-grid__subtitle">
+          Лучшие кроссовки New Balance по сниженным ценам. Успей купить до окончания акции.
+        </p>
+        <div class="hero-grid__status-list">
+          <div class="hero-grid__status">
+            <div class="hero-grid__stat-value">{{ saleProducts().length }}+</div>
+            <div class="hero-grid__stat-label">Позиций со скидкой</div>
+          </div>
+          <div class="hero-grid__status">
+            <div class="hero-grid__stat-value">–{{ discountedProducts() }}%</div>
+            <div class="hero-grid__stat-label">Максимальная скидка</div>
+          </div>
+          <div class="hero-grid__status">
+            <div class="hero-grid__stat-value">{{ timeLeft().days }} дня</div>
+            <div class="hero-grid__stat-label">До конца акции</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-grid__right">
+        <div>
+          <p class="hero__timer-label">Акция завершится через</p>
+          <div class="hero__timer-blocks">
+            <div class="hero__timer-block">
+              <div class="hero__timer-num">{{ timeLeft().days }}</div>
+              <div class="hero__timer-unit">дней</div>
+            </div>
+            <div class="hero__timer-sep">:</div>
+            <div class="hero__timer-block">
+              <div class="hero__timer-num">{{ timeLeft().hours }}</div>
+              <div class="hero__timer-unit">часов</div>
+            </div>
+            <div class="hero__timer-sep">:</div>
+            <div class="hero__timer-block">
+              <div class="hero__timer-num">{{ timeLeft().minutes }}</div>
+              <div class="hero__timer-unit">минут</div>
+            </div>
+            <div class="hero__timer-sep">:</div>
+            <div class="hero__timer-block">
+              <div class="hero__timer-num">{{ timeLeft().seconds }}</div>
+              <div class="hero__timer-unit">секунд</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

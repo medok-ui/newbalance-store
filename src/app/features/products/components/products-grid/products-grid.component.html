@@ -1,0 +1,11 @@
+<section class="products-grid container">
+  <div class="products-grid__header">
+    <h2 class="products-grid__title">Новинки</h2>
+    <a routerLink="/catalog" class="products-grid__view-all">Смотреть все →</a>
+  </div>
+  <ul class="products-grid__list">
+    @for (product of productSlices(); track product.id) {
+      <li class="products-grid__item"><app-product-card-mini [dataProduct]="product" /></li>
+    }
+  </ul>
+</section>

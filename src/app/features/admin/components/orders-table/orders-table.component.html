@@ -1,0 +1,42 @@
+<div class="card">
+  <div class="card__header">
+    <span class="card__title">Последние заказы</span>
+    <a class="card__link" routerLink="/admin/orders">Смотреть все →</a>
+  </div>
+  <table class="table">
+    <thead class="table__thead">
+      <tr>
+        <th class="thead-th">Заказ</th>
+        <th class="thead-th">Покупатель</th>
+        <th class="thead-th">Товар</th>
+        <th class="thead-th">Сумма</th>
+        <th class="thead-th">Статус</th>
+      </tr>
+    </thead>
+    <tbody class="table__tbody">
+      @for (item of allOrders(); track item.id) {
+        <tr [routerLink]="['/admin/orders', item.id]" class="tbody-tr">
+          <td class="td-order tbody-td">#{{ item.id }}</td>
+          <td class="td-muted tbody-td">
+            {{ item.profiles?.first_name }} {{ item.profiles?.last_name ?? '' }}
+          </td>
+          <td class="tbody-td">
+            <div class="product-cell">
+              @for (orderItem of item.order_items; track orderItem.id) {
+                <div class="product-cell__img">
+                  <img [src]="orderItem.products.images[0]" [alt]="orderItem.products.name" />
+                </div>
+              }
+            </div>
+          </td>
+          <td class="tbody-td">
+            <strong>{{ item.total | priceFormat }}</strong>
+          </td>
+          <td class="tbody-td">
+            <span class="status-badge status--{{ item.status }}">{{ item.status }}</span>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

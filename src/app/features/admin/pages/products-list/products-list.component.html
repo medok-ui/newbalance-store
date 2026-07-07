@@ -1,0 +1,73 @@
+<div class="toolbar">
+  <div class="toolbar__left">
+    <div class="toolbar__search">
+      <div class="search-input__img">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            fill="none"
+            d="M17.55 17.91L20.39 20.74M20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z"
+          />
+        </svg>
+      </div>
+      <input
+        (input)="searchProduct($event)"
+        class="toolbar__search-input"
+        type="text"
+        placeholder="Поиск по названию..."
+      />
+    </div>
+  </div>
+  <span class="toolbar__count">{{ allProducts().length }} товаров</span>
+</div>
+
+<div class="products">
+  <table class="table">
+    <thead class="table__thead">
+      <tr>
+        <th class="thead-th">ID</th>
+        <th class="thead-th">Товар</th>
+        <th class="thead-th">Полы</th>
+        <th class="thead-th">Цена</th>
+        <th class="thead-th">Действия</th>
+      </tr>
+    </thead>
+    <tbody class="table__tbody">
+      @for (item of allProducts(); track item.id) {
+        <tr class="tbody-tr">
+          <td class="tbody-td">
+            <div>{{ item.id }}</div>
+          </td>
+          <td class="tbody-td">
+            <div class="product-cell">
+              <div class="product-cell__img">
+                <img [src]="item.images[0]" [alt]="item.name" />
+              </div>
+              <div class="product-cell__name">{{ item.name }}</div>
+            </div>
+          </td>
+          <td class="tbody-td">
+            <span class="cat-badge">{{ item.gender }}</span>
+          </td>
+          <td class="td-price tbody-td">{{ item.price | priceFormat }}</td>
+          <td class="tbody-td">
+            <div class="actions">
+              <a [routerLink]="['/admin/products', item.id]" class="action-btn">
+                <img src="/assets/svgs/edit.svg" alt="edit" />
+              </a>
+              <button (click)="deleteProduct(item.id)" class="action-btn action-btn--del">
+                <img src="/assets/svgs/delete-icon.svg" alt="delete" />
+              </button>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

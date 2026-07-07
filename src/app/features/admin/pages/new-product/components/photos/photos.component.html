@@ -1,0 +1,51 @@
+<section class="card">
+  <header class="card__header">
+    <h2 class="card__title">Фотографии</h2>
+  </header>
+  <div class="card__body">
+    <div
+      class="upload-zone"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)"
+      (drop)="onDrop($event)"
+    >
+      <div class="upload-zone__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+          <polyline points="17 8 12 3 7 8" />
+          <line x1="12" y1="3" x2="12" y2="15" />
+        </svg>
+      </div>
+      <h3 class="upload-zone__title">Перетащите фото или</h3>
+      <input
+        (change)="onFileSelect($event)"
+        accept="image/png, image/jpeg, image/webp"
+        type="file"
+        #fileInput
+        hidden
+        multiple
+      />
+      <button type="button" class="upload-zone__btn" (click)="triggerFileInput()">
+        выберите файлы
+      </button>
+      <span class="upload-zone__hint">PNG, JPG, WEBP до 5 МБ · рекомендуется 800×800</span>
+    </div>
+    <div class="upload-preview">
+      @if (photos().length > 0) {
+        @for (photo of photos(); track photo.previewUrl; let i = $index) {
+          <div class="upload-preview__item">
+            <img [src]="photo.previewUrl" alt="" />
+            <button class="upload-preview__remove" (click)="removePhoto(i)">×</button>
+          </div>
+        }
+      }
+    </div>
+  </div>
+</section>
+
+<app-modal
+  [isOpen]="isModalOpen()"
+  (closed)="isModalOpen.set(false)"
+  [typeModal]="typeModal()"
+  [message]="messageModal()"
+/>

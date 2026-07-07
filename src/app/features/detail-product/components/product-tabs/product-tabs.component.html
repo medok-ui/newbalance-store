@@ -1,0 +1,26 @@
+<div class="product-detail__tabs">
+  <nav class="product-tabs__nav">
+    <button
+      (click)="showDescription()"
+      class="product-tabs__tab"
+      [class.active]="currentPanel() === 'desk'"
+    >
+      Описание
+    </button>
+    <button
+      (click)="showCharacteristics()"
+      class="product-tabs__tab"
+      [class.active]="currentPanel() === 'characteristics'"
+    >
+      Характеристики
+    </button>
+  </nav>
+  <div class="product-tabs__panels">
+    @if (currentPanel() === 'desk') {
+      <app-product-description [descriptionProduct]="product()" />
+    }
+    @if (currentPanel() === 'characteristics') {
+      <app-product-specs [specsProduct]="product()" />
+    }
+  </div>
+</div>

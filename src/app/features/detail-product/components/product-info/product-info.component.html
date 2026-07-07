@@ -1,0 +1,96 @@
+<div class="product-detail__info">
+  <p class="product-detail__brand">{{ dataProduct()?.brand }}</p>
+  <h1 class="product-detail__title">{{ dataProduct()?.name }}</h1>
+  <div class="product-detail__meta">
+    <div class="product-detail__stars">
+      @for (star of getStars(dataProduct()?.rating); track $index) {
+        <span class="product__star">★</span>
+      }
+    </div>
+    <span class="product-detail__reviews">{{ dataProduct()?.reviews_count }} отзывов</span>
+  </div>
+  <div class="product-detail__pricing">
+    <span class="product-detail__price">{{ dataProduct()?.price | priceFormat }}</span>
+    <span class="product-detail__old-price">{{ dataProduct()?.old_price | priceFormat}}</span>
+    <span class="product-detail__discount-tag">–{{ dataProduct()?.discount }}%</span>
+  </div>
+  <hr class="product-detail__divider-hr" />
+  <div class="product-detail__size-header">
+    <span class="product-detail__size-label">Размер (RU):</span>
+    <span class="product-detail__size-guide">Таблица размеров</span>
+  </div>
+  <div class="product-detail__sizes">
+    @for (size of dataProduct()?.sizes; track $index) {
+      <button
+        (click)="onSize(size)"
+        class="product-detail__size-btn"
+        [class.active]="currentSize() === size"
+      >
+        {{ size }}
+      </button>
+    }
+  </div>
+  <div class="product-detail__actions">
+    @if (isAddSizeText()) {
+      <div class="error-box">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="18"
+          height="18"
+          fill="none"
+        >
+          <path
+            d="M11.002 3.73a1.13 1.13 0 0 1 1.996 0l8.618 15.082a1.13 1.13 0 0 1-.998 1.701H3.382a1.13 1.13 0 0 1-.998-1.701L11.002 3.73Z"
+            fill="#FFF"
+            stroke="#DC3545"
+            stroke-width="2"
+            stroke-linejoin="round"
+          />
+          <path d="M12 8v5" stroke="#DC3545" stroke-width="2" stroke-linecap="round" />
+          <circle cx="12" cy="16.5" r="1.25" fill="#DC3545" />
+        </svg>
+        <p class="error-text">Пожалуйста, выберите размер</p>
+      </div>
+    }
+    <button (click)="addToCart()" [disabled]="isCart()" class="product-detail__btn-cart">
+      @if (isCart()) {
+        <img src="/assets/svgs/add-cart.svg" alt="add-cart" /> Уже в корзине !
+      } @else {
+        <img src="/assets/svgs/add-cart.svg" alt="add-cart" />Добавить в корзину
+      }
+    </button>
+    <button (click)="toggleFavoriteList()" class="product-detail__btn-wishlist">
+      @if (isFavorite()) {
+        <img src="/assets/svgs/like-red.svg" alt="В избранном" />
+        В избранном
+      } @else {
+        <img src="/assets/svgs/like.svg" alt="В избранное" />
+        В избранное
+      }
+    </button>
+  </div>
+  <div class="product-detail__delivery">
+    <div class="product-detail__delivery-row">
+      <img src="/assets/svgs/delivery.svg" alt="delivery" />
+      <span
+        ><strong class="product-detail__delivery-strong">Бесплатная доставка</strong> от 5 000 ₽ ·
+        1–3 дня по Москве</span
+      >
+    </div>
+    <div class="product-detail__delivery-row">
+      <img src="/assets/svgs/protected.svg" alt="protected" />
+      <span
+        ><strong class="product-detail__delivery-strong">Гарантия подлинности</strong> · Официальный
+        товар</span
+      >
+    </div>
+    <div class="product-detail__delivery-row">
+      <img src="/assets/svgs/money.svg" alt="money" />
+      <span
+        ><strong class="product-detail__delivery-strong">Возврат 30 дней</strong> · Бесплатный обмен
+        размера</span
+      >
+    </div>
+  </div>
+</div>

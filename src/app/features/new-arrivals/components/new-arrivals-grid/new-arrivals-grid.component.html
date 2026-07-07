@@ -1,0 +1,37 @@
+<section class="new-arrivals">
+  <div class="container">
+    <nav class="nav">
+      <a routerLink="/" class="nav__link">Главная</a>
+      <span class="nav__separator">/</span>
+      <span class="nav__current">Новинки</span>
+    </nav>
+    <div class="new-arrivals__header">
+      <div class="new-arrivals__header-wrapper">
+        <div class="new-arrivals__header-left">
+          <h1 class="new-arrivals__title">Новинки</h1>
+          <span class="new-arrivals__model-count">{{ newArrivalsProducts().length }} моделей</span>
+        </div>
+        <div class="new-arrivals__header-right">
+          <button (click)="filterService.onShowFilters()" class="new-arrivals__filter-btn">
+            <img src="/assets/svgs/filter.svg" alt="filter" /> Фильтры
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <hr class="new-arrivals__hr" />
+
+    <ul class="new-arrivals-card__list">
+      @for (item of products(); track item.id) {
+        <li class="new-arrivals-card__item"><app-product-catalog-card [dataProduct]="item" /></li>
+      }
+    </ul>
+  </div>
+</section>
+
+<div
+  class="filter-overlay"
+  (click)="filterService.onShowFilters()"
+  [class.active]="filterService.isShowFilters()"
+></div>
+<app-filters-block [exclude]="['badge']" />

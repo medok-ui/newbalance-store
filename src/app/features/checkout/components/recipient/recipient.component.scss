@@ -1,0 +1,46 @@
+.checkout__form {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+
+}
+
+.checkout-section__title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #111;
+
+  &::after {
+    content: ' *';
+    color: #dc2626;
+  }
+}
+
+.form-group__input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #111;
+  background: #fff;
+  outline: none;
+}

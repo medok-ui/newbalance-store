@@ -1,0 +1,36 @@
+<section class="card">
+  <header class="card__header">
+    <h2 class="card__title">Доступные размеры</h2>
+  </header>
+
+  <div class="card__body">
+    <div class="form-group">
+      <span class="form-group__label form-group__label--required"
+        >Размеры (RU) — введите и нажмите Enter</span
+      >
+
+      <div class="size-input">
+        <div class="size-input">
+          @for (size of sizes(); track size) {
+            <div class="size-input__tag">
+              <span class="size-input__tag-text">{{ size }}</span>
+              <button type="button" (click)="deleteSize(size)" class="size-input__tag-remove">
+                ×
+              </button>
+            </div>
+          }
+          <input
+            (keydown.enter)="addSize($event)"
+            (keydown.,)="addSize($event)"
+            class="size-input__field"
+            type="number"
+            placeholder="39, 40..."
+          />
+        </div>
+      </div>
+      <p class="form-group__hint">
+        Введите размер и нажмите Enter или запятую. Нажмите × чтобы удалить.
+      </p>
+    </div>
+  </div>
+</section>

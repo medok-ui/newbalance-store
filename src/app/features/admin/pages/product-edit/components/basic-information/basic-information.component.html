@@ -1,0 +1,61 @@
+<section class="card">
+  <header class="card__header">
+    <h2 class="card__title">Основная информация</h2>
+  </header>
+  <form [formGroup]="form" class="card__body">
+    <div class="form-group">
+      <label class="form-group__label form-group__label--required" for="title">Название</label>
+      <input
+        formControlName="title"
+        class="form-group__input"
+        type="text"
+        id="title"
+        value="Кроссовки New Balance 560r"
+        placeholder="Название..."
+      />
+    </div>
+    <div class="form-row">
+      <div class="form-group form-row__col">
+        <label class="form-group__label form-group__label--required" for="category">Бренд</label>
+        <input
+          formControlName="brand"
+          class="form-group__input"
+          type="text"
+          id="brand"
+          value="New Balance"
+          placeholder="Бренд..."
+        />
+      </div>
+      <div class="form-group form-row__col">
+        <label class="form-group__label form-group__label--required" for="brand">Категория</label>
+        <input
+          formControlName="category"
+          class="form-group__input"
+          type="text"
+          id="category"
+          value="Беговые"
+          placeholder="Категория..."
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group form-row__col">
+        <label class="form-group__label form-group__label--required" for="gender">Пол</label>
+        <select class="form-group__select" formControlName="gender">
+          <option value="Мужской">Мужской</option>
+          <option value="Женский">Женский</option>
+          <option value="Унисекс">Унисекс</option>
+        </select>
+      </div>
+      <div class="form-group form-row__col">
+        <label class="form-group__label form-group__label--required" for="">Метка</label>
+        <select class="form-group__select" formControlName="tag">
+          <option value="none">Без метки</option>
+          <option value="new">NEW — Новинка</option>
+          <option value="sale">SALE — Распродажа</option>
+        </select>
+      </div>
+    </div>
+  </form>
+</section>

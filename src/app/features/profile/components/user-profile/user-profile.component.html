@@ -1,0 +1,50 @@
+<section class="user-profile">
+  <h2 class="user-profile__title">Просмотр профиля</h2>
+  <div class="profile-view">
+    <div class="profile-card">
+      <div class="profile-card__avatar">{{ infoUser()?.first_name?.charAt(0) ?? 'А' }}</div>
+      <div class="profile-card__info">
+        <div class="profile-card__name">{{ infoUser()?.first_name ?? 'Аноним' }}</div>
+        <div class="profile-card__status">
+          Покупатель New Balance с {{ infoUser()?.updated_at | date: 'yyyy' }} года
+        </div>
+      </div>
+    </div>
+    <div class="profile-details">
+      <div class="profile-details__row">
+        <div class="profile-details__group">
+          <span class="profile-details__label">Имя</span>
+          <span class="profile-details__value">{{ infoUser()?.first_name ?? 'Аноним' }}</span>
+        </div>
+        <div class="profile-details__group">
+          <span class="profile-details__label">Фамилия</span>
+          <span class="profile-details__value">{{ infoUser()?.last_name ?? '—' }}</span>
+        </div>
+      </div>
+      <div class="profile-details__row">
+        <div class="profile-details__group">
+          <span class="profile-details__label">Телефон</span>
+          <span class="profile-details__value">{{ infoUser()?.phone ?? '—' }}</span>
+        </div>
+        <div class="profile-details__group">
+          <span class="profile-details__label">Email</span>
+          <span class="profile-details__value">{{ dataUser()?.email ?? '—' }}</span>
+        </div>
+      </div>
+      <div class="profile-details__row">
+        <div class="profile-details__group">
+          <span class="profile-details__label">Город</span>
+          <span class="profile-details__value">{{ infoUser()?.city ?? '—' }}</span>
+        </div>
+        <div class="profile-details__group">
+          <span class="profile-details__label">Индекс</span>
+          <span class="profile-details__value">{{ infoUser()?.postal_code ?? '—' }}</span>
+        </div>
+      </div>
+      <div class="profile-details__group">
+        <span class="profile-details__label">Адрес доставки</span>
+        <span class="profile-details__value">{{ infoUser()?.address ?? '—' }} </span>
+      </div>
+    </div>
+  </div>
+</section>

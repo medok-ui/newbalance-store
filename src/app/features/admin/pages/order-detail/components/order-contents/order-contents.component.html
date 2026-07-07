@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card__header">
+    <h2 class="card__title">Состав заказа</h2>
+  </div>
+  <table class="items-table">
+    <thead class="items-table__head">
+      <tr>
+        <th class="items-table__th items-table__th--center">Товар</th>
+        <th class="items-table__th items-table__th--center">Размер</th>
+        <th class="items-table__th items-table__th--center">Кол-во</th>
+        <th class="items-table__th items-table__th--center">Цена</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of order()?.order_items; track item.id) {
+        <tr class="items-table__row">
+          <td class="items-table__td">
+            <div class="items-table__product">
+              <div class="items-table__img">
+                <img [src]="item.products.images[0]" [alt]="item.products.name" />
+              </div>
+              <div class="items-table__name">{{ item.products.name }}</div>
+            </div>
+          </td>
+          <td class="items-table__td items-table__td--muted">{{ item.size }}</td>
+          <td class="items-table__td items-table__td--center">{{ item.quantity }}</td>
+          <td class="items-table__td items-table__td--center">
+            {{ item.price * item.quantity | priceFormat }}
+          </td>
+        </tr>
+      }
+    </tbody>
+    <tfoot>
+      <tr class="items-table__total-row">
+        <td class="items-table__total-label" colspan="3">Итого</td>
+        <td class="items-table__total-value">{{ order()?.total | priceFormat }}</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

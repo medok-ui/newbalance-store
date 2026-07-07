@@ -1,0 +1,66 @@
+<div class="search">
+  <div class="search-input">
+    <div class="search-input__img">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path
+          fill="none"
+          d="M17.55 17.91L20.39 20.74M20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z"
+        />
+      </svg>
+    </div>
+    <input
+      [formControl]="searchInput"
+      class="search-input__input"
+      type="text"
+      placeholder="Поиск кроссовок..."
+    />
+    @if (isSearching()) {
+      <button (click)="onReset()" class="search-input__cancel">
+        <img src="/assets/svgs/close.svg" alt="close" />
+      </button>
+    }
+    <div class="search-input__search">Поиск</div>
+  </div>
+  <div class="search-body">
+    @if (!isSearching()) {
+      <p class="search-body__label">Популярные запросы</p>
+
+      <ul class="search-body__tags">
+        @for (tag of searchTags(); track tag.name) {
+          <li (click)="onTag(tag.name)" class="search-body__tag">
+            <button>{{ tag.name }}</button>
+          </li>
+        }
+      </ul>
+    }
+    @if (isSearching()) {
+      <p class="search-body__label">Найдено {{ products().length }}</p>
+      <ul class="search-body__products">
+        @for (product of products(); track product.id) {
+          <li class="search-body__product">
+            <app-product-search [products]="product" />
+          </li>
+        }
+      </ul>
+    }
+    @if (isEmpty()) {
+      <div class="search-body__empty">
+        <div class="search-body__empty-icon">
+          <img src="/assets/svgs/search.svg" alt="search" />
+        </div>
+        <h3 class="search-body__empty-title">Мы ничего не нашли</h3>
+        <p class="search-body__empty-text">
+          Попробуйте изменить запрос, проверить орфографию или выберите что-то из популярных
+          запросов.
+        </p>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,70 @@
+.card {
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card__header {
+  padding: 18px 22px;
+  border-bottom: 1px solid #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card__title {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.payment-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.payment-table__head {
+  padding: 10px 22px;
+}
+
+.payment-table__th {
+  padding: 10px 22px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #999999;
+  background: #fafafa;
+  border-bottom: 1px solid #e8e8e8;
+  white-space: nowrap;
+}
+
+.payment-table__row {
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.payment-table__td {
+  padding: 13px 22px;
+  font-size: 13px;
+  vertical-align: middle;
+
+  &.payment-table__td--muted {
+    color: #aaaaaa;
+  }
+  &.payment-table__td--price {
+    font-weight: 700;
+  }
+}
+
+.payment-table__td--mono {
+  font-family: monospace;
+  font-size: 12px;
+  color: #555;
+  cursor: pointer;
+}
+
+.payment-status--paid {
+  color: #16a34a;
+  font-weight: 600;
+}

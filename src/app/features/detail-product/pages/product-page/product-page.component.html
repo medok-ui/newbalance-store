@@ -1,0 +1,26 @@
+<section class="product">
+  <div class="container">
+    <nav class="breadcrumb">
+      <a class="breadcrumb__link" routerLink="/">Главная</a>
+      <span class="breadcrumb__sep">/</span>
+      <a class="breadcrumb__link" routerLink="/catalog">Каталог</a>
+      <span class="breadcrumb__sep">/</span>
+      <span class="breadcrumb__current">{{ product()?.name }}</span>
+    </nav>
+
+    <div class="product-detail">
+      <div class="product-detail__layout">
+        <app-product-gallery [product]="product()" />
+        <app-product-info [dataProduct]="product()" />
+      </div>
+      <app-product-tabs [product]="product()" />
+    </div>
+  </div>
+</section>
+
+<app-modal
+  [isOpen]="isModalOpen()"
+  (closed)="isModalOpen.set(false)"
+  [typeModal]="typeModal()"
+  [message]="messageModal()"
+/>

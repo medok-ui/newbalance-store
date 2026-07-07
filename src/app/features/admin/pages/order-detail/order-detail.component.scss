@@ -1,0 +1,20 @@
+.content__grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+  align-items: start;
+}
+
+.content__main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.content__aside {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: sticky;
+  top: 85px;
+}

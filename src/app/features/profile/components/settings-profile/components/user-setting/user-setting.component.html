@@ -1,0 +1,38 @@
+<div class="setting">
+  <h2 class="setting__title">Мои данные</h2>
+  <form [formGroup]="form" class="setting-form">
+    <div class="setting-form__row">
+      <div class="setting-form__group">
+        <label class="setting-form__label" for="firstName">Имя</label>
+        <input
+          formControlName="firstName"
+          class="setting-form__input"
+          id="firstName"
+          type="text"
+          placeholder="Иван"
+        />
+      </div>
+      <div class="setting-form__group">
+        <label class="setting-form__label" for="lastName">Фамилия</label>
+        <input
+          formControlName="lastName"
+          class="setting-form__input"
+          id="lastName"
+          type="text"
+          placeholder="Иванов"
+        />
+      </div>
+    </div>
+    <div class="setting-form__group">
+      <label class="setting-form__label" for="number">Телефон</label>
+      <input
+        formControlName="phone"
+        class="setting-form__input"
+        id="number"
+        type="text"
+        placeholder="+7 (999) 000-00-00"
+      />
+    </div>
+    <button (click)="onSubmit()" class="setting-form__btn-save">Сохранить изменения</button>
+  </form>
+</div>

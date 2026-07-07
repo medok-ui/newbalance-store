@@ -1,0 +1,65 @@
+<div class="toolbar">
+  <div class="toolbar__search">
+    <div class="search-input__img">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path
+          fill="none"
+          d="M17.55 17.91L20.39 20.74M20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z"
+        />
+      </svg>
+    </div>
+    <input
+      (input)="searchUser($event)"
+      class="toolbar__search-input"
+      type="text"
+      placeholder="Поиск по имени..."
+    />
+  </div>
+  <span class="toolbar__count">{{ users().length }} пользователь</span>
+</div>
+
+<div class="card">
+  <table class="table">
+    <thead class="table__thead">
+      <tr class="thead__tr">
+        <th class="table__th">Пользователь</th>
+        <th class="table__th">Почтовый индекс</th>
+        <th class="table__th">Авторизован</th>
+        <th class="table__th">UID</th>
+      </tr>
+    </thead>
+    <tbody class="table__tbody">
+      @for (user of allUsers(); track user.id) {
+        <tr class="tbody__tr">
+          <td class="tbody__td">
+            <div class="user-cell">
+              <div class="user-cell__avatar">{{ user.profile?.first_name?.charAt(0) ?? 'А' }}</div>
+              <div>
+                <div class="user-cell__name">{{ user.profile?.first_name ?? 'Аноним' }}</div>
+                <div class="user-cell__email">{{ user.email }}</div>
+              </div>
+            </div>
+          </td>
+          <td class="tbody__td">
+            <span class="role-badge">{{ user.profile?.postal_code ?? '—' }}</span>
+          </td>
+          <td class="tbody__td td-muted">
+            {{ user.profile?.updated_at ?? '—' | date: 'd MMMM yyyy' : '' : 'ru' }}
+          </td>
+          <td class="tbody__td td-orders">
+            <span class="user-id" title="Скопировать!" [cdkCopyToClipboard]="user.id">{{
+              user.id
+            }}</span>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

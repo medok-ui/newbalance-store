@@ -1,0 +1,35 @@
+<table class="orders-table">
+  <thead>
+    <tr>
+      <th class="orders-table__th orders-table__th_id">№</th>
+      <th class="orders-table__th">ПОКУПАТЕЛЬ</th>
+      <th class="orders-table__th">ДАТА</th>
+      <th class="orders-table__th">СТАТУС</th>
+      <th class="orders-table__th orders-table__th_amount">СУММА</th>
+      <th class="orders-table__th orders-table__th_action"></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of allOrders(); track item.id) {
+      <tr>
+        <td class="orders-table__td orders-table__td_id">#{{ item.id }}</td>
+        <td class="orders-table__td">
+          <div class="buyer-name">
+            {{ item.profiles?.first_name }} {{ item.profiles?.last_name ?? '' }}
+          </div>
+          <div class="buyer-email">{{ item.profiles?.phone ?? '' }}</div>
+        </td>
+        <td class="orders-table__td orders-table__td_date">
+          {{ item.created_at | date: 'MMM d, y, h:mm' }}
+        </td>
+        <td class="orders-table__td">
+          <span class="status status--{{ item.status }}">{{ item.status }}</span>
+        </td>
+        <td class="orders-table__td orders-table__td_amount">{{ item.total | priceFormat }}</td>
+        <td class="orders-table__td orders-table__td_action">
+          <a [routerLink]="['/admin/orders', item.id]" class="btn-arrow">></a>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

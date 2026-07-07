@@ -1,0 +1,61 @@
+.history-orders__title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.history-orders__list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.empty-orders-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-orders-content {
+  text-align: center;
+  max-width: 420px;
+}
+
+.empty-orders-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px auto;
+  color: #cccccc;
+}
+
+.empty-orders-icon__svg {
+  fill: none;
+}
+
+.empty-orders-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111111;
+  margin: 0 0 12px 0;
+}
+
+.empty-orders-text {
+  font-size: 15px;
+  color: #666666;
+  line-height: 1.5;
+  margin: 0 0 32px 0;
+}
+
+.empty-orders-btn {
+  display: inline-block;
+  background-color: #111111;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 4px;
+}

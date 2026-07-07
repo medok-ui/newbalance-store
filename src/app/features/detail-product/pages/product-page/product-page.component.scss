@@ -1,0 +1,37 @@
+.product {
+}
+
+.breadcrumb {
+  padding: 18px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #999;
+  flex-wrap: wrap;
+}
+
+.breadcrumb__link {
+  color: #999;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #111;
+  }
+}
+.breadcrumb__sep {
+  color: #ddd;
+}
+.breadcrumb__current {
+  color: #111;
+}
+
+.product-detail {
+  padding: 24px 0 80px;
+}
+
+.product-detail__layout {
+  display: flex;
+  align-items: start;
+  gap: 60px;
+}

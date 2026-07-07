@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card__header">
+    <span class="card__title">Топ товаров</span>
+    <a class="card__link" routerLink="/admin/products">Все товары →</a>
+  </div>
+  <div class="top-list">
+    @for (item of topProducts(); track item.product_id; let i = $index) {
+      <a [routerLink]="['/admin/products/', item.product_id]" class="top-item">
+        <div class="top-item__rank" [class.top-item__rank--1]="i === 0">{{ i + 1 }}</div>
+        <div class="top-item__img">
+          <img [src]="item.images[0]" [alt]="item.name" />
+        </div>
+        <div class="top-item__info">
+          <div class="top-item__name">{{ item.name }}</div>
+          <div class="top-item__sales">{{ item.sales_count }} продаж</div>
+        </div>
+        <div class="top-item__price">{{ item.price | priceFormat }}</div>
+      </a>
+    }
+  </div>
+</div>

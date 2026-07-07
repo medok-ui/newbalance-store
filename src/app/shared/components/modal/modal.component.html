@@ -1,0 +1,32 @@
+@if (isOpen()) {
+  <div class="modal-overlay active">
+    <div class="modal">
+      <div class="modal__icon" [class]="'modal__icon--' + iconClass()">
+        @switch (typeModal()) {
+          @case ('error') {
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="13" />
+              <circle cx="12" cy="16.5" r="0.5" fill="currentColor" />
+            </svg>
+          }
+          @case ('success') {
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M8 12.5l2.5 2.5L16 9" />
+            </svg>
+          }
+          @case ('wait') {
+            <span class="modal__spinner"></span>
+          }
+        }
+      </div>
+
+      <p class="modal__text">{{ message() }}</p>
+
+      @if (typeModal() !== 'wait') {
+        <button class="modal__btn" (click)="onClose()">Ок</button>
+      }
+    </div>
+  </div>
+}

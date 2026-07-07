@@ -1,0 +1,22 @@
+<div class="cart-item">
+  <a [routerLink]="['/products', dataProduct().id]" class="cart-item__image">
+    <img [src]="dataProduct().images[0]" [alt]="dataProduct().name" />
+  </a>
+  <div class="cart-item__details">
+    <div class="details-top">
+      <h3 class="details-top__title">{{ dataProduct().name }}</h3>
+      <button (click)="deleteProduct()" class="details-top__del-btn">
+        <img src="/assets/svgs/delete-icon.svg" alt="delete btn" />
+      </button>
+    </div>
+    <span class="cart-item__size">Размер {{ cartInfoProducts()?.size }}</span>
+    <div class="details-bottom">
+      <div class="details-bottom__quantity-controls">
+        <button (click)="onMinusQuantity()" class="quantity-controls__qty-btn">-</button>
+        <span class="quantity-controls__qty-value">{{ quantity() }}</span>
+        <button (click)="onPlusQuantity()" class="quantity-controls__qty-btn">+</button>
+      </div>
+      <span class="details-bottom__price">{{ dataProduct().price * quantity() | priceFormat }}</span>
+    </div>
+  </div>
+</div>

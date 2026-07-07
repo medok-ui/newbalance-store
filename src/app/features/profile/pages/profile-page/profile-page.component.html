@@ -1,0 +1,34 @@
+<section class="profile">
+  <div class="container">
+    <nav class="nav">
+      <a routerLink="/" class="nav__link">Главная</a>
+      <span class="nav__separator">/</span>
+      <span class="nav__current">Личный кабинет</span>
+    </nav>
+    <div class="profile__header">
+      <h1 class="profile__title">Личный кабинет</h1>
+    </div>
+    <hr class="profile-hr" />
+    <div class="profile-layout">
+      <div class="profile-sidebar">
+        <ul class="profile-sidebar__menu">
+          @for (item of menuItems(); track item.title) {
+            <li class="profile-sidebar__menu-label">
+              <a
+                class="profile-sidebar__link"
+                [routerLink]="item.routerLink"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >{{ item.title }}</a
+              >
+            </li>
+          }
+        </ul>
+        <button (click)="onLogOut()" class="profile-sidebar_exit-profile">Выйти из аккаунта</button>
+      </div>
+      <div class="profile-main">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</section>

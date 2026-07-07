@@ -1,0 +1,31 @@
+<form class="product-form" (ngSubmit)="onSubmit()">
+  <div class="product-form__layout">
+    <div class="product-form__main">
+      <app-basic-information />
+      <app-information />
+      <app-characteristics />
+      <app-photos />
+      <app-sizes />
+    </div>
+    <div class="product-form__sidebar">
+      <div class="card">
+        <header class="card__header">
+          <h2 class="card__title">Публикация</h2>
+        </header>
+        <div class="card__body">
+          <div class="btn-group">
+            <button type="submit" class="btn btn--primary">Опубликовать</button>
+          </div>
+        </div>
+      </div>
+      <app-sidebar />
+    </div>
+  </div>
+</form>
+
+<app-modal
+  [isOpen]="isModalOpen()"
+  (closed)="isModalOpen.set(false)"
+  [typeModal]="typeModal()"
+  [message]="messageModal()"
+/>

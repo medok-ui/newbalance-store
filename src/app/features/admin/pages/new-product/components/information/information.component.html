@@ -1,0 +1,51 @@
+<section class="card">
+  <header class="card__header">
+    <h2 class="card__title">Описание</h2>
+  </header>
+  <form [formGroup]="form" class="card__body">
+    <div class="form-group">
+      <label class="form-group__label form-group__label--required" for="desc-main"
+        >Вводный текст</label
+      >
+      <textarea
+        formControlName="descMain"
+        class="form-group__textarea"
+        id="desc-main"
+        placeholder="Book 2 'Spiridon' — это баскетбольные кроссовки New Balance, созданные в честь Spiridon Louis, первого олимпийского чемпиона в марафоне. Модель объединяет наследие бренда с современными технологиями баскетбольной обуви, предлагая исключительный комфорт и поддержку на площадке."
+      ></textarea>
+    </div>
+    <div class="form-row">
+      <div class="form-group form-row__col">
+        <label class="form-group__label form-group__label--required" for="desc-features"
+          >Ключевые особенности</label
+        >
+        <textarea
+          formControlName="descFeatures"
+          class="form-group__textarea form-group__textarea--small"
+          id="desc-features"
+          placeholder="Промежуточная подошва FuelCell обеспечивает взрывную амортизацию и отдачу энергии при каждом шаге"
+        ></textarea>
+      </div>
+      <div class="form-group form-row__col">
+        <label class="form-group__label form-group__label--required" for="desc-tech"
+          >Технологии</label
+        >
+        <textarea
+          formControlName="descTech"
+          class="form-group__textarea form-group__textarea--small"
+          id="desc-tech"
+          placeholder="FuelCell — пенный компаунд нового поколения с высоким возвратом энергии"
+        ></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-group__label form-group__label--required" for="desc-about">О модели</label>
+      <textarea
+        formControlName="descAbout"
+        class="form-group__textarea"
+        id="desc-about"
+        placeholder="Разработанная совместно с профессиональными баскетболистами, Book 2 прошла многоуровневое тестирование в реальных игровых условиях. Дизайн 'Spiridon' отдаёт дань уважения атлетическому духу и истории спорта, сохраняя при этом все характеристики высокопроизводительной обуви для современного игрока."
+      ></textarea>
+    </div>
+  </form>
+</section>

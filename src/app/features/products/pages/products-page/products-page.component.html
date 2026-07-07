@@ -1,0 +1,84 @@
+<section class="products">
+  <div class="container">
+    @if (isGenderNeutral() === 'mens') {
+      <nav class="nav">
+        <a routerLink="/" class="nav__link">Главная</a>
+        <span class="nav__separator">/</span>
+        <span class="nav__current"
+          ><a routerLink="/catalog" class="nav__link">Каталог</a>:mens</span
+        >
+      </nav>
+      <div class="products__header">
+        <div class="products__header-wrapper">
+          <div class="products__header-left">
+            <h1 class="products__title">Каталог для него</h1>
+            <span class="products__model-count">{{ products()?.length }} моделей</span>
+          </div>
+          <div class="products__header-right">
+            <button (click)="filterService.onShowFilters()" class="products__filter-btn">
+              <img src="/assets/svgs/filter.svg" alt="filter" /> Фильтры
+            </button>
+          </div>
+        </div>
+      </div>
+    }
+    @if (isGenderNeutral() === 'womens') {
+      <nav class="nav">
+        <a routerLink="/" class="nav__link">Главная</a>
+        <span class="nav__separator">/</span>
+        <span class="nav__current"
+          ><a routerLink="/catalog" class="nav__link">Каталог</a>:womens</span
+        >
+      </nav>
+      <div class="products__header">
+        <div class="products__header-wrapper">
+          <div class="products__header-left">
+            <h1 class="products__title">Каталог для неё</h1>
+            <span class="products__model-count">{{ products()?.length }} моделей</span>
+          </div>
+          <div class="products__header-right">
+            <button (click)="filterService.onShowFilters()" class="products__filter-btn">
+              <img src="/assets/svgs/filter.svg" alt="filter" /> Фильтры
+            </button>
+          </div>
+        </div>
+      </div>
+    }
+    @if (isGenderNeutral() === 'unisex') {
+      <nav class="nav">
+        <a routerLink="/" class="nav__link">Главная</a>
+        <span class="nav__separator">/</span>
+        <span class="nav__current">Каталог</span>
+      </nav>
+      <div class="products__header">
+        <div class="products__header-wrapper">
+          <div class="products__header-left">
+            <h1 class="products__title">Каталог</h1>
+            <span class="products__model-count">{{ products()?.length }} моделей</span>
+          </div>
+          <div class="products__header-right">
+            <button (click)="filterService.onShowFilters()" class="products__filter-btn">
+              <img src="/assets/svgs/filter.svg" alt="filter" /> Фильтры
+            </button>
+          </div>
+        </div>
+      </div>
+    }
+
+    <hr class="products-hr" />
+
+    <ul class="products-card__list">
+      @for (item of products(); track item.id) {
+        <li class="products-card__item"><app-product-catalog-card [dataProduct]="item" /></li>
+      }
+    </ul>
+  </div>
+</section>
+
+<div
+  class="filter-overlay"
+  (click)="filterService.onShowFilters()"
+  [class.active]="filterService.isShowFilters()"
+></div>
+<app-filters-block />
+

@@ -1,0 +1,43 @@
+<aside class="sidebar">
+  <form [formGroup]="form">
+    <div class="card">
+      <header class="card__header">
+        <h2 class="card__title">Стоимость</h2>
+      </header>
+      <div class="card__body">
+        <label class="form-group__label form-group__label--required" for="price"
+          >Текущая цена, ₽</label
+        >
+        <input
+          formControlName="price"
+          class="form-group__input"
+          type="text"
+          id="price"
+          value="8500"
+          min="3000"
+        />
+        <label class="form-group__label form-group__label--required" for="old-price"
+          >Старая цена, ₽ (перечеркнутая)</label
+        >
+        <input
+          formControlName="oldPrice"
+          class="form-group__input"
+          type="text"
+          id="old-price"
+          value="12000"
+          min="3000"
+        />
+        <label class="form-group__label" for="discount">Скидка, %</label>
+        <input
+          formControlName="discount"
+          class="form-group__input"
+          type="text"
+          id="discount"
+          readonly
+        />
+        <p class="form-group__hint">Рассчитывается автоматически</p>
+      </div>
+    </div>
+
+  </form>
+</aside>

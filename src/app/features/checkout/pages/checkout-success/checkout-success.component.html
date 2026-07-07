@@ -1,0 +1,27 @@
+<div class="success-card">
+  <div class="success-icon">✓</div>
+  <h1 class="success-title">Спасибо за заказ!</h1>
+  <p class="success-subtitle">{{ userName() }}, ваш заказ успешно оформлен и уже обрабатывается.</p>
+
+  <div class="order-info">
+    <div class="info-row">
+      <span class="info-label">Номер заказа:</span>
+      <span class="info-value">#NB-{{ orderId() }}</span>
+    </div>
+
+    <div class="info-row">
+      <span class="info-label">Email:</span>
+      <span class="info-value">{{ userEmail() }}</span>
+    </div>
+
+    <div class="info-row">
+      <span class="info-label">Статус:</span>
+      <span class="info-value info-value--paid">Оплачен ✓</span>
+    </div>
+  </div>
+
+  <div class="success-actions">
+    <a routerLink="/catalog" class="btn-primary">Продолжить покупки</a>
+    <a routerLink="/profile/history" class="btn-secondary">Смотреть статус заказа</a>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+.card {
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card__header {
+  padding: 18px 22px;
+  border-bottom: 1px solid #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card__title {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.info-table {
+  padding: 6px 0;
+}
+
+.info-table__row {
+  display: flex;
+  align-items: baseline;
+  padding: 11px 22px;
+  border-bottom: 1px solid #f8f8f8;
+}
+
+.info-table__label {
+  width: 120px;
+  flex-shrink: 0;
+  font-size: 13px;
+  color: #999999;
+}
+
+.info-table__value {
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #111;
+}

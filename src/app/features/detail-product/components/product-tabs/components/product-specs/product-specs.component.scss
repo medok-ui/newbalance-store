@@ -1,0 +1,30 @@
+.product-tabs__panel {
+  margin-top: 30px;
+}
+
+.specs-table {
+  width: 100%;
+  max-width: 600px;
+  border-collapse: collapse;
+}
+
+.specs-table__tr {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.specs-table__td {
+  padding: 11px 0;
+  font-size: 14px;
+  vertical-align: top;
+}
+
+.specs-table__first-child {
+  color: #999;
+  width: 44%;
+  padding-right: 20px;
+}
+
+.specs-table__last-child {
+  color: #111;
+  font-weight: 500;
+}

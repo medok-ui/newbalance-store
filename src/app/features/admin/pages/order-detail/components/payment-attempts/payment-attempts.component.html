@@ -1,0 +1,33 @@
+<div class="card">
+  <div class="card__header">
+    <h2 class="card__title">Попытки оплаты</h2>
+  </div>
+  <table class="payment-table">
+    <thead class="payment-table__head">
+      <tr x>
+        <th class="payment-table__th">Дата</th>
+        <th class="payment-table__th">ID платежа (Stripe)</th>
+        <th class="payment-table__th">Сумма</th>
+        <th class="payment-table__th">Статус</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="payment-table__row">
+        <td class="payment-table__td payment-table__td--muted">
+          {{ order()?.created_at | date: 'MMM d, y, h:mm' }}
+        </td>
+        <td [cdkCopyToClipboard]="order()?.stripe_session_id ?? '—'" class="payment-table__td">
+          <span class="payment-table__td--mono">
+            {{ order()?.stripe_session_id ?? '—' }}
+          </span>
+        </td>
+        <td class="payment-table__td payment-table__td--price">
+          {{ order()?.total | priceFormat }}
+        </td>
+        <td class="payment-table__td">
+          <span class="payment-status--paid">Оплачен</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

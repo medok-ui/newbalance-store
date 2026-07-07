@@ -1,0 +1,37 @@
+<section class="sale">
+  <div class="container">
+    <nav class="nav">
+      <a routerLink="/" class="nav__link">Главная</a>
+      <span class="nav__separator">/</span>
+      <span class="nav__current">Распродажа</span>
+    </nav>
+    <div class="sale__header">
+      <div class="sale__header-wrapper">
+        <div class="sale__header-left">
+          <h1 class="sale__title">Распродажа</h1>
+          <span class="sale__model-count"> {{ saleProducts().length }} моделей</span>
+        </div>
+        <div class="sale__header-right">
+          <button (click)="filterService.onShowFilters()" class="sale__filter-btn">
+            <img src="/assets/svgs/filter.svg" alt="filter" /> Фильтры
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <hr class="sale__hr" />
+
+    <ul class="sale-card__list">
+      @for (item of products(); track item.id) {
+        <li class="sale-card__item"><app-product-catalog-card [dataProduct]="item" /></li>
+      }
+    </ul>
+  </div>
+</section>
+
+<div
+  class="filter-overlay"
+  (click)="filterService.onShowFilters()"
+  [class.active]="filterService.isShowFilters()"
+></div>
+<app-filters-block [exclude]="['badge']" />

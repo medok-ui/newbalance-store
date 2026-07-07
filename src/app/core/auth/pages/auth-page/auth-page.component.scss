@@ -1,0 +1,63 @@
+.layout {
+  display: flex;
+  gap: 32px;
+  padding: 100px 0 240px 0;
+  align-items: flex-start;
+}
+
+.sidebar {
+  width: 260px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.sidebar__item {
+  display: block;
+
+  padding: 14px 20px;
+  font-size: 14px;
+  color: #111;
+  width: 100%;
+  text-align: left;
+
+  &.sidebar__item--active {
+    background: #111;
+    color: #fff;
+    font-weight: 500;
+  }
+}
+
+.auth-panel {
+  flex: 1;
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: 32px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.tabs__btn {
+  padding: 12px 28px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  color: #888;
+  cursor: pointer;
+}
+
+.tabs__btn--active {
+  color: #111;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #111;
+  }
+}

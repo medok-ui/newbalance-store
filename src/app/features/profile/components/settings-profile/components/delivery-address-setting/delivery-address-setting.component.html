@@ -1,0 +1,43 @@
+<div class="delivery-address">
+  <h2 class="delivery-address__title">Адрес доставки</h2>
+  <p class="delivery-address__desc">
+    Этот адрес будет использоваться по умолчанию при оформлении заказов.
+  </p>
+
+  <form [formGroup]="form" class="delivery-address-form">
+    <div class="delivery-address__row">
+      <div class="delivery-address__group">
+        <label class="delivery-address__label" for="city">Город</label>
+        <input
+          formControlName="city"
+          class="delivery-address__input"
+          type="text"
+          id="city"
+          placeholder="Москва"
+        />
+      </div>
+      <div class="delivery-address__group">
+        <label class="delivery-address__label" for="index">Индекс</label>
+        <input
+          formControlName="index"
+          class="delivery-address__input-index"
+          type="text"
+          id="index"
+          placeholder="000000"
+          maxlength="6"
+        />
+      </div>
+    </div>
+    <div class="delivery-address__group">
+      <label class="delivery-address__label" for="addres">Улица, дом, квартира</label>
+      <input
+        formControlName="address"
+        class="delivery-address__input"
+        type="text"
+        id="addres"
+        placeholder="Например: ул. Ленина, д. 10, кв. 5"
+      />
+    </div>
+    <button (click)="onSubmit()" class="delivery-address__btn-save">Обновить адрес</button>
+  </form>
+</div>

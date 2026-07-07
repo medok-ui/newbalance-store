@@ -1,0 +1,12 @@
+<div class="product-tabs__panel">
+  <table class="specs-table">
+    <tbody>
+      @for (key of specsKeys; track key) {
+        <tr class="specs-table__tr">
+          <td class="specs-table__td specs-table__first-child">{{ labelsSpecs()[key] }}</td>
+          <td class="specs-table__td specs-table__last-child">{{ specsProduct()!.specs[key] }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

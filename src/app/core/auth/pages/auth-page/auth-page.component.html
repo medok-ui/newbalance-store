@@ -1,0 +1,41 @@
+<div class="layout container">
+  <aside class="sidebar">
+    <a
+      routerLink="login"
+      class="sidebar__item"
+      routerLinkActive="sidebar__item--active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Войти
+    </a>
+    <a
+      routerLink="register"
+      class="sidebar__item"
+      routerLinkActive="sidebar__item--active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Регистрация
+    </a>
+  </aside>
+  <div class="auth-panel">
+    <div class="tabs">
+      <a
+        routerLink="login"
+        class="tabs__btn"
+        routerLinkActive="tabs__btn--active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Вход</a
+      >
+      <a
+        routerLink="register"
+        class="tabs__btn"
+        routerLinkActive="tabs__btn--active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Регистрация
+      </a>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+</div>

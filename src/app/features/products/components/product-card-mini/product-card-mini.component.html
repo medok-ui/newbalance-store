@@ -1,0 +1,27 @@
+<a [routerLink]="['/products', dataProduct().id]" class="product-card">
+  <div class="product-card__image">
+    @if (dataProduct().badge) {
+      <span
+        class="product-card__badge"
+        [class.product-card__badge--new]="dataProduct().badge === 'new'"
+        [class.product-card__badge--sale]="dataProduct().badge === 'sale'"
+        >{{ dataProduct().badge }}</span
+      >
+    }
+    <img [src]="dataProduct().images[0]" [alt]="dataProduct().name" />
+    <button (click)="toggleFavoriteList($event)" class="product-card__like-btn">
+      @if (isFavorite()) {
+        <img src="/assets/svgs/like-red.svg" alt="В избранное" />
+      } @else {
+        <img src="/assets/svgs/like.svg" alt="В избранное" />
+      }
+    </button>
+  </div>
+  <div class="product-card__info">
+    <h3 class="product-card__title">{{ dataProduct().name }}</h3>
+    <div class="product-card__pricing">
+      <p class="product-card__price">{{ dataProduct().price | priceFormat }}</p>
+      <p class="product-card__old-price">{{ dataProduct().old_price | priceFormat }}</p>
+    </div>
+  </div>
+</a>

@@ -1,0 +1,10 @@
+<div class="stats-grid">
+  @for (stat of stats(); track stat.label) {
+    <app-stats-card [stats]="stat" />
+  }
+</div>
+
+<div class="bottom-grid">
+  <app-orders-table />
+  <app-top-products />
+</div>

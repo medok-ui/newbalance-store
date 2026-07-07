@@ -1,0 +1,314 @@
+/* ============================================================
+   RESET CSS — ФИНАЛЬНАЯ ВЕРСИЯ
+   Объединение Modern CSS Reset v2 + классического reset.
+   ============================================================ */
+
+/* ─── 1. BOX SIZING + ПЕРЕНОС ДЛИННЫХ СЛОВ ─────────────────── */
+/* border-box означает: padding и border входят в ширину элемента.
+   Без этого padding "раздувает" блок сверх заданного размера. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  overflow-wrap: break-word; /* Переносит длинные слова/URL вместо горизонтального скролла */
+}
+
+/* ─── 2. СБРОС ОТСТУПОВ, ГРАНИЦ ────────────────────────────── */
+/* Браузеры добавляют margin/padding по умолчанию (body, h1-h6, p и др.).
+   Обнуляем всё, чтобы стилизовать с нуля самостоятельно. */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* ─── 3. ПЛАВНАЯ ПРОКРУТКА ──────────────────────────────────── */
+/* prefers-reduced-motion: пользователи с вестибулярными нарушениями
+   могут отключить анимации в ОС — уважаем это. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ─── 4. КОРНЕВОЙ РАЗМЕР ШРИФТА ─────────────────────────────── */
+/* 100% = 16px (браузерный дефолт). Не ставим px напрямую —
+   пользователь мог изменить базовый размер в настройках браузера. */
+:root {
+  font-size: 100%;
+}
+
+/* ─── 5. ЗАПРЕТ РАЗДУВАНИЯ ШРИФТА НА IOS ───────────────────── */
+/* iOS Safari автоматически увеличивает шрифт при повороте экрана.
+   text-size-adjust: 100% отключает это поведение. */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* ─── 6. BODY: БАЗОВЫЕ НАСТРОЙКИ ───────────────────────────── */
+/* min-height: 100svh — svh (small viewport height) корректно учитывает
+   адресную строку мобильного браузера (в отличие от 100vh).
+   overflow-x: clip безопаснее hidden — не убивает scroll у fixed-потомков. */
+body {
+  min-height: 100svh;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility; /* Лучший кернинг и лигатуры */
+  -webkit-font-smoothing: antialiased; /* Сглаживание шрифтов на macOS/iOS */
+  -moz-osx-font-smoothing: grayscale; /* То же для Firefox на macOS */
+  overflow-x: clip;
+}
+
+/* ─── 7. СЕМАНТИЧЕСКИЕ ТЕГИ: DISPLAY BLOCK ──────────────────── */
+/* IE и очень старые браузеры не знают HTML5-тегов как блочных.
+   В современных браузерах это страховка, которая не мешает. */
+aside,
+nav,
+footer,
+header,
+section,
+main,
+article,
+figure,
+figcaption {
+  display: block;
+}
+
+/* ─── 8. ССЫЛКИ ─────────────────────────────────────────────── */
+/* По умолчанию браузер рисует синий подчёркнутый текст.
+   Сбрасываем: цвет наследуем от родителя, подчёркивание убираем. */
+a,
+a:link,
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Убираем вспышку при тапе на мобильных устройствах */
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Внутри контентных зон (статьи, main, .prose) — возвращаем подчёркивание
+   для лучшей доступности. :where() не повышает специфичность. */
+:where(article, main, .prose) a {
+  text-decoration: underline;
+}
+
+/* ─── 9. ЗАГОЛОВКИ И ПАРАГРАФЫ ──────────────────────────────── */
+/* Браузер делает h1 жирным и большим по умолчанию.
+   Сбрасываем: типографику полностью управляем сами через CSS-классы. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  text-wrap: balance; /* Предотвращает "висячие" одиночные слова в конце строки */
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty; /* Лучший контроль "сирот" и "вдов" в абзацах */
+}
+
+/* ─── 10. СПИСКИ ────────────────────────────────────────────── */
+ul,
+ol,
+ul li,
+ol li {
+  list-style: none;
+}
+
+/* ─── 11. АДРЕС ─────────────────────────────────────────────── */
+/* Браузер по умолчанию делает <address> курсивом. Сбрасываем. */
+address {
+  font-style: normal;
+}
+
+/* ─── 12. МЕДИА: ИЗОБРАЖЕНИЯ, SVG, VIDEO ────────────────────── */
+/* max-width: 100% — картинка не выходит за рамки контейнера.
+   display: block — убирает gap (пробел) под картинкой (inline by default).
+   height: auto — сохраняет пропорции при изменении ширины.
+   vertical-align: top — страховка для inline-контекстов. */
+img,
+picture,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  display: block;
+  height: auto;
+  vertical-align: top;
+}
+
+/* SVG-иконки наследуют цвет из CSS (currentColor = значение color родителя) */
+svg {
+  fill: currentColor;
+}
+
+/* Картинки внутри figure занимают всю ширину блока */
+figure > img {
+  width: 100%;
+}
+
+/* ─── 13. ФОРМЫ: ШРИФТ, ЦВЕТ, КУРСОР ───────────────────────── */
+/* Браузеры НЕ наследуют font у form-элементов по умолчанию — задаём явно.
+   background-color: transparent — убирает белый фон у input в iOS. */
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background-color: transparent;
+}
+
+/* Скрываем крестик очистки в IE/Edge для <input type="text"> */
+input::-ms-clear {
+  display: none;
+}
+
+/* Ограничиваем resize только по вертикали — горизонтальный ломает лейаут */
+textarea {
+  resize: vertical;
+}
+
+/* input[type="file"] не должен выходить за пределы контейнера */
+input[type='file'] {
+  max-width: 100%;
+}
+
+/* ─── 14. КНОПКИ ────────────────────────────────────────────── */
+/* display: inline-block нужен для корректного box model.
+   Убираем лишние стили браузера — стилизуем сами. */
+button,
+input[type='submit'] {
+  display: inline-block;
+  box-shadow: none;
+  background-color: transparent;
+  background: none;
+  cursor: pointer;
+}
+
+/* Firefox добавлял внутренний padding к кнопкам — убираем */
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+/* Убираем вспышку при тапе на кнопках */
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ─── 15. ИНТЕРАКТИВНЫЕ ЭЛЕМЕНТЫ: КУРСОР ────────────────────── */
+button,
+label,
+select,
+summary,
+[role='button'] {
+  cursor: pointer;
+}
+
+/* ─── 16. FIELDSET И LEGEND ─────────────────────────────────── */
+/* fieldset по умолчанию имеет min-width: min-content, что ломает flex/grid.
+   legend: display block нужен для корректного рендера в некоторых браузерах. */
+fieldset {
+  min-width: 0;
+}
+
+legend {
+  display: block;
+}
+
+/* ─── 17. ТАБЛИЦЫ ───────────────────────────────────────────── */
+/* border-collapse: collapse — убирает двойные границы между ячейками */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* ─── 18. ФОКУС ─────────────────────────────────────────────── */
+/* :focus-visible — обводка только при навигации с клавиатуры (Tab).
+   При клике мышью обводки нет. Это стандарт доступности. */
+:focus-visible {
+  outline: 2px solid Highlight; /* Системный акцентный цвет — доступен по умолчанию */
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ─── 19. DISABLED-СОСТОЯНИЕ ─────────────────────────────────── */
+/* pointer-events: none — клики не проходят.
+   opacity: 0.6 — визуальный сигнал недоступности.
+   cursor: not-allowed — пользователь понимает, что элемент заблокирован. */
+[disabled] {
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ─── 20. HIDDEN-АТРИБУТ ─────────────────────────────────────── */
+/* Если где-то в CSS стоит display: flex на элементе с [hidden],
+   он всё равно будет скрыт благодаря !important. */
+[hidden] {
+  display: none !important;
+}
+
+/* ─── 21. УТИЛИТА: ВИЗУАЛЬНО СКРЫТЫЙ ЭЛЕМЕНТ ────────────────── */
+/* Скрыт визуально, но читается скринридерами.
+   Нужен для доступных иконочных кнопок, aria-live регионов и т.п. */
+.visually-hidden,
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ─── 22. REDUCE MOTION: ГЛОБАЛЬНОЕ ОТКЛЮЧЕНИЕ АНИМАЦИЙ ─────── */
+/* Пользователи с вестибулярными расстройствами и эпилепсией
+   могут включить "уменьшить движение" в ОС — уважаем это. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── 23. ПЕЧАТЬ ─────────────────────────────────────────────── */
+/* Убираем фоны и тени для экономии чернил.
+   Показываем URL после ссылок — на бумаге их не кликнуть.
+   page-break-inside: avoid — картинки не разрываются между страницами. */
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+
+  a[href]::after {
+    content: ' (' attr(href) ')';
+  }
+
+  img {
+    page-break-inside: avoid;
+  }
+}

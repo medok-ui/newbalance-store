@@ -1,0 +1,92 @@
+<section class="card">
+  <header class="card__header">Характеристики</header>
+  <form [formGroup]="form" class="card__body">
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-group__label" for="up">Верх</label>
+        <input
+          formControlName="up"
+          class="form-group__input"
+          type="text"
+          id="up"
+          placeholder="Дышащая сетка"
+        />
+      </div>
+      <div class="form-group">
+        <label class="form-group__label" for="sole">Подошва</label>
+        <input
+          formControlName="sole"
+          class="form-group__input"
+          type="text"
+          id="sole"
+          placeholder="Резинаа"
+        />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-group__label" for="midsole">Промежуточная подошва</label>
+        <input
+          formControlName="midsole"
+          class="form-group__input"
+          type="text"
+          id="midsole"
+          placeholder="FuelCell"
+        />
+      </div>
+      <div class="form-group">
+        <label class="form-group__label" for="mass">Вес</label>
+        <input
+          formControlName="mass"
+          class="form-group__input"
+          type="text"
+          id="mass"
+          placeholder="310 г"
+        />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-group__label" for="clasp">Застёжка</label>
+        <input
+          formControlName="clasp"
+          class="form-group__input"
+          type="text"
+          id="clasp"
+          placeholder="Шнуровка"
+        />
+      </div>
+      <div class="form-group">
+        <label class="form-group__label" for="height">Высота</label>
+        <select class="form-group__select" id="height" formControlName="height">
+          <option value="Low (низкий берец)">Low (низкий берец)</option>
+          <option value="Mid (средний берец)">Mid (средний берец)</option>
+          <option value="High (высокий берец)">High (высокий берец)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-group__label" for="country">Страна производства</label>
+        <input
+          formControlName="country"
+          class="form-group__input"
+          type="text"
+          id="country"
+          placeholder="Вьетнам"
+        />
+      </div>
+      <div class="form-group">
+        <label class="form-group__label" for="color">Цвет</label>
+        <input
+          formControlName="color"
+          class="form-group__input"
+          type="text"
+          id="color"
+          placeholder="Серый / Чёрный"
+        />
+      </div>
+    </div>
+  </form>
+</section>

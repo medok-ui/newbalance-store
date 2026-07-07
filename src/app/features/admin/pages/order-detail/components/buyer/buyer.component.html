@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card__header">
+    <h2 class="card__title">Покупатель</h2>
+  </div>
+  <div class="info-table">
+    <div class="info-table__row">
+      <span class="info-table__label">Имя</span>
+      <span class="info-table__value">{{ order()?.profiles?.first_name }} </span>
+    </div>
+    <div class="info-table__row">
+      <span class="info-table__label">Номер заказа</span>
+      <span class="info-table__value">{{ order()?.id }}</span>
+    </div>
+    <div class="info-table__row">
+      <span class="info-table__label">Телефон</span>
+      <span class="info-table__value">{{ order()?.profiles?.phone ?? '—' }}</span>
+    </div>
+    <div class="info-table__row">
+      <span class="info-table__label">UID</span>
+      <span class="info-table__value" [cdkCopyToClipboard]="order()!.user_id">{{
+        order()?.user_id
+      }}</span>
+    </div>
+    <div class="info-table__row">
+      <span class="info-table__label">Адрес</span>
+      <span class="info-table__value">{{ order()?.profiles?.address ?? '—' }}</span>
+    </div>
+    <div class="info-table__row">
+      <span class="info-table__label">Дата</span>
+      <span class="info-table__value">{{
+        order()?.created_at ?? '—' | date: 'MMM d, y, h:mm'
+      }}</span>
+    </div>
+  </div>
+</div>

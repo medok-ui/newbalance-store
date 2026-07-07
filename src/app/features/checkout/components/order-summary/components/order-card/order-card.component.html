@@ -1,0 +1,15 @@
+<div class="order-summary__item">
+  <a [routerLink]="['/products', productData().id]" class="order-summary__item-img">
+    <img [src]="productData().images[0]" [alt]="productData().name" />
+  </a>
+  <div class="order-summary__item-info">
+    <div class="order-summary__item-name">{{ productData().name }}</div>
+    <div class="order-summary__item-meta">
+      Размер {{ cartInfoProducts()?.size }} · {{ quantity() }} шт.
+    </div>
+  </div>
+  <span class="order-summary__item-price">{{
+    productData().price * quantity() | priceFormat
+  }}</span>
+</div>
+<!-- {{ item.price | priceFormat }} -->

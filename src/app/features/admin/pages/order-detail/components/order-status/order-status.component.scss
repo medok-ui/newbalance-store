@@ -1,0 +1,94 @@
+.card {
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card__header {
+  padding: 18px 22px;
+  border-bottom: 1px solid #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card__title {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.status-block {
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.status-block__current {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #777777;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+
+  &.status-badge--pending {
+    background: #f3f4f6;
+    color: #374151;
+  }
+
+  &.status-badge--paid {
+    background: #eff6ff;
+    color: #2563eb;
+  }
+
+  &.status-badge--shipped {
+    background: #fff8e1;
+    color: #d97706;
+  }
+
+  &.status-badge--delivered {
+    background: #f0fdf4;
+    color: #16a34a;
+  }
+
+  &.status-badge--cancelled {
+    background: #fef2f2;
+    color: #dc2626;
+  }
+}
+
+.status-block__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.status-btn {
+  padding: 9px 18px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: 1.5px solid #dddddd;
+  background: #ffffff;
+  color: #111111;
+
+  &.status-btn--danger {
+    background: #dc2626;
+    color: #ffffff;
+    border-color: #dc2626;
+  }
+}

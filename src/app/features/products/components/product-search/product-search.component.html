@@ -1,0 +1,23 @@
+<a [routerLink]="['/products', products().id]" class="product">
+  <div class="product-img">
+    <img [src]="products().images[0]" [alt]="products().name" />
+  </div>
+  <div class="product-info">
+    <p class="product-info__gender">{{ products().gender }}</p>
+    <p class="product-info__name">{{ products().name }}</p>
+    <div class="product-info__pricing">
+      <span class="product-info__price">{{ products().price | priceFormat }}</span>
+      <span class="product-info__old-price">{{ products().old_price | priceFormat }}</span>
+      <div
+        class="product-info__badge"
+        [class.product-info__badge--new]="products().badge === 'new'"
+        [class.product-info__badge--sale]="products().badge === 'sale'"
+      >
+        {{ products().badge }}
+      </div>
+    </div>
+  </div>
+  <div class="product-arrow">
+    <img src="/assets/svgs/arrow-right.svg" alt="arrow" />
+  </div>
+</a>

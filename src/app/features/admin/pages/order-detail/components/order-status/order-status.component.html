@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card__header">
+    <h2 class="card__title">Статус заказа</h2>
+  </div>
+  <div class="status-block">
+    <div class="status-block__current">
+      Текущий статус:
+      <span class="status-badge status-badge--{{ order()?.status }}">{{ order()?.status }}</span>
+    </div>
+    <div class="status-block__actions">
+      <button class="status-btn" (click)="changeStatus('shipped')">В работе</button>
+      <button class="status-btn" (click)="changeStatus('delivered')">Выполнен</button>
+      <button class="status-btn" (click)="changeStatus('cancelled')">Отменён</button>
+      <button class="status-btn status-btn--danger" (click)="deleteOrder()">Удалить</button>
+    </div>
+  </div>
+</div>
+
+<app-modal
+  [isOpen]="isModalOpen()"
+  (closed)="isModalOpen.set(false)"
+  [typeModal]="typeModal()"
+  [message]="messageModal()"
+/>

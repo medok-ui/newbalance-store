@@ -1,0 +1,42 @@
+<header class="header">
+  <nav class="header__nav container">
+    <ul class="header__nav-list">
+      @for (link of navLinks(); track link.label) {
+        <li class="header__nav-item">
+          <a
+            class="header__nav-link"
+            [routerLink]="link.path"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >{{ link.label }}</a
+          >
+        </li>
+      }
+    </ul>
+    <strong class="header__nav-logo"
+      ><a class="header__nav-logo" routerLink="/">New Balance</a></strong
+    >
+
+    <div class="header__nav-icons">
+      <button (click)="onSearch()" class="header__nav-icon" [class.active]="isSearching()">
+        <img class="header__nav-icon-img" src="/assets/svgs/search.svg" alt="Поиск" />
+      </button>
+      @for (icon of navIcons(); track icon.id) {
+        <a
+          class="header__nav-icon"
+          [routerLink]="icon.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <img class="header__nav-icon-img" [src]="icon.icon" [alt]="icon.label" />
+          @if (getBadge(icon.id) > 0) {
+            <span class="header__nav-badge">{{ getBadge(icon.id) }}</span>
+          }
+        </a>
+      }
+      @if (isSearching()) {
+        <app-search-block />
+      }
+    </div>
+  </nav>
+</header>

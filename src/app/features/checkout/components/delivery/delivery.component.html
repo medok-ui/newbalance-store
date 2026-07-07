@@ -1,0 +1,43 @@
+<div class="checkout-section">
+  <h2 class="checkout-section__title">Доставка</h2>
+
+  <div class="delivery-options">
+    @for (option of deliveryOptions(); track option.id) {
+      <div
+        (click)="onDeliveryOption(option.id, option.price)"
+        class="delivery-option"
+        [class.delivery-option--selected]="selectedDeliveryId() === option.id"
+      >
+        <div class="delivery-option__radio">
+          <div class="delivery-option__radio-dot"></div>
+        </div>
+
+        <div class="delivery-option__info">
+          <div class="delivery-option__name">{{ option.name }}</div>
+          <div class="delivery-option__desc">{{ option.desc }}</div>
+        </div>
+
+        <span
+          class="delivery-option__price"
+          [class.delivery-option__price--free]="option.price === 0"
+        >
+          {{ totalPrice() < 15000 ? (option.price | priceFormat) : 'Бесплатно' }}
+        </span>
+      </div>
+    }
+  </div>
+</div>
+
+<div class="form-grid form-grid--full">
+  <div class="form-group">
+    <label class="form-group__label" for="addres">Адрес доставки</label>
+    <input
+      [value]="userData()!.address"
+      class="form-group__input"
+      readonly
+      id="addres"
+      type="text"
+      placeholder="Улица, дом, квартира"
+    />
+  </div>
+</div>

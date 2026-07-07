@@ -1,0 +1,43 @@
+<div class="admin-layout">
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <div class="sidebar__logo-text"><span class="sidebar__logo-accent">New</span> Balance</div>
+    </div>
+    <nav class="sidebar__nav">
+      @for (group of navItems(); track group.groupLabel) {
+        <div class="sidebar__group-label">{{ group.groupLabel }}</div>
+        @for (item of group.items; track item.path) {
+          <a
+            class="sidebar__link"
+            [routerLink]="item.path"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            ><img [src]="item.icon" [alt]="item.label" /> {{ item.label }}</a
+          >
+        }
+      }
+    </nav>
+    <div class="sidebar__bottom">
+      <button class="sidebar__logout">
+        <img src="/assets/svgs/logout.svg" alt="logout" /> Выйти
+      </button>
+    </div>
+  </aside>
+  <div class="admin-layout__main">
+    <header class="topbar">
+      <h1 class="topbar__title">Дашборд</h1>
+      <div class="topbar__right">
+        <button routerLink="/admin/products/new" class="topbar__btn-new">
+          <img src="/assets/svgs/plus.svg" alt="plus" /> Новый товар
+        </button>
+        <div class="topbar__admin">
+          <div class="topbar__admin-avatar">АД</div>
+          <span class="topbar__admin-name">Администратор</span>
+        </div>
+      </div>
+    </header>
+    <main class="content">
+      <router-outlet />
+    </main>
+  </div>
+</div>

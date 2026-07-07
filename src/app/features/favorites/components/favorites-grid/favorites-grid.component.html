@@ -1,0 +1,32 @@
+<section class="favorites-grid">
+  <div class="container">
+    <nav class="nav">
+      <a routerLink="/" class="nav__link">Главная</a>
+      <span class="nav__separator">/</span>
+      <span class="nav__current">Избранное</span>
+    </nav>
+    <div class="favorites__header">
+      <h1 class="favorites__title">Избранное</h1>
+      <span class="favorites__model-count">{{ favoriteProducts()?.length }} моделей</span>
+    </div>
+    <hr class="favorites-hr" />
+
+    @if (favoriteProducts()?.length === 0) {
+      <div class="favorites-empty">
+        <h2 class="favorites-empty__title">В избранном пока ничего нет</h2>
+        <p class="favorites-empty__text">
+          Добавляйте товары в избранное, чтобы вернуться к ним позже.
+        </p>
+        <a routerLink="/catalog" class="favorites-empty__button">Перейти к покупкам</a>
+      </div>
+    }
+
+    <ul class="favorites-card__list">
+      @for (product of favoriteProducts(); track product.id) {
+        <li class="favorites-card__item">
+          <app-product-catalog-card [dataProduct]="product" />
+        </li>
+      }
+    </ul>
+  </div>
+</section>

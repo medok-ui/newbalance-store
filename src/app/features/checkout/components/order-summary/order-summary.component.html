@@ -1,0 +1,45 @@
+<div class="order-summary">
+  <h2 class="order-summary__title">Ваш заказ</h2>
+  <div class="order-summary__items">
+    @for (item of currentProducts(); track item.id) {
+      <app-order-card [productData]="item" />
+    }
+  </div>
+  <div class="order-summary__row">
+    <span>Товары ({{ currentProducts()?.length }} шт.)</span>
+    <span class="order-summary__row-value">{{ totalPrice() | priceFormat }}</span>
+  </div>
+  <div class="order-summary__row">
+    <span>Доставка</span>
+    <span class="order-summary__row-value">{{
+      delivery() === 0 ? 'Бесплатно' : (delivery() | priceFormat)
+    }}</span>
+  </div>
+  @if (promoSuccess()) {
+    <div class="order-summary__row">
+      <span>Промокод</span>
+      <span class="order-summary__row-value">{{ promoCode() }}</span>
+    </div>
+  } @else {
+    <div class="summary-card__promo">
+      <input
+        (input)="onPromoInput($event)"
+        [readonly]="promoSuccess()"
+        type="text"
+        class="promo__input"
+        placeholder="Промокод"
+      />
+
+      <button [disabled]="promoSuccess()" (click)="applyPromo()" class="promo__btn-apply">
+        <img src="/assets/svgs/chek-mark.svg" alt="chek mark btn" />
+      </button>
+    </div>
+  }
+  @if (!promoSuccess()) {
+    <span class="promo__text--error">{{ promoError() }}</span>
+  }
+  <div class="order-summary__total">
+    <span>Итого</span>
+    <span class="order-summary__total-value">{{ totalPrice() + delivery() | priceFormat }}</span>
+  </div>
+</div>

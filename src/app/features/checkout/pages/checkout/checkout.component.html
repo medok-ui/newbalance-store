@@ -1,0 +1,65 @@
+<section class="checkout">
+  <div class="container">
+    <h1 class="checkout__title">Оформление заказа</h1>
+    <div class="checkout__layout">
+      <div class="checkout__left">
+        <app-recipient />
+        <hr class="checkout__hr" />
+        <app-delivery />
+        <hr class="checkout__hr" />
+
+        @if (!checkoutService.isCheckoutUserDataValid()) {
+          <div class="locked-overlay">
+            <div class="locked-overlay__content">
+              <svg
+                class="locked-overlay__icon"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span class="locked-overlay__text">
+                Заполните все данные в
+                <a routerLink="/profile/setting" class="locked-overlay__link">своём профиле</a>
+                <br />
+                (включая разделы <strong>Мои данные</strong> и <strong>Адрес доставки</strong>),
+                чтобы оформлять заказы.
+              </span>
+            </div>
+          </div>
+        }
+
+        <div class="checkout-submit">
+          <button (click)="onSubmitOrder()" [disabled]="isLoading()" class="checkout-submit__btn">
+            @if (isLoading()) {
+              Создаём заказ...
+            } @else {
+              Подтвердить заказ
+            }
+          </button>
+          <div class="checkout-submit__secure">
+            <img src="/assets/svgs/protected.svg" alt="Безопасная оплата" />
+            Безопасная оплата
+          </div>
+        </div>
+      </div>
+      <aside class="order-summary">
+        <app-order-summary />
+      </aside>
+    </div>
+  </div>
+</section>
+
+<app-modal
+  [isOpen]="isModalOpen()"
+  (closed)="isModalOpen.set(false)"
+  [typeModal]="typeModal()"
+  [message]="messageModal()"
+/>

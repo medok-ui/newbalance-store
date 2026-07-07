@@ -1,0 +1,140 @@
+<aside class="filter" [class.active]="filterService.isShowFilters()">
+  <div class="filter-header">
+    <span class="filter-header__title">Фильтры</span>
+    <button (click)="filterService.onShowFilters()" class="filter-header__close">
+      <img src="/assets/svgs/close.svg" alt="close" />
+    </button>
+  </div>
+
+  <div class="filter-body">
+    @for (section of filterSections(); track section.id) {
+      <div class="filter-section" [class.collapsed]="!openedSections()[section.id]">
+        <button (click)="toggleVisible(section.id)" class="filter-section__toggle">
+          <span class="filter-section__label">{{ section.label }}</span>
+          <img src="/assets/svgs/arrow-top.svg" alt="arrow-top" />
+        </button>
+        @if (openedSections()[section.id]) {
+          @if (section.type === 'select') {
+            <div class="filter-section_content">
+              <select
+                [value]="filterService.sortProduct()"
+                (change)="sortProducts($event)"
+                class="filter-sort__select"
+              >
+                @for (opt of section.selectOptions; track opt) {
+                  <option [value]="opt">{{ opt }}</option>
+                }
+              </select>
+            </div>
+          }
+
+          @if (section.type === 'chips') {
+            <div class="filter-section_content">
+              @for (opt of section.options; track opt.value) {
+                <button
+                  (click)="filterGender(opt.value)"
+                  class="filter-section_ship"
+                  [class.active]="filterService.filterGender() === opt.value"
+                >
+                  {{ opt.label }}
+                </button>
+              }
+            </div>
+          }
+
+          @if (section.type === 'sizes') {
+            <div class="filter-section_content">
+              @for (opt of section.options; track opt.value) {
+                <button
+                  (click)="filterSize(opt.label)"
+                  class="filter-section_size"
+                  [class.active]="filterService.filterSizes().includes(opt.label)"
+                >
+                  {{ opt.label }}
+                </button>
+              }
+            </div>
+          }
+
+          @if (section.type === 'price') {
+            <div class="filter-section_content">
+              <div class="filter-section_price">
+                <div class="filter-price__input-wrap">
+                  <label class="filter-price__label" for="price-from">От</label>
+                  <input
+                    (input)="filterMinPrice($event)"
+                    class="filter-price__input"
+                    [value]="filterService.filterMinPrice()"
+                    min="0"
+                    max="60000"
+                    type="number"
+                    id="price-from"
+                  />
+                </div>
+                <span class="filter-price__sep">—</span>
+                <div class="filter-price__input-wrap">
+                  <label class="filter-price__label" for="price-to">До</label>
+                  <input
+                    (input)="filterMaxPrice($event)"
+                    class="filter-price__input"
+                    [value]="filterService.filterMaxPrice()"
+                    min="0"
+                    max="60000"
+                    type="number"
+                    id="price-to"
+                  />
+                </div>
+              </div>
+            </div>
+          }
+
+          @if (section.type === 'badge') {
+            <div class="filter-section_content">
+              @for (opt of section.options; track opt.value) {
+                <button
+                  (click)="filterBadge(opt.value)"
+                  class="filter-section_ship"
+                  [class.active]="filterService.filterBadge() === opt.value"
+                >
+                  @if (opt.badge) {
+                    <span
+                      class="filter-badge"
+                      [class.filter-badge--new]="opt.badge === 'new'"
+                      [class.filter-badge--sale]="opt.badge === 'sale'"
+                    >
+                      {{ opt.badge }}
+                    </span>
+                  }
+                  {{ opt.label }}
+                </button>
+              }
+            </div>
+          }
+
+          @if (section.type === 'rating') {
+            <div class="filter-section_content filter-section_content--col">
+              @for (opt of section.options; track opt.value) {
+                <button
+                  (click)="filterRating(opt.value)"
+                  class="filter-rating__row"
+                  [class.active]="filterService.filterRating() === +opt.value"
+                >
+                  <span class="filter-rating__stars">
+                    @for (star of [].constructor(+opt.value); track $index) {
+                      ★
+                    }
+                  </span>
+                  <span class="filter-rating__label">{{ opt.label }}</span>
+                </button>
+              }
+            </div>
+          }
+        }
+      </div>
+    }
+  </div>
+
+  <div class="filter-footer">
+    <button class="filter-footer__reset" (click)="resetFilters()">Сбросить</button>
+  </div>
+</aside>

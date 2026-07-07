@@ -1,0 +1,29 @@
+<div class="product-tabs__panel">
+  <div class="desc">
+    <p class="desc__lead">
+      {{ descriptionProduct()?.description?.intro }}
+    </p>
+    <div class="desc__grid">
+      <div>
+        <h3 class="desc__grid-label">Ключевые особенности</h3>
+        <ul class="desc__list">
+          <li class="desc__list-item">
+            {{ descriptionProduct()?.description?.features }}
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="desc__grid-label">Технологии</h3>
+        <ul class="desc__list">
+          <li class="desc__list-item">
+            {{ descriptionProduct()?.description?.technologies }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <h3 class="desc__label">О модели</h3>
+    <p class="desc__text">
+      {{ descriptionProduct()?.description?.about }}
+    </p>
+  </div>
+</div>

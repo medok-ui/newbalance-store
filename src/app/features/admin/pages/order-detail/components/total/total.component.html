@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="card__header">
+    <h2 class="card__title">Итого по заказу</h2>
+  </div>
+  <div class="summary-card">
+    <div class="summary-card__row">
+      <span>Номер заказа</span>
+      <span class="summary-card__row-value">#{{ order()?.id }}</span>
+    </div>
+    <div class="summary-card__row">
+      <span>Товары ({{ order()?.order_items?.length }} шт.)</span>
+      <span class="summary-card__row-value">{{ order()?.total | priceFormat }}</span>
+    </div>
+    <div class="summary-card__row summary-card__row--total">
+      <span>К оплате</span>
+      <span>{{ order()?.total | priceFormat }}</span>
+    </div>
+  </div>
+</div>

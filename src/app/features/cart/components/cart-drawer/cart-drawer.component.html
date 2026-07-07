@@ -1,0 +1,55 @@
+<section class="cart">
+  <div class="container">
+    <div class="cart__header">
+      <h1 class="cart__header-title">Корзина</h1>
+      <span class="cart__header-count">{{ cartProducts()?.length }} товар</span>
+    </div>
+    @if (cartProducts()?.length === 0) {
+      <div class="carts-empty">
+        <h2 class="carts-empty__title">В корзине пока ничего нет</h2>
+        <p class="carts-empty__text">Добавляйте товары в корзину, чтобы вернуться к ним позже.</p>
+        <a routerLink="/catalog" class="carts-empty__button">Перейти к покупкам</a>
+      </div>
+    } @else {
+      <div class="cart-layout">
+        <div class="cart-layout__main">
+          <ul class="cart-layout__cards">
+            @for (item of cartProducts(); track item.id) {
+              <li class="cart-layout__card"><app-cart-item [dataProduct]="item" /></li>
+            }
+          </ul>
+          <a class="cart-layout__btn-back" routerLink="/catalog">
+            <img src="/assets/svgs/arrow-left.svg" alt="arrow-left" /> Продолжить покупки</a
+          >
+        </div>
+        <aside class="cart-layout__sidebar">
+          <div class="cart-layout__summary-card">
+            <h2 class="summary-card__title">Итого</h2>
+            <div class="summary-card__summary-row">
+              <span class="summary-row__summary-count">Товары ({{ cartProducts()?.length }})</span>
+              <span class="summary-row__summary-value">{{ totalPrice() | priceFormat }}</span>
+            </div>
+            <div class="summary-card__summary-row">
+              <span class="summary-row__summary-delivery">Доставка</span>
+              <span class="summary-row__summary-delivery-value">{{
+                delivery() === 0 ? 'Бесплатно' : (delivery() | priceFormat)
+              }}</span>
+            </div>
+
+            <hr class="summary-card__hr" />
+            <div class="summary-card__summary-total">
+              <span class="summary-total__title">К оплате</span>
+              <span class="summary-total__total-price">{{
+                totalPrice() + delivery() | priceFormat
+              }}</span>
+            </div>
+            <button routerLink="/checkout" class="summary-card__btn-order">Оформить заказ</button>
+            <span class="secure-payment"
+              ><img src="/assets/svgs/protected.svg" alt="like" /> Безопасная оплата</span
+            >
+          </div>
+        </aside>
+      </div>
+    }
+  </div>
+</section>

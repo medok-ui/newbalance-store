@@ -1,0 +1,24 @@
+<div class="order-card__item">
+  <div class="order-card__item-header">
+    <div class="order-card__info">
+      <h3 class="order-card__label">Заказ №{{ order().id }}-RU</h3>
+      <p class="order-card__date">От {{ order().created_at | date: 'd MMMM yyyy' : '' : 'ru' }}</p>
+    </div>
+    <div class="order-card__status status--{{ order().status }}">{{ order().status }}</div>
+  </div>
+  <div class="order-card__item-body">
+    <div class="order-card__items">
+      @for (item of order().order_items; track item.id) {
+        <div class="order-card__img">
+          <a [routerLink]="['/products', item.product_id]">
+            <img [src]="item.products.images[0]" [alt]="item.products.name" />
+          </a>
+        </div>
+      }
+    </div>
+    <div class="order-card__total">
+      <span class="order-card__total-label">Сумма заказа</span>
+      <strong class="order-card__total-price">{{ order().total | priceFormat }}</strong>
+    </div>
+  </div>
+</div>

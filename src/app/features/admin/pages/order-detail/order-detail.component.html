@@ -1,0 +1,13 @@
+<div class="content__grid">
+  <div class="content__main">
+    <app-buyer [order]="currentOrder()" />
+    <app-order-contents [order]="currentOrder()" />
+    <app-order-status [order]="currentOrder()" />
+    <app-payment-attempts [order]="currentOrder()" />
+  </div>
+  <div class="content__aside">
+    <app-person [order]="currentOrder()" />
+    <app-total [order]="currentOrder()" />
+  </div>
+</div>
+

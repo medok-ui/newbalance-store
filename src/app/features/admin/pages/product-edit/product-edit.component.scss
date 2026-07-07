@@ -1,0 +1,63 @@
+.product-form__layout {
+  display: grid;
+  align-items: start;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+}
+
+.product-form__sidebar {
+  position: sticky;
+  top: 87px;
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  margin-bottom: 24px;
+}
+
+.card__header {
+  padding: 16px 24px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.card__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.card__body {
+  padding: 24px;
+}
+
+.btn-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btn--primary {
+  flex: 1;
+  background-color: #111;
+  color: #ffffff;
+}
+
+.btn--secondary {
+  background-color: #ffffff;
+  color: #1a202c;
+  border-color: #e2e8f0;
+}

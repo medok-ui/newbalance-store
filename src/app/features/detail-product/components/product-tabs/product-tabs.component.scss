@@ -1,0 +1,26 @@
+.product-detail__tabs {
+  margin-top: 60px;
+  border-top: 1px solid #eaeaea;
+}
+
+.product-tabs__nav {
+  display: flex;
+  align-items: center;
+}
+
+.product-tabs__tab {
+  padding: 18px 28px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #999;
+  border-bottom: 2px solid transparent;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+  background: none;
+
+  &.active {
+    color: #111;
+    border-bottom-color: #111;
+  }
+}
