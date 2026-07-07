@@ -97,7 +97,7 @@
 
 ```bash
 # Клонировать репозиторий
-git clone <[ссылка-на-репозиторий](https://github.com/medok-ui/newbalance-store.git)>
+git clone https://github.com/medok-ui/newbalance-store.git
 cd new-balance
 
 # Установить зависимости
