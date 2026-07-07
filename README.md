@@ -20,23 +20,6 @@
 
 ---
 
-<!-- Иконки ниже — lucide-static, отдаются как обычные svg-файлы с CDN, поэтому рендерятся везде одинаково -->
-
-## <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/list.svg" width="20" valign="middle"/> Оглавление
-
-- [О проекте](#о-проекте)
-- [Демо](#демо)
-- [Стек технологий](#стек-технологий)
-- [Возможности](#возможности)
-- [Запуск проекта](#запуск-проекта)
-- [Тестовая оплата](#тестовая-оплата)
-- [Промокоды](#промокоды)
-- [Если долго грузится](#если-долго-грузится)
-- [Статус проекта](#статус-проекта)
-- [Контакты](#контакты)
-
----
-
 ## <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/info.svg" width="20" valign="middle"/> О проекте
 
 Пет-проект интернет-магазина в стиле **New Balance**: каталог кроссовок, фильтры, корзина, избранное, оформление заказа с реальной интеграцией оплаты (в тестовом режиме) и полноценная админ-панель для управления товарами и заказами.
@@ -53,14 +36,19 @@
 -->
 
 <div align="center">
-| Каталог и фильтры | Корзина и оформление заказа |
-|:---:|:---:|
-| <img src="./public/assets-readme/catalog.png" width="380"/> | <img src="./public/assets-readme/checkout.png" width="380"/> |
- 
-| Личный кабинет | Админ-панель |
-|:---:|:---:|
-| <img src="./public/assets-readme/profile.png" width="380"/> | <img src="./public/assets-readme/admin.png" width="380"/> |
- 
+
+<img src="./public/assets-readme/catalog.png" width="800"/>
+<p><i>Каталог и фильтры</i></p>
+
+<img src="./public/assets-readme/checkout.png" width="800"/>
+<p><i>Корзина и оформление заказа</i></p>
+
+<img src="./public/assets-readme/profile.png" width="800"/>
+<p><i>Личный кабинет</i></p>
+
+<img src="./public/assets-readme/admin.png" width="800"/>
+<p><i>Админ-панель</i></p>
+
 </div>
 
 ---
@@ -96,8 +84,8 @@
 
 ```bash
 # Клонировать репозиторий
-git clone https://github.com/medok-ui/newbalance-store.git
-cd new-balance
+git clone <ссылка-на-репозиторий>
+cd newbalance-store
 
 # Установить зависимости
 npm install
