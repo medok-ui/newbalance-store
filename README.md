@@ -53,15 +53,14 @@
 -->
 
 <div align="center">
-
 | Каталог и фильтры | Корзина и оформление заказа |
 |:---:|:---:|
-| <img src="/assets-readme/catalog.png" width="380"/> | <img src="/assets-readme/checkout.png" width="380"/> |
-
+| <img src="./public/assets-readme/catalog.png" width="380"/> | <img src="./public/assets-readme/checkout.png" width="380"/> |
+ 
 | Личный кабинет | Админ-панель |
 |:---:|:---:|
-| <img src="/assets-readme/profile.png" width="380"/> | <img src="/assets-readme/admin.png" width="380"/> |
-
+| <img src="./public/assets-readme/profile.png" width="380"/> | <img src="./public/assets-readme/admin.png" width="380"/> |
+ 
 </div>
 
 ---
