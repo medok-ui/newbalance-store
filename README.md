@@ -20,7 +20,24 @@
 
 ---
 
-## <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/info.svg" width="20" valign="middle"/> О проекте
+<!-- Иконки ниже — Iconify API (набор lucide), цвет задаётся прямо в URL через ?color=, поэтому подходят под тёмную тему -->
+
+## <img src="https://api.iconify.design/lucide/list.svg?color=%23D4FF00" width="20" valign="middle"/> Оглавление
+
+- [О проекте](#о-проекте)
+- [Демо](#демо)
+- [Стек технологий](#стек-технологий)
+- [Возможности](#возможности)
+- [Запуск проекта](#запуск-проекта)
+- [Тестовая оплата](#тестовая-оплата)
+- [Промокоды](#промокоды)
+- [Если долго грузится](#если-долго-грузится)
+- [Статус проекта](#статус-проекта)
+- [Контакты](#контакты)
+
+---
+
+## <img src="https://api.iconify.design/lucide/info.svg?color=%23D4FF00" width="20" valign="middle"/> О проекте
 
 Пет-проект интернет-магазина в стиле **New Balance**: каталог кроссовок, фильтры, корзина, избранное, оформление заказа с реальной интеграцией оплаты (в тестовом режиме) и полноценная админ-панель для управления товарами и заказами.
 
@@ -28,7 +45,7 @@
 
 ---
 
-## <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/clapperboard.svg" width="20" valign="middle"/> Демо
+## <img src="https://api.iconify.design/lucide/clapperboard.svg?color=%23D4FF00" width="20" valign="middle"/> Демо
 
 <!-- 
   Скриншоты лежат в папке assets-readme/ в корне репозитория.
@@ -36,17 +53,22 @@
 -->
 
 <div align="center">
+
 <img src="./public/assets-readme/catalog.png" width="48%"/>
 <img src="./public/assets-readme/checkout.png" width="48%"/>
+
 <p><i>Каталог и фильтры &nbsp;•&nbsp; Корзина и оформление заказа</i></p>
+
 <img src="./public/assets-readme/profile.png" width="48%"/>
 <img src="./public/assets-readme/admin.png" width="48%"/>
+
 <p><i>Личный кабинет &nbsp;•&nbsp; Админ-панель</i></p>
+
 </div>
 
 ---
 
-## <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/layers.svg" width="20" valign="middle"/> Стек технологий
+## <img src="https://api.iconify.design/lucide/layers.svg?color=%23D4FF00" width="20" valign="middle"/> Стек технологий
 
 | Категория | Технологии |
 |---|---|
@@ -57,23 +79,23 @@
 
 ---
 
-## <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/sparkles.svg" width="20" valign="middle"/> Возможности
+## <img src="https://api.iconify.design/lucide/sparkles.svg?color=%23D4FF00" width="20" valign="middle"/> Возможности
 
 <table>
-<tr><td width="28"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/lock.svg" width="18"/></td><td>Регистрация и авторизация (Supabase Auth)</td></tr>
-<tr><td><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/shirt.svg" width="18"/></td><td>Каталог товаров с фильтрами: пол, размер, цена, рейтинг, метки (new/sale)</td></tr>
-<tr><td><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/search.svg" width="18"/></td><td>Поиск по товарам</td></tr>
-<tr><td><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/heart.svg" width="18"/></td><td>Избранное</td></tr>
-<tr><td><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/shopping-cart.svg" width="18"/></td><td>Корзина с изменением количества и подсчётом стоимости</td></tr>
-<tr><td><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/credit-card.svg" width="18"/></td><td>Оформление заказа и оплата через Stripe</td></tr>
-<tr><td><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/ticket-percent.svg" width="18"/></td><td>Промокоды на скидку</td></tr>
-<tr><td><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/user.svg" width="18"/></td><td>Личный кабинет: профиль, адрес доставки, смена пароля, история заказов</td></tr>
-<tr><td><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/layout-dashboard.svg" width="18"/></td><td>Админ-панель: дашборд со статистикой, товары, заказы, пользователи</td></tr>
+<tr><td width="28"><img src="https://api.iconify.design/lucide/lock.svg?color=%23D4FF00" width="18"/></td><td>Регистрация и авторизация (Supabase Auth)</td></tr>
+<tr><td><img src="https://api.iconify.design/lucide/shirt.svg?color=%23D4FF00" width="18"/></td><td>Каталог товаров с фильтрами: пол, размер, цена, рейтинг, метки (new/sale)</td></tr>
+<tr><td><img src="https://api.iconify.design/lucide/search.svg?color=%23D4FF00" width="18"/></td><td>Поиск по товарам</td></tr>
+<tr><td><img src="https://api.iconify.design/lucide/heart.svg?color=%23D4FF00" width="18"/></td><td>Избранное</td></tr>
+<tr><td><img src="https://api.iconify.design/lucide/shopping-cart.svg?color=%23D4FF00" width="18"/></td><td>Корзина с изменением количества и подсчётом стоимости</td></tr>
+<tr><td><img src="https://api.iconify.design/lucide/credit-card.svg?color=%23D4FF00" width="18"/></td><td>Оформление заказа и оплата через Stripe</td></tr>
+<tr><td><img src="https://api.iconify.design/lucide/ticket-percent.svg?color=%23D4FF00" width="18"/></td><td>Промокоды на скидку</td></tr>
+<tr><td><img src="https://api.iconify.design/lucide/user.svg?color=%23D4FF00" width="18"/></td><td>Личный кабинет: профиль, адрес доставки, смена пароля, история заказов</td></tr>
+<tr><td><img src="https://api.iconify.design/lucide/layout-dashboard.svg?color=%23D4FF00" width="18"/></td><td>Админ-панель: дашборд со статистикой, товары, заказы, пользователи</td></tr>
 </table>
 
 ---
 
-## <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/rocket.svg" width="20" valign="middle"/> Запуск проекта
+## <img src="https://api.iconify.design/lucide/rocket.svg?color=%23D4FF00" width="20" valign="middle"/> Запуск проекта
 
 ```bash
 # Клонировать репозиторий
@@ -93,7 +115,7 @@ ng serve
 
 ---
 
-## <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/credit-card.svg" width="20" valign="middle"/> Тестовая оплата
+## <img src="https://api.iconify.design/lucide/credit-card.svg?color=%23D4FF00" width="20" valign="middle"/> Тестовая оплата
 
 Оплата в проекте **полностью тестовая** (Stripe test mode) — реальные деньги не списываются, бояться нечего 🙂
 
@@ -106,7 +128,7 @@ ng serve
 
 ---
 
-## <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/ticket-percent.svg" width="20" valign="middle"/> Промокоды
+## <img src="https://api.iconify.design/lucide/ticket-percent.svg?color=%23D4FF00" width="20" valign="middle"/> Промокоды
 
 Промокоды хранятся в таблице `promo_codes` в Supabase и применяются на странице оформления заказа:
 
@@ -121,24 +143,24 @@ ng serve
 
 ---
 
-## <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/turtle.svg" width="20" valign="middle"/> Если долго грузится
+## <img src="https://api.iconify.design/lucide/turtle.svg?color=%23D4FF00" width="20" valign="middle"/> Если долго грузится
 
 Supabase и Stripe иногда медленно отвечают в некоторых регионах — если страница долго грузится или зависает, попробуйте включить **VPN**.
 
 ---
 
-## <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/wrench.svg" width="20" valign="middle"/> Статус проекта
+## <img src="https://api.iconify.design/lucide/wrench.svg?color=%23D4FF00" width="20" valign="middle"/> Статус проекта
 
 | | |
 |---|---|
-| <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/check.svg" width="16"/> | Основной функционал магазина работает стабильно |
-| <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/x.svg" width="16"/> | Адаптив под мобильные устройства и планшеты пока не сделан — корректно отображается только на десктопе |
-| <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/globe.svg" width="16"/> | Интерфейс только на русском языке |
-| <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/bug.svg" width="16"/> | Возможны мелкие баги — если нашли что-то не так, пишите админу |
+| <img src="https://api.iconify.design/lucide/check.svg?color=%23D4FF00" width="16"/> | Основной функционал магазина работает стабильно |
+| <img src="https://api.iconify.design/lucide/x.svg?color=%23D4FF00" width="16"/> | Адаптив под мобильные устройства и планшеты пока не сделан — корректно отображается только на десктопе |
+| <img src="https://api.iconify.design/lucide/globe.svg?color=%23D4FF00" width="16"/> | Интерфейс только на русском языке |
+| <img src="https://api.iconify.design/lucide/bug.svg?color=%23D4FF00" width="16"/> | Возможны мелкие баги — если нашли что-то не так, пишите админу |
 
 ---
 
-## <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.509.0/icons/mail.svg" width="20" valign="middle"/> Контакты
+## <img src="https://api.iconify.design/lucide/mail.svg?color=%23D4FF00" width="20" valign="middle"/> Контакты
 
 По всем вопросам, багам и предложениям:
 
