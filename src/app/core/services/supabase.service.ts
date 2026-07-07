@@ -173,7 +173,6 @@ export class SupabaseService {
       .select('id')
       .eq('id', user.id)
       .maybeSingle();
-    if (!this.currentUser()) return false;
 
     return !error && !!data;
   }
