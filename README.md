@@ -36,14 +36,12 @@
 -->
 
 <div align="center">
-<img src="./public/assets-readme/catalog.png" width="800"/>
-<p><i>Каталог и фильтры</i></p>
-<img src="./public/assets-readme/checkout.png" width="800"/>
-<p><i>Корзина и оформление заказа</i></p>
-<img src="./public/assets-readme/profile.png" width="800"/>
-<p><i>Личный кабинет</i></p>
-<img src="./public/assets-readme/admin.png" width="800"/>
-<p><i>Админ-панель</i></p>
+<img src="./public/assets-readme/catalog.png" width="48%"/>
+<img src="./public/assets-readme/checkout.png" width="48%"/>
+<p><i>Каталог и фильтры &nbsp;•&nbsp; Корзина и оформление заказа</i></p>
+<img src="./public/assets-readme/profile.png" width="48%"/>
+<img src="./public/assets-readme/admin.png" width="48%"/>
+<p><i>Личный кабинет &nbsp;•&nbsp; Админ-панель</i></p>
 </div>
 
 ---
