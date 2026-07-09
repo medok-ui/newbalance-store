@@ -44,7 +44,7 @@
       <p class="search-body__label">Найдено {{ products().length }}</p>
       <ul class="search-body__products">
         @for (product of products(); track product.id) {
-          <li class="search-body__product">
+          <li class="search-body__product" (click)="onProductClick()">
             <app-product-search [products]="product" />
           </li>
         }

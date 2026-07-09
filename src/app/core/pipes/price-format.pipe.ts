@@ -10,6 +10,6 @@ export class PriceFormatPipe implements PipeTransform {
   transform(value: number | string | null | undefined): string {
     if (value == null) return '';
     const formatted = this.currencyPipe.transform(value, 'RUB', 'symbol', '1.0-0', 'ru-RU');
-    return formatted ? formatted.replace(/(?<=\d)\s(?=\d)/g, '.') : '';
+    return formatted ? formatted.replace(/(?<=\d)\s(?=\d)/g, ' ') : '';
   }
 }

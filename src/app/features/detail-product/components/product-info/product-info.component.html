@@ -11,8 +11,11 @@
   </div>
   <div class="product-detail__pricing">
     <span class="product-detail__price">{{ dataProduct()?.price | priceFormat }}</span>
-    <span class="product-detail__old-price">{{ dataProduct()?.old_price | priceFormat}}</span>
-    <span class="product-detail__discount-tag">–{{ dataProduct()?.discount }}%</span>
+    <span class="product-detail__old-price">{{ dataProduct()?.old_price | priceFormat }}</span>
+    <span class="product-detail__discount-tag">~{{ dataProduct()?.discount }}%</span>
+    <div class="product-detail-badge product-detail-badge--{{ dataProduct()?.badge }}">
+      {{ dataProduct()?.badge }}
+    </div>
   </div>
   <hr class="product-detail__divider-hr" />
   <div class="product-detail__size-header">
@@ -53,12 +56,12 @@
         <p class="error-text">Пожалуйста, выберите размер</p>
       </div>
     }
-    <button (click)="addToCart()" [disabled]="isCart()" class="product-detail__btn-cart">
-      @if (isCart()) {
-        <img src="/assets/svgs/add-cart.svg" alt="add-cart" /> Уже в корзине !
-      } @else {
+    <button (click)="addToCart()" class="product-detail__btn-cart">
+      <!-- @if (isCart()) { -->
+        <!-- <img src="/assets/svgs/add-cart.svg" alt="add-cart" /> Уже в корзине ! -->
+      <!-- } @else { -->
         <img src="/assets/svgs/add-cart.svg" alt="add-cart" />Добавить в корзину
-      }
+      <!-- } -->
     </button>
     <button (click)="toggleFavoriteList()" class="product-detail__btn-wishlist">
       @if (isFavorite()) {

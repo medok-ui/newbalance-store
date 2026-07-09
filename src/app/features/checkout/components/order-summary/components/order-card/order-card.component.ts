@@ -24,18 +24,20 @@ export class OrderCardComponent implements OnInit {
   private cartService = inject(CartService);
 
   public productData = input.required<IProduct>();
+  public cartItemId = input.required<number>();
   public cartInfoProducts = signal<ICartItem | null>(null);
   public quantity = signal<number>(1);
 
   constructor() {
     effect(() => {
-      const dataProduct = this.productData();
+      const id = this.cartItemId();
       const infoProduct = this.cartService.cartsData();
       if (!infoProduct) return;
 
-      const currentInfoProduct = infoProduct.find((p) => p.product_id === dataProduct.id) ?? null;
+      const currentInfoProduct = infoProduct.find((p) => p.id === id) ?? null;
 
       this.cartInfoProducts.set(currentInfoProduct);
+      console.log(currentInfoProduct);
     });
   }
 

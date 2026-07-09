@@ -41,3 +41,10 @@
     <button (click)="onSubmit()" class="delivery-address__btn-save">Обновить адрес</button>
   </form>
 </div>
+
+<app-modal
+  [isOpen]="isModalOpen()"
+  (closed)="isModalOpen.set(false)"
+  [typeModal]="typeModal()"
+  [message]="messageModal()"
+/>

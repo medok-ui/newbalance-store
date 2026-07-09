@@ -28,8 +28,8 @@ export class RecipientComponent implements OnInit {
     ]),
   });
 
-  public async ngOnInit(): Promise<void> {
-    const data = await this.supabaseService.getUser();
+  public  ngOnInit(): void {
+    const data = this.supabaseService.infoCurrentUser();
     const emailUser = this.supabaseService.currentUser();
 
     this.from.patchValue({

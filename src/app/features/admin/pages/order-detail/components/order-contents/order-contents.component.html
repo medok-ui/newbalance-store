@@ -25,7 +25,7 @@
           <td class="items-table__td items-table__td--muted">{{ item.size }}</td>
           <td class="items-table__td items-table__td--center">{{ item.quantity }}</td>
           <td class="items-table__td items-table__td--center">
-            {{ item.price * item.quantity | priceFormat }}
+            {{ item.products.price * item.quantity | priceFormat }}
           </td>
         </tr>
       }

@@ -16,6 +16,8 @@ import { IAdminUser, IUserProfile } from '../../shared/interfaces/user.interface
 export class SupabaseService {
   public products = signal<IProduct[]>([]);
   public currentUser = signal<User | null>(null);
+  public infoCurrentUser = signal<IUserProfile | null>(null);
+  public userOrders = signal<IOrder[] | null>(null);
 
   readonly client: SupabaseClient = createClient(environment.supabaseUrl, environment.supabaseKey);
 
@@ -76,7 +78,7 @@ export class SupabaseService {
     this.currentUser.set(null);
   }
 
-  public async getUser(): Promise<IUserProfile | null> {
+  public async getUser(): Promise<void | null> {
     const user = this.currentUser();
     if (!user) return null;
 
@@ -87,8 +89,7 @@ export class SupabaseService {
       .single();
 
     if (error) throw error;
-
-    return data as IUserProfile;
+    this.infoCurrentUser.set(data as IUserProfile);
   }
 
   public async updatePassword(newPassword: string): Promise<void> {
@@ -209,7 +210,7 @@ export class SupabaseService {
 
     if (error) throw error;
   }
-  public async getOrders(): Promise<IOrder[]> {
+  public async getOrders(): Promise<void> {
     const { data, error } = await this.client
       .from('orders')
       .select(
@@ -224,7 +225,7 @@ export class SupabaseService {
     // ascending: false — сортировка по дате создания заказа, от новых к старым
 
     if (error) throw error;
-    return data as IOrder[];
+    this.userOrders.set(data as IOrder[]);
   }
 
   public async getUsers(): Promise<IAdminUser[]> {

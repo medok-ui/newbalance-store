@@ -44,6 +44,10 @@ The content is organized as follows:
 .gitignore
 angular.json
 package.json
+public/assets-readme/admin.png
+public/assets-readme/catalog.png
+public/assets-readme/checkout.png
+public/assets-readme/profile.png
 public/assets/svgs/add-cart.svg
 public/assets/svgs/arrow-left.svg
 public/assets/svgs/arrow-right.svg
@@ -350,6 +354,7 @@ src/app/shared/components/search-block/search-block.component.html
 src/app/shared/components/search-block/search-block.component.scss
 src/app/shared/components/search-block/search-block.component.ts
 src/app/shared/components/search-block/search-block.constants.ts
+src/app/shared/interfaces/cart-display-item.interface.ts
 src/app/shared/interfaces/cart-item.interface.ts
 src/app/shared/interfaces/favorite.interface.ts
 src/app/shared/interfaces/order.interface.ts
@@ -383,6 +388,230 @@ tsconfig.spec.json
 
 <files>
 This section contains the contents of the repository's files.
+
+<file path="src/app/shared/interfaces/cart-display-item.interface.ts">
+import { IProduct } from "../../features/products/interfaces/product.interface";
+
+export interface ICartDisplayItem {
+  cartItemId: number; 
+  product: IProduct;
+}
+</file>
+
+<file path=".editorconfig">
+# Editor configuration, see https://editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.ts]
+quote_type = single
+ij_typescript_use_double_quotes = false
+
+[*.md]
+max_line_length = off
+trim_trailing_whitespace = false
+</file>
+
+<file path=".gitignore">
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/mcp.json
+.history/*
+
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+__screenshots__/
+
+# System files
+.DS_Store
+Thumbs.db
+</file>
+
+<file path="angular.json">
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "cli": {
+    "packageManager": "npm",
+    "analytics": "be773cce-836c-4450-b152-baa2065b99ab"
+  },
+  "newProjectRoot": "projects",
+  "projects": {
+    "new-balance": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "skipTests": true,
+          "changeDetection": "OnPush",
+          "type": "component"
+        },
+        "@schematics/angular:service": {
+          "skipTests": true,
+          "type": "service"
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true,
+          "type": "directive"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "src/main.ts",
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "styles": ["src/styles.scss"]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "new-balance:build:production"
+            },
+            "development": {
+              "buildTarget": "new-balance:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test"
+        }
+      }
+    }
+  }
+}
+</file>
+
+<file path="package.json">
+{
+  "name": "new-balance",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "serve:ssr:new-balance": "node dist/new-balance/server/server.mjs"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "private": true,
+  "packageManager": "npm@11.10.0",
+  "dependencies": {
+    "@angular/cdk": "^21.2.11",
+    "@angular/common": "^21.1.0",
+    "@angular/compiler": "^21.1.0",
+    "@angular/core": "^21.1.0",
+    "@angular/forms": "^21.1.0",
+    "@angular/platform-browser": "^21.1.0",
+    "@angular/platform-server": "^21.1.0",
+    "@angular/router": "^21.1.0",
+    "@angular/ssr": "^21.1.1",
+    "@supabase/supabase-js": "^2.108.1",
+    "express": "^5.1.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^21.1.1",
+    "@angular/cli": "^21.1.1",
+    "@angular/compiler-cli": "^21.1.0",
+    "@types/express": "^5.0.1",
+    "@types/node": "^20.17.19",
+    "jsdom": "^27.1.0",
+    "typescript": "~5.9.2",
+    "vitest": "^4.0.8"
+  }
+}
+</file>
 
 <file path="public/assets/svgs/add-cart.svg">
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -873,6 +1102,201 @@ table {
 }
 </file>
 
+<file path="src/app/app.config.server.ts">
+import { mergeApplicationConfig, ApplicationConfig } from '@angular/core';
+import { provideServerRendering, withRoutes } from '@angular/ssr';
+import { appConfig } from './app.config';
+import { serverRoutes } from './app.routes.server';
+
+const serverConfig: ApplicationConfig = {
+  providers: [
+    provideServerRendering(withRoutes(serverRoutes))
+  ]
+};
+
+export const config = mergeApplicationConfig(appConfig, serverConfig);
+</file>
+
+<file path="src/app/app.config.ts">
+import { ApplicationConfig, LOCALE_ID, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
+
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
+registerLocaleData(localeRu);
+
+import { routes } from './app.routes';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    provideRouter(
+      routes,
+      withInMemoryScrolling({
+        scrollPositionRestoration: 'top', // скролл вверх
+        anchorScrolling: 'enabled',
+      }),
+    ),
+    { provide: LOCALE_ID, useValue: 'ru-RU' },
+  ],
+};
+</file>
+
+<file path="src/app/app.html">
+<router-outlet></router-outlet>
+@if (isLoading()) {
+  <app-loader></app-loader>
+}
+</file>
+
+<file path="src/app/app.routes.server.ts">
+import { RenderMode, ServerRoute } from '@angular/ssr';
+
+export const serverRoutes: ServerRoute[] = [
+  {
+    path: '**',
+    renderMode: RenderMode.Server,
+  },
+];
+</file>
+
+<file path="src/app/app.routes.ts">
+import { Routes } from '@angular/router';
+import { authGuard } from './core/guards/auth.guard';
+import { adminRoutes } from './features/admin/admin.routes';
+import { productsRoutes } from './features/products/products.routes';
+import { profilesRoutes } from './features/profile/profiles.routes';
+
+export const routes: Routes = [
+  {
+    path: '',
+    loadComponent: () =>
+      import('./layout/main-layout/main-layout.component').then((m) => m.MainLayoutComponent),
+    children: [
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+      },
+      {
+        path: 'home',
+        loadComponent: () =>
+          import('./features/home/pages/pages.component').then((m) => m.PagesComponent),
+        title: 'New Balance',
+      },
+      {
+        path: 'cart',
+        loadComponent: () =>
+          import('./features/cart/pages/cart-page/cart-page.component').then(
+            (m) => m.CartPageComponent,
+          ),
+        title: 'New Balance - cart',
+        canActivate: [authGuard],
+      },
+      {
+        path: 'favorites',
+        loadComponent: () =>
+          import('./features/favorites/pages/favorite/favorite.component').then(
+            (m) => m.FavoriteComponent,
+          ),
+        title: 'New Balance - favorites',
+        canActivate: [authGuard],
+      },
+      {
+        path: 'new-arrivals',
+        loadComponent: () =>
+          import('./features/new-arrivals/pages/new-arrivals/new-arrivals.component').then(
+            (m) => m.NewArrivalsComponent,
+          ),
+        title: 'New Balance - new',
+      },
+      {
+        path: 'sale',
+        loadComponent: () =>
+          import('./features/sale/pages/sale-page/sale-page.component').then(
+            (m) => m.SalePageComponent,
+          ),
+        title: 'New Balance - sale',
+      },
+      {
+        path: 'checkout',
+        loadComponent: () =>
+          import('./features/checkout/pages/checkout/checkout.component').then(
+            (m) => m.CheckoutComponent,
+          ),
+        title: 'New Balance - checkout',
+        canActivate: [authGuard],
+      },
+      {
+        path: 'checkout/success',
+        loadComponent: () =>
+          import('./features/checkout/pages/checkout-success/checkout-success.component').then(
+            (m) => m.CheckoutSuccessComponent,
+          ),
+        title: 'New Balance - заказ оформлен',
+        canActivate: [authGuard],
+      },
+
+      ...productsRoutes,
+      ...profilesRoutes,
+    ],
+  },
+  ...adminRoutes,
+  // {
+  //   path: '**',
+  //   redirectTo: 'home',
+  //   pathMatch: 'full',
+  // },
+];
+</file>
+
+<file path="src/app/app.scss">
+
+</file>
+
+<file path="src/app/app.ts">
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { CartService } from './core/services/cart.service';
+import { FavoritesService } from './core/services/favorites.service';
+import { SupabaseService } from './core/services/supabase.service';
+import { LoaderComponent } from './shared/components/loader/loader.component';
+
+@Component({
+  selector: 'app-root',
+  imports: [RouterOutlet, LoaderComponent],
+  templateUrl: './app.html',
+  styleUrl: './app.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class App implements OnInit {
+  private supabaseService = inject(SupabaseService);
+  private favoritesService = inject(FavoritesService);
+  private cartService = inject(CartService);
+
+  public isLoading = signal<boolean>(false);
+
+  public async ngOnInit(): Promise<void> {
+    this.isLoading.set(true);
+
+    this.supabaseService.client.auth.onAuthStateChange((event, session) => {
+      if (session?.user) {
+        return this.supabaseService.currentUser.set(session.user);
+      }
+      this.supabaseService.currentUser.set(null);
+    });
+
+    await this.supabaseService.loadProducts();
+    await this.supabaseService.getOrders()
+    await this.supabaseService.getUser();
+    await this.favoritesService.getCart();
+    await this.cartService.getCart();
+
+    this.isLoading.set(false);
+  }
+}
+</file>
+
 <file path="src/app/core/auth/auth.constants.ts">
 
 </file>
@@ -1085,59 +1509,6 @@ export const authRoutes: Routes = [
     border-color: #dc2626;
     background-color: #fff;
     box-shadow: 0 0 0 4px rgba(229, 62, 62, 0.12);
-  }
-}
-</file>
-
-<file path="src/app/core/auth/components/login-form/login-form.component.ts">
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { SupabaseService } from '../../../services/supabase.service';
-
-@Component({
-  selector: 'app-login-form',
-  imports: [ReactiveFormsModule],
-  templateUrl: './login-form.component.html',
-  styleUrl: './login-form.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class LoginFormComponent {
-  private supabaseService = inject(SupabaseService);
-  private route = inject(Router);
-
-  public visiblePassword = signal<boolean>(true);
-
-  public isValidLogin = signal<boolean>(true)
-  public isValidPassword = signal<boolean>(true)
-
-  public onVisiblePassword(): void {
-    this.visiblePassword.update((prev) => !prev);
-  }
-
-  public form = new FormGroup({
-    email: new FormControl('', [
-      Validators.required,
-      Validators.email,
-      Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/),
-    ]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^(?=.*[a-zа-яё])(?=.*[A-ZА-ЯЁ])(?=.*\d)[A-Za-zА-Яа-яЁё\d]{8,}$/),
-    ]),
-  });
-
-  public async onSubmit(): Promise<void> {
-    this.isValidLogin.set(this.form.controls.email.valid);
-    this.isValidPassword.set(this.form.controls.password.valid);
-
-    if (this.form.valid) {
-      const email = this.form.controls.email.value;
-      const password = this.form.controls.password.value;
-      if (!email || !password) return;
-      await this.supabaseService.signIn(email, password);
-      this.route.navigate(['/profile/']);
-    }
   }
 }
 </file>
@@ -1374,69 +1745,6 @@ export class LoginFormComponent {
 }
 </file>
 
-<file path="src/app/core/auth/components/register-form/register-form.component.ts">
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { SupabaseService } from '../../../services/supabase.service';
-
-@Component({
-  selector: 'app-register-form',
-  imports: [ReactiveFormsModule],
-  templateUrl: './register-form.component.html',
-  styleUrl: './register-form.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class RegisterFormComponent {
-  private supabaseService = inject(SupabaseService);
-  private route = inject(Router);
-
-  public visiblePassword = signal<boolean>(true);
-
-  public isValidLogin = signal<boolean>(true)
-  public isValidPassword = signal<boolean>(true)
-  public isValidFirstName = signal<boolean>(true)
-  public isValidLastName = signal<boolean>(true)
-
-  public onVisiblePassword(): void {
-    this.visiblePassword.update((prev) => !prev);
-  }
-
-  public form = new FormGroup({
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
-    email: new FormControl('', [
-      Validators.required,
-      Validators.email,
-      Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/),
-    ]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^(?=.*[a-zа-яё])(?=.*[A-ZА-ЯЁ])(?=.*\d)[A-Za-zА-Яа-яЁё\d]{8,}$/),
-    ]),
-    agree: new FormControl(false, [Validators.requiredTrue]),
-  });
-
-  public async onSubmit(): Promise<void> {
-    this.isValidLogin.set(this.form.controls.email.valid);
-    this.isValidPassword.set(this.form.controls.password.valid);
-    this.isValidFirstName.set(this.form.controls.firstName.valid);
-    this.isValidLastName.set(this.form.controls.lastName.valid);
-
-
-    if (this.form.valid) {
-      const email = this.form.controls.email.value;
-      const password = this.form.controls.password.value;
-      const lastName = this.form.controls.lastName.value;
-      const firstName = this.form.controls.firstName.value;
-      if (!email || !password || !lastName || !firstName) return;
-      await this.supabaseService.signUp(email, password, firstName, lastName);
-      this.route.navigate(['/auth/login']);
-    }
-  }
-}
-</file>
-
 <file path="src/app/core/auth/pages/auth-page/auth-page.component.html">
 <div class="layout container">
   <aside class="sidebar">
@@ -1634,7 +1942,7 @@ export class PriceFormatPipe implements PipeTransform {
   transform(value: number | string | null | undefined): string {
     if (value == null) return '';
     const formatted = this.currencyPipe.transform(value, 'RUB', 'symbol', '1.0-0', 'ru-RU');
-    return formatted ? formatted.replace(/(?<=\d)\s(?=\d)/g, '.') : '';
+    return formatted ? formatted.replace(/(?<=\d)\s(?=\d)/g, ' ') : '';
   }
 }
 </file>
@@ -1670,7 +1978,6 @@ export class CartService {
     const currentProduct = allProduct.filter((p) => cartIds.includes(p.id));
 
     this.carts.set(currentProduct);
-    console.log(this.carts());
   }
 
   public async addToCart(productId: number, size: number, quantity: number): Promise<void> {
@@ -1678,21 +1985,35 @@ export class CartService {
 
     const { data, error } = await this.client
       .from('cart')
-      .insert({
-        user_id: userId,
-        product_id: productId,
-        size,
-        quantity,
-      })
+      .upsert(
+        {
+          user_id: userId,
+          product_id: productId,
+          size,
+          quantity,
+        },
+        { onConflict: 'user_id,product_id,size' },
+      )
       .select()
       .single();
     if (error) throw error;
+    console.log(data);
 
-    this.cartsData.update((prev) => [...prev!, data]);
+    this.cartsData.update((prev) => {
+      const exists = prev.some((item) => item.id === data.id);
+
+      return exists ? prev.map((item) => (item.id === data.id ? data : item)) : [...prev, data];
+    });
 
     const product = this.supabaseService.products().find((p) => p.id === productId);
     if (product) {
-      this.carts.update((prev) => [...prev!, product]);
+      console.log(product);
+
+      this.carts.update((prev) => {
+        const currentCarts = prev || [];
+        const exists = currentCarts.some((p) => p.id === product.id);
+        return exists ? currentCarts : [...currentCarts, product];
+      });
     }
   }
 
@@ -1726,8 +2047,6 @@ export class CartService {
     this.cartsData.update((prev) =>
       prev?.map((item) => (item.id === cartItemId ? { ...item, quantity } : item)),
     );
-
-    console.log(this.cartsData());
   }
 
   public async clearCart(): Promise<void> {
@@ -1777,7 +2096,7 @@ export class FavoritesService {
   public async addToCart(productId: number): Promise<void> {
     const userId = this.supabaseService.currentUser()?.id;
 
-    const { data, error } = await this.client
+    const { error } = await this.client
       .from('favorites')
       .insert([{ user_id: userId, product_id: productId }])
       .select();
@@ -1851,331 +2170,6 @@ export class FilterService {
 
   public onShowFilters(): void {
     this.isShowFilters.update((value) => !value);
-  }
-}
-</file>
-
-<file path="src/app/core/services/supabase.service.ts">
-import { Injectable, signal } from '@angular/core';
-
-import { environment } from '../../../environments/environment';
-import { IProduct } from '../../features/products/interfaces/product.interface';
-
-import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
-import { IOrder } from '../../shared/interfaces/order.interface';
-import { ITopProduct } from '../../shared/interfaces/top-product.interface';
-import { IAdminUser, IUserProfile } from '../../shared/interfaces/user.interface';
-// createClient — функция которая создаёт подключение к Supabase
-// SupabaseClient — тип для TypeScript
-
-@Injectable({
-  providedIn: 'root',
-})
-export class SupabaseService {
-  public products = signal<IProduct[]>([]);
-  public currentUser = signal<User | null>(null);
-
-  readonly client: SupabaseClient = createClient(environment.supabaseUrl, environment.supabaseKey);
-
-  public async loadProducts(): Promise<void> {
-    const { data, error } = await this.client.from('products').select('*, categories(name, slug)');
-    // * — все поля товара
-    // categories(name, slug) — подтягивает название категории по category_id
-    if (error) throw error;
-    this.products.set(data as IProduct[]);
-  }
-
-  public async loadProductById(id: number): Promise<IProduct> {
-    const { data, error } = await this.client
-      .from('products')
-      .select('*, categories(name, slug)')
-      .eq('id', id)
-      .single();
-    // eq('id', id) — фильтрует товары по id
-    // single() — возвращает один объект вместо массива
-
-    if (error) throw error;
-    return data as IProduct;
-  }
-
-  public async loadProductByGender(gender: string): Promise<IProduct[]> {
-    const { data, error } = await this.client
-      .from('products')
-      .select('*, categories(name, slug)')
-      .eq('gender', gender);
-    if (error) throw error;
-    return data as IProduct[];
-  }
-
-  public async signUp(email: string, password: string, firstName: string, lastName: string) {
-    const { data, error } = await this.client.auth.signUp({ email, password });
-    if (error) throw error;
-
-    if (data.user) {
-      await this.client.from('profiles').insert({
-        id: data.user.id,
-        first_name: firstName,
-        last_name: lastName,
-      });
-    }
-    return data;
-  }
-
-  public async signIn(email: string, password: string) {
-    const { data, error } = await this.client.auth.signInWithPassword({ email, password });
-    if (error) throw error;
-    this.currentUser.set(data.user);
-    console.log(data);
-
-    return data;
-  }
-
-  public async signOut(): Promise<void> {
-    await this.client.auth.signOut();
-    this.currentUser.set(null);
-  }
-
-  public async getUser(): Promise<IUserProfile | null> {
-    const user = this.currentUser();
-    if (!user) return null;
-
-    const { data, error } = await this.client
-      .from('profiles')
-      .select('*')
-      .eq('id', user.id)
-      .single();
-
-    if (error) throw error;
-    console.log(data);
-
-    return data as IUserProfile;
-  }
-
-  public async updatePassword(newPassword: string): Promise<void> {
-    const { error } = await this.client.auth.updateUser({
-      password: newPassword,
-    });
-
-    if (error) throw error;
-  }
-
-  public async updateDeliveryAddress(
-    city: string,
-    address: string,
-    postal_code: string,
-  ): Promise<void> {
-    const { error } = await this.client
-      .from('profiles')
-      .update({ city, postal_code, address })
-      .eq('id', this.currentUser()?.id);
-
-    if (error) throw error;
-    console.log(this.currentUser());
-  }
-
-  public async updateUserProfile(
-    first_name: string,
-    last_name: string,
-    phone: string,
-  ): Promise<void> {
-    const { error } = await this.client
-      .from('profiles')
-      .update({ first_name, last_name, phone })
-      .eq('id', this.currentUser()?.id);
-
-    if (error) throw error;
-    console.log(this.currentUser());
-  }
-
-  public async checkPromoCode(code: string): Promise<{ discount: number } | null> {
-    const { data, error } = await this.client
-      .from('promo_codes')
-      .select('discount')
-      .eq('code', code.toUpperCase())
-      .eq('is_active', true)
-      .single();
-
-    if (error) return null;
-    return data;
-  }
-
-  public async createStripePayment(
-    amount: number,
-    orderId: number,
-  ): Promise<{ url: string; sessionId: string } | null> {
-    const { data, error } = await this.client.functions.invoke('create-payment', {
-      body: {
-        amount,
-        orderId,
-        successUrl: `${window.location.origin}/checkout/success?order=${orderId}`,
-        cancelUrl: `${window.location.origin}/checkout`,
-      },
-    });
-    console.log('invoke result:', { data, error });
-
-    if (error) throw error;
-    return data;
-  }
-
-  public async updateOrderPaymentId(orderId: number, paymentId: string): Promise<void> {
-    const { error } = await this.client
-      .from('orders')
-      .update({
-        stripe_session_id: paymentId,
-      })
-      .eq('id', orderId);
-    if (error) throw error;
-  }
-
-  public async isAdmin(): Promise<boolean> {
-    const { data, error } = await this.client.from('admins').select('id').single();
-    if (!this.currentUser()) return false;
-    return !error && !!data;
-  }
-
-  public async createOrder(total: number): Promise<number> {
-    const userId = this.currentUser()?.id;
-    const { data, error } = await this.client
-      .from('orders')
-      .insert({
-        user_id: userId,
-        status: 'pending',
-        total,
-      })
-      .select('id')
-      .single();
-
-    if (error) throw error;
-    return data.id;
-  }
-
-  public async createOrderItem(
-    orderId: number,
-    items: { product_id: number; size: number; quantity: number; price: number }[],
-  ): Promise<void> {
-    const { error } = await this.client
-      .from('order_items')
-      .insert(items.map((item) => ({ ...item, order_id: orderId })));
-
-    if (error) throw error;
-  }
-
-  public async updateOrderStatus(orderId: number, status: string): Promise<void> {
-    console.log('Updating order status:', { orderId, status });
-    const { error } = await this.client.from('orders').update({ status }).eq('id', orderId);
-
-    if (error) throw error;
-  }
-  public async getOrders(): Promise<IOrder[]> {
-    const { data, error } = await this.client
-      .from('orders')
-      .select(
-        `*,
-              order_items (
-                *,
-                products ( name, images, price )
-            )`,
-      )
-      .eq('user_id', this.currentUser()?.id)
-      .order('created_at', { ascending: false });
-    // ascending: false — сортировка по дате создания заказа, от новых к старым
-
-    if (error) throw error;
-    return data as IOrder[];
-  }
-
-  public async getUsers(): Promise<IAdminUser[]> {
-    const { data, error } = await this.client.functions.invoke('get-users');
-    if (error) throw error;
-    return data as IAdminUser[];
-  }
-
-  public async getAllOrders(): Promise<IOrder[]> {
-    const { data, error } = await this.client
-      .from('orders')
-      .select(
-        `
-        *,
-        profiles (
-          first_name, 
-          last_name, 
-          phone, 
-          city, 
-          address
-        ),
-        order_items (
-          *,
-          products ( name, images, price )
-        )
-      `,
-      )
-      .order('created_at', { ascending: false });
-    // ascending: false — сортировка по дате создания заказа, от новых к старым
-    if (error) throw error;
-    return data as IOrder[];
-  }
-
-  public async getTopProducts(limit: 10): Promise<ITopProduct[]> {
-    const { data, error } = await this.client.from('top_products').select('*').limit(limit);
-    if (error) throw error;
-    return data as ITopProduct[];
-  }
-
-  public async deleteOrder(orderId: number): Promise<void> {
-    const { error } = await this.client.from('orders').delete().eq('id', orderId);
-    if (error) throw error;
-  }
-
-  public async uploadProductImage(file: File): Promise<string> {
-    const fileExt = file.name.split('.').pop();
-    const fileName = `${crypto.randomUUID()}.${fileExt}`;
-    const filePath = `products/${fileName}`;
-
-    const { error } = await this.client.storage.from('products').upload(filePath, file);
-
-    if (error) throw error;
-
-    const { data } = this.client.storage.from('products').getPublicUrl(filePath);
-    return data.publicUrl;
-  }
-
-  public async createProduct(
-    product: Omit<IProduct, 'id' | 'created_at' | 'categories'>,
-  ): Promise<IProduct> {
-    const { data, error } = await this.client
-      .from('products')
-      .insert(product)
-      .select('*, categories(name, slug)')
-      .single();
-    if (error) throw error;
-    return data as IProduct;
-  }
-
-  public async updateProduct(
-    productId: number,
-    product: Partial<Omit<IProduct, 'id' | 'created_at' | 'categories'>>,
-  ): Promise<IProduct> {
-    const { data, error } = await this.client
-      .from('products')
-      .update(product)
-      .eq('id', productId)
-      .select('*, categories(name, slug)')
-      .single();
-    if (error) throw error;
-    return data as IProduct;
-  }
-
-  public async deleteProduct(productId: number): Promise<void> {
-    const { error } = await this.client.from('products').delete().eq('id', productId);
-    if (error) throw error;
-  }
-
-  public async deleteProductImage(url: string): Promise<void> {
-    const path = url.split('/products/').slice(1).join('/products/');
-    if (!path) return;
-
-    const { error } = await this.client.storage.from('products').remove([path]);
-    if (error) throw error;
   }
 }
 </file>
@@ -2453,7 +2447,6 @@ export class OrdersTableComponent {
   public async ngOnInit(): Promise<void> {
     const orders = (await this.supabaseService.getAllOrders()).slice(0, 10  );
     this.allOrders.set(orders);
-    console.log(this.allOrders());
   }
 }
 </file>
@@ -2690,7 +2683,6 @@ export class TopProductsComponent {
   public async ngOnInit(): Promise<void> {
     const data = await this.supabaseService.getTopProducts(10);
     this.topProducts.set(data);
-    console.log(data);
   }
 }
 </file>
@@ -3153,6 +3145,13 @@ export class DashboardComponent implements OnInit {
     <button (click)="onSubmit()" class="btn-submit" type="submit">Войти в панель</button>
   </form>
 </div>
+
+<app-modal
+  [isOpen]="isModalOpen()"
+  (closed)="isModalOpen.set(false)"
+  [typeModal]="typeModal()"
+  [message]="messageModal()"
+/>
 </file>
 
 <file path="src/app/features/admin/pages/login/login.component.scss">
@@ -3295,59 +3294,6 @@ export class DashboardComponent implements OnInit {
   &:hover {
     background: #c8f000;
     color: #0a0a0a;
-  }
-}
-</file>
-
-<file path="src/app/features/admin/pages/login/login.component.ts">
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { SupabaseService } from '../../../../core/services/supabase.service';
-
-@Component({
-  selector: 'app-login-form',
-  imports: [ReactiveFormsModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class LoginComponent {
-  private supabaseService = inject(SupabaseService);
-  private router = inject(Router);
-  public visiblePassword = signal<boolean>(true);
-
-  public onVisiblePassword(): void {
-    this.visiblePassword.update((prev) => !prev);
-  }
-
-  public form = new FormGroup({
-    email: new FormControl('', [
-      Validators.required,
-      Validators.email,
-      Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/),
-    ]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^(?=.*[a-zа-яё])(?=.*[A-ZА-ЯЁ])(?=.*\d)[A-Za-zА-Яа-яЁё\d]{8,}$/),
-    ]),
-  });
-
-  public async onSubmit(): Promise<void> {
-    if (this.form.valid) {
-      const email = this.form.value.email;
-      const password = this.form.value.password;
-      if (!email || !password) return;
-
-      await this.supabaseService.signIn(email, password);
-      const admin = await this.supabaseService.isAdmin();
-
-      if (!admin) {
-        await this.supabaseService.signOut();
-        return;
-      }
-      this.router.navigate(['/admin/dashboard']);
-    }
   }
 }
 </file>
@@ -4078,10 +4024,8 @@ export class PhotosComponent {
     event.preventDefault();
     this.isDragging.set(false);
     const files = event.dataTransfer?.files;
-    console.log('Dropped files:', files);
 
     this.processFiles(Array.from(files!));
-    console.log('success');
   }
 
   public triggerFileInput(): void {
@@ -4104,7 +4048,6 @@ export class PhotosComponent {
       previewUrl: URL.createObjectURL(file),
     }));
     this.photos.update((currentPhotos) => [...currentPhotos, ...newPhotos]);
-    console.log('photos:', this.photos());
   }
 
   public isValidFile(file: File): boolean {
@@ -4250,7 +4193,7 @@ export class PhotosComponent {
 </file>
 
 <file path="src/app/features/admin/pages/new-product/components/sidebar/sidebar.component.ts">
-import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs';
@@ -4262,7 +4205,7 @@ import { debounceTime } from 'rxjs';
   styleUrl: './sidebar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit{
   private destroyRef = inject(DestroyRef);
 
   public form = new FormGroup({
@@ -4470,7 +4413,6 @@ export class SizesComponent {
         <div class="card__body">
           <div class="btn-group">
             <button type="submit" class="btn btn--primary">Опубликовать</button>
-            <button class="btn btn--secondary">Отмена</button>
           </div>
         </div>
       </div>
@@ -5075,7 +5017,7 @@ export class OrderContentsComponent {
 </file>
 
 <file path="src/app/features/admin/pages/order-detail/components/order-status/order-status.component.ts">
-import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
 import { SupabaseService } from '../../../../../../core/services/supabase.service';
 import { ModalComponent } from '../../../../../../shared/components/modal/modal.component';
 import { IOrder } from '../../../../../../shared/interfaces/order.interface';
@@ -5096,12 +5038,6 @@ export class OrderStatusComponent {
   public isModalOpen = signal<boolean>(false);
   public typeModal = signal<'success' | 'error' | 'wait'>('wait');
   public messageModal = signal<string>('');
-
-  constructor() {
-    effect(() => {
-      this.order()?.status;
-    });
-  }
 
   public showModal(type: 'success' | 'error' | 'wait', message: string): void {
     this.typeModal.set(type);
@@ -5387,11 +5323,11 @@ export class PersonComponent {
   public currentUser = signal<IAdminUser | undefined>(undefined);
 
   public async ngOnInit(): Promise<void> {
-    const orders = await this.supabaseService.getOrders();
+    const orders = this.supabaseService.userOrders();
     const users = await this.supabaseService.getUsers();
     const currentUser = users.find((user) => user.id === this.order()?.user_id);
+    if (!orders) return;
     this.allOrdersUser.set(orders);
-    console.log(currentUser);
     this.currentUser.set(currentUser);
   }
 }
@@ -5563,7 +5499,6 @@ export class OrderDetailComponent {
     const orders = await this.supabaseService.getAllOrders();
     const currentOrder = orders.find((p) => p.id === this.orderId()) ?? null;
     this.currentOrder.set(currentOrder);
-    console.log(this.currentOrder());
   }
 }
 </file>
@@ -5751,7 +5686,6 @@ export class OrdersListComponent implements OnInit {
   public async ngOnInit(): Promise<void> {
     const orders = await this.supabaseService.getAllOrders();
     this.allOrders.set(orders);
-    console.log(this.allOrders());
   }
 }
 </file>
@@ -6731,8 +6665,18 @@ export class PhotosComponent {
 </file>
 
 <file path="src/app/features/admin/pages/product-edit/components/sidebar/sidebar.component.ts">
-import { ChangeDetectionStrategy, Component, effect, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  effect,
+  inject,
+  input,
+  OnInit,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { debounceTime } from 'rxjs';
 import { IProduct } from '../../../../../products/interfaces/product.interface';
 
 @Component({
@@ -6742,7 +6686,9 @@ import { IProduct } from '../../../../../products/interfaces/product.interface';
   styleUrl: './sidebar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
+  private destroyRef = inject(DestroyRef);
+
   public product = input.required<IProduct | undefined>();
 
   public form = new FormGroup({
@@ -6759,6 +6705,27 @@ export class SidebarComponent {
         discount: this.product()?.discount!.toString(),
       });
     });
+  }
+
+  public ngOnInit(): void {
+    this.form.valueChanges
+      .pipe(debounceTime(400), takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.calculateDiscount();
+      });
+  }
+
+  private calculateDiscount(): void {
+    const price = Number(this.form.controls.price.value);
+    const oldPrice = Number(this.form.controls.oldPrice.value);
+
+    if (!price || !oldPrice || oldPrice <= price) {
+      this.form.controls.discount.setValue('');
+      return;
+    }
+
+    const discountPercentage = Math.round(((oldPrice - price) / oldPrice) * 100);
+    this.form.controls.discount.setValue(String(discountPercentage));
   }
 }
 </file>
@@ -6944,7 +6911,6 @@ export class SizesComponent implements OnInit {
         <div class="card__body">
           <div class="btn-group">
             <button type="submit" class="btn btn--primary">Сохранить</button>
-            <button class="btn btn--secondary">Отмена</button>
           </div>
         </div>
       </div>
@@ -7098,6 +7064,8 @@ export class ProductEditComponent {
   });
 
   public async onSubmit(): Promise<void> {
+    this.showModal('wait', 'Сохраняем изменения...');
+
     if (
       !this.basicInfo().form.valid ||
       !this.characteristics().form.valid ||
@@ -7108,13 +7076,16 @@ export class ProductEditComponent {
       return;
     }
 
-    this.showModal('wait', 'Сохраняем изменения...');
-
     const basicInfo = this.basicInfo().form.getRawValue();
     const characteristics = this.characteristics().form.getRawValue();
     const sidebar = this.sidebar().form.getRawValue();
     const detailDesc = this.detailDesc().form.getRawValue();
     const sizes = this.sizesRef().sizes();
+
+    if (sizes.length === 0) {
+      this.showModal('error', 'Добавьте размеры в наличии.');
+      return;
+    }
 
     let imageUrls: string[] = [];
     try {
@@ -7671,9 +7642,12 @@ import { IAdminUser } from '../../../../../../shared/interfaces/user.interface';
 export class UsersTableComponent {
   public searchQuery = signal<string>('');
   public users = input.required<IAdminUser[]>();
+
   public allUsers = computed(() => {
+    const users = this.users();
+
     const query = this.searchQuery().toLowerCase();
-    return this.users().filter((user) => user.profile?.last_name!.toLowerCase().includes(query));
+    return users.filter((user) => user.profile?.first_name!.toLowerCase().includes(query));
   });
 
   public searchUser(event: Event): void {
@@ -7716,7 +7690,6 @@ export class UsersListComponent {
   public async ngOnInit(): Promise<void> {
     const users = await this.supabaseService.getUsers();
     this.allUsers.set(users);
-    console.log(this.allUsers());
   }
 }
 </file>
@@ -7726,7 +7699,7 @@ export class UsersListComponent {
   <div class="container">
     <div class="cart__header">
       <h1 class="cart__header-title">Корзина</h1>
-      <span class="cart__header-count">{{ cartProducts()?.length }} товар</span>
+      <span class="cart__header-count">{{ cartProducts()?.length }} Моделий</span>
     </div>
     @if (cartProducts()?.length === 0) {
       <div class="carts-empty">
@@ -7739,7 +7712,9 @@ export class UsersListComponent {
         <div class="cart-layout__main">
           <ul class="cart-layout__cards">
             @for (item of cartProducts(); track item.id) {
-              <li class="cart-layout__card"><app-cart-item [dataProduct]="item" /></li>
+              <li class="cart-layout__card">
+                <app-cart-item [dataProduct]="item" [cartItemId]="item.id" />
+              </li>
             }
           </ul>
           <a class="cart-layout__btn-back" routerLink="/catalog">
@@ -7750,7 +7725,7 @@ export class UsersListComponent {
           <div class="cart-layout__summary-card">
             <h2 class="summary-card__title">Итого</h2>
             <div class="summary-card__summary-row">
-              <span class="summary-row__summary-count">Товары ({{ cartProducts()?.length }})</span>
+              <span class="summary-row__summary-count">Товары ({{ cartLength() }})</span>
               <span class="summary-row__summary-value">{{ totalPrice() | priceFormat }}</span>
             </div>
             <div class="summary-card__summary-row">
@@ -7972,7 +7947,6 @@ import {
 import { RouterLink } from '@angular/router';
 import { PriceFormatPipe } from '../../../../core/pipes/price-format.pipe';
 import { CartService } from '../../../../core/services/cart.service';
-import { SupabaseService } from '../../../../core/services/supabase.service';
 import { ICartItem } from '../../../../shared/interfaces/cart-item.interface';
 import { IProduct } from '../../../products/interfaces/product.interface';
 import { CartItemComponent } from '../cart-item/cart-item.component';
@@ -7986,7 +7960,6 @@ import { CartItemComponent } from '../cart-item/cart-item.component';
 })
 export class CartDrawerComponent {
   private cartService = inject(CartService);
-  private supabaseService = inject(SupabaseService);
 
   public cartProducts = signal<IProduct[] | null>([]);
   public cartInfoItem = signal<ICartItem[] | null>([]);
@@ -8018,11 +7991,24 @@ export class CartDrawerComponent {
     return subtotal < 15000 ? 990 : 0;
   });
 
+  public cartLength = computed(() => {
+    const products = this.cartProducts();
+    const cartInfo = this.cartInfoItem();
+    if (!products || !cartInfo) return;
+
+    const productLength = cartInfo.reduce((acc, item) => {
+      return acc + item.quantity;
+    }, 0);
+
+    return productLength;
+  });
+
   constructor() {
     effect(() => {
       const allCartProduct = this.cartService.carts();
       const cartInfo = this.cartService.cartsData();
       if (!allCartProduct || !cartInfo) return;
+
       this.cartProducts.set(allCartProduct);
       this.cartInfoItem.set(cartInfo);
     });
@@ -8178,6 +8164,7 @@ import { IProduct } from '../../../products/interfaces/product.interface';
 export class CartItemComponent implements OnInit {
   private cartService = inject(CartService);
   public dataProduct = input.required<IProduct>();
+  public cartItemId = input.required<number>();
   public cartInfoProducts = signal<ICartItem | null>(null);
   public quantity = signal<number>(1);
 
@@ -8188,7 +8175,6 @@ export class CartItemComponent implements OnInit {
       if (!infoProduct) return;
 
       const currentInfoProduct = infoProduct.find((p) => p.product_id === dataProduct.id) ?? null;
-      console.log(currentInfoProduct);
 
       this.cartInfoProducts.set(currentInfoProduct);
     });
@@ -8473,16 +8459,14 @@ export class DeliveryComponent implements OnInit {
     });
   }
 
-  public async ngOnInit(): Promise<void> {
-    const data = await this.supabaseService.getUser();
+  public  ngOnInit(): void {
+    const data = this.supabaseService.infoCurrentUser();
     this.userData.set(data);
-    console.log('data', data);
 
     this.checkoutService.isCheckoutUserDataValid.set(!!data?.address);
   }
 
   public onDeliveryOption(id: string, price: number): void {
-    console.log(id);
     this.deliveryPrice.set(price);
 
     this.selectedDeliveryId.set(id);
@@ -8571,11 +8555,11 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { PriceFormatPipe } from '../../../../../../core/pipes/price-format.pipe';
 import { CartService } from '../../../../../../core/services/cart.service';
 import { ICartItem } from '../../../../../../shared/interfaces/cart-item.interface';
 import { IProduct } from '../../../../../products/interfaces/product.interface';
-import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-order-card',
@@ -8598,7 +8582,6 @@ export class OrderCardComponent implements OnInit {
       if (!infoProduct) return;
 
       const currentInfoProduct = infoProduct.find((p) => p.product_id === dataProduct.id) ?? null;
-      console.log(currentInfoProduct);
 
       this.cartInfoProducts.set(currentInfoProduct);
     });
@@ -8766,6 +8749,7 @@ import {
 } from '@angular/core';
 import { PriceFormatPipe } from '../../../../core/pipes/price-format.pipe';
 import { SupabaseService } from '../../../../core/services/supabase.service';
+import { ModalComponent } from '../../../../shared/components/modal/modal.component';
 import { ICartItem } from '../../../../shared/interfaces/cart-item.interface';
 import { IProduct } from '../../../products/interfaces/product.interface';
 import { CartService } from './../../../../core/services/cart.service';
@@ -8773,7 +8757,7 @@ import { OrderCardComponent } from './components/order-card/order-card.component
 
 @Component({
   selector: 'app-order-summary',
-  imports: [OrderCardComponent, PriceFormatPipe],
+  imports: [OrderCardComponent, PriceFormatPipe, ModalComponent],
   templateUrl: './order-summary.component.html',
   styleUrl: './order-summary.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -8801,7 +8785,7 @@ export class OrderSummaryComponent {
 
       this.deliveryPrice.set(deliveryPrice);
 
-      this.cartService.totalPrice.set(totalPrice); // исправить в service
+      this.cartService.totalPrice.set(totalPrice);
 
       this.currentInfoProducts.set(cartInfoProduct);
       this.currentProducts.set(cartProduct);
@@ -8992,8 +8976,8 @@ export class RecipientComponent implements OnInit {
     ]),
   });
 
-  public async ngOnInit(): Promise<void> {
-    const data = await this.supabaseService.getUser();
+  public  ngOnInit(): void {
+    const data = this.supabaseService.infoCurrentUser();
     const emailUser = this.supabaseService.currentUser();
 
     this.from.patchValue({
@@ -9147,8 +9131,8 @@ export class RecipientComponent implements OnInit {
 <file path="src/app/features/checkout/pages/checkout-success/checkout-success.component.ts">
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { SupabaseService } from '../../../../core/services/supabase.service';
 import { CartService } from '../../../../core/services/cart.service';
+import { SupabaseService } from '../../../../core/services/supabase.service';
 
 @Component({
   selector: 'app-checkout-success',
@@ -9173,7 +9157,7 @@ export class CheckoutSuccessComponent implements OnInit {
     this.orderId.set(orderId);
 
     await this.supabaseService.updateOrderStatus(orderId, 'paid');
-    const user = await this.supabaseService.getUser();
+    const user = this.supabaseService.infoCurrentUser();
     const authUser = this.supabaseService.currentUser();
 
     this.userName.set(user?.first_name ?? '');
@@ -9243,7 +9227,13 @@ export class CheckoutSuccessComponent implements OnInit {
     </div>
   </div>
 </section>
-{{ checkoutService.isReadyToOrder() }}
+
+<app-modal
+  [isOpen]="isModalOpen()"
+  (closed)="isModalOpen.set(false)"
+  [typeModal]="typeModal()"
+  [message]="messageModal()"
+/>
 </file>
 
 <file path="src/app/features/checkout/pages/checkout/checkout.component.scss">
@@ -9372,6 +9362,7 @@ import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@ang
 import { RouterLink } from '@angular/router';
 import { CheckoutService } from '../../../../core/services/checkout.service';
 import { SupabaseService } from '../../../../core/services/supabase.service';
+import { ModalComponent } from '../../../../shared/components/modal/modal.component';
 import { DeliveryComponent } from '../../components/delivery/delivery.component';
 import { OrderSummaryComponent } from '../../components/order-summary/order-summary.component';
 import { RecipientComponent } from '../../components/recipient/recipient.component';
@@ -9379,7 +9370,13 @@ import { CartService } from './../../../../core/services/cart.service';
 
 @Component({
   selector: 'app-checkout',
-  imports: [RecipientComponent, DeliveryComponent, OrderSummaryComponent, RouterLink],
+  imports: [
+    RecipientComponent,
+    DeliveryComponent,
+    OrderSummaryComponent,
+    RouterLink,
+    ModalComponent,
+  ],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -9391,6 +9388,16 @@ export class CheckoutComponent {
 
   public isLoading = signal<boolean>(false);
   private totalPrice = signal<number>(0);
+
+  public isModalOpen = signal<boolean>(false);
+  public typeModal = signal<'success' | 'error' | 'wait'>('wait');
+  public messageModal = signal<string>('');
+
+  public showModal(type: 'success' | 'error' | 'wait', message: string): void {
+    this.typeModal.set(type);
+    this.messageModal.set(message);
+    this.isModalOpen.set(true);
+  }
 
   constructor() {
     effect(() => {
@@ -9433,7 +9440,7 @@ export class CheckoutComponent {
       this.isLoading.set(false);
     } catch (error) {
       this.isLoading.set(false);
-      console.error('Ошибка в процессе оплаты:', error);
+      this.showModal('error', `Ошибка в процессе оплаты: ${error}`);
     }
   }
 }
@@ -9541,8 +9548,11 @@ export class ProductGalleryComponent {
   </div>
   <div class="product-detail__pricing">
     <span class="product-detail__price">{{ dataProduct()?.price | priceFormat }}</span>
-    <span class="product-detail__old-price">{{ dataProduct()?.old_price | priceFormat}}</span>
-    <span class="product-detail__discount-tag">–{{ dataProduct()?.discount }}%</span>
+    <span class="product-detail__old-price">{{ dataProduct()?.old_price | priceFormat }}</span>
+    <span class="product-detail__discount-tag">~{{ dataProduct()?.discount }}%</span>
+    <div class="product-detail-badge product-detail-badge--{{ dataProduct()?.badge }}">
+      {{ dataProduct()?.badge }}
+    </div>
   </div>
   <hr class="product-detail__divider-hr" />
   <div class="product-detail__size-header">
@@ -9583,12 +9593,12 @@ export class ProductGalleryComponent {
         <p class="error-text">Пожалуйста, выберите размер</p>
       </div>
     }
-    <button (click)="addToCart()" [disabled]="isCart()" class="product-detail__btn-cart">
-      @if (isCart()) {
-        <img src="/assets/svgs/add-cart.svg" alt="add-cart" /> Уже в корзине !
-      } @else {
+    <button (click)="addToCart()" class="product-detail__btn-cart">
+      <!-- @if (isCart()) { -->
+        <!-- <img src="/assets/svgs/add-cart.svg" alt="add-cart" /> Уже в корзине ! -->
+      <!-- } @else { -->
         <img src="/assets/svgs/add-cart.svg" alt="add-cart" />Добавить в корзину
-      }
+      <!-- } -->
     </button>
     <button (click)="toggleFavoriteList()" class="product-detail__btn-wishlist">
       @if (isFavorite()) {
@@ -9702,6 +9712,25 @@ export class ProductGalleryComponent {
   color: #fff;
   padding: 3px 10px;
   border-radius: 4px;
+}
+
+.product-detail-badge {
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 4px;
+  line-height: 1.4;
+  padding: 4px 10px;
+
+  &--new {
+    background-color: #d4ff00;
+    color: #111;
+  }
+
+  &--sale {
+    background-color: #111;
+    color: #fff;
+  }
 }
 
 .product-detail__divider-hr {
@@ -9859,10 +9888,10 @@ export class ProductGalleryComponent {
 
 <file path="src/app/features/detail-product/components/product-info/product-info.component.ts">
 import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
+import { PriceFormatPipe } from '../../../../core/pipes/price-format.pipe';
 import { CartService } from '../../../../core/services/cart.service';
 import { FavoritesService } from '../../../../core/services/favorites.service';
 import { IProduct } from '../../../products/interfaces/product.interface';
-import { PriceFormatPipe } from '../../../../core/pipes/price-format.pipe';
 
 @Component({
   selector: 'app-product-info',
@@ -9877,7 +9906,7 @@ export class ProductInfoComponent {
 
   public dataProduct = input.required<IProduct | null>();
 
-  public currentSize = signal<number>(0);
+  public currentSize = signal<number | null>(null);
   public isAddSizeText = signal<boolean>(false);
 
   public isFavorite = signal<boolean>(false);
@@ -9886,6 +9915,7 @@ export class ProductInfoComponent {
   constructor() {
     effect(() => {
       const product = this.dataProduct();
+
       if (!product) return;
 
       const isFav = this.favoritesService.isFavorite(product.id);
@@ -9912,6 +9942,7 @@ export class ProductInfoComponent {
   public async addToCart() {
     const productId = this.dataProduct()?.id;
     const size = this.currentSize();
+
     const quantity = 1;
 
     if (!size) {
@@ -10245,6 +10276,13 @@ export class ProductTabsComponent {
     </div>
   </div>
 </section>
+
+<app-modal
+  [isOpen]="isModalOpen()"
+  (closed)="isModalOpen.set(false)"
+  [typeModal]="typeModal()"
+  [message]="messageModal()"
+/>
 </file>
 
 <file path="src/app/features/detail-product/pages/product-page/product-page.component.scss">
@@ -10297,10 +10335,11 @@ import { IProduct } from '../../../products/interfaces/product.interface';
 import { ProductGalleryComponent } from '../../components/product-gallery/product-gallery.component';
 import { ProductInfoComponent } from '../../components/product-info/product-info.component';
 import { ProductTabsComponent } from '../../components/product-tabs/product-tabs.component';
+import { ModalComponent } from "../../../../shared/components/modal/modal.component";
 
 @Component({
   selector: 'app-product-page',
-  imports: [RouterLink, ProductGalleryComponent, ProductInfoComponent, ProductTabsComponent],
+  imports: [RouterLink, ProductGalleryComponent, ProductInfoComponent, ProductTabsComponent, ModalComponent],
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -10314,6 +10353,16 @@ export class ProductPageComponent {
 
   public product = signal<IProduct | null>(null);
   public loadingText = signal<string>('');
+
+  public isModalOpen = signal<boolean>(false);
+  public typeModal = signal<'success' | 'error' | 'wait'>('wait');
+  public messageModal = signal<string>('');
+
+  public showModal(type: 'success' | 'error' | 'wait', message: string): void {
+    this.typeModal.set(type);
+    this.messageModal.set(message);
+    this.isModalOpen.set(true);
+  }
 
   constructor() {
     effect(() => {
@@ -10336,7 +10385,7 @@ export class ProductPageComponent {
         this.product.set(fetchedProduct);
       }
     } catch (error) {
-      console.error('Ошибка:', error);
+      this.showModal('error', `Ошибка загрузки продуктов: ${error}`)
     }
   }
 }
@@ -11079,7 +11128,6 @@ export class NewArrivalsComponent implements OnInit {
     const allProducts = this.supabaseService.products();
     const newArrivals = allProducts.filter((product) => product.badge === 'new');
     this.products.set(newArrivals);
-    console.log('newArrivals', newArrivals);
   }
 }
 </file>
@@ -11471,10 +11519,6 @@ export class ProductCatalogCardComponent {
   private favoritesService = inject(FavoritesService);
 
   public isFavorite = computed(() => this.favoritesService.isFavorite(this.dataProduct().id));
-
-  ngOnInit() {
-    console.log(this.dataProduct());
-  }
 
   public toggleFavoriteList(event: Event): void {
     // Остановка всплытия события и предотвращение перехода по ссылке для кнопки "В избранное"
@@ -12103,6 +12147,13 @@ export const productsRoutes: Routes = [
     <button (click)="onSubmit()" class="delivery-address__btn-save">Обновить адрес</button>
   </form>
 </div>
+
+<app-modal
+  [isOpen]="isModalOpen()"
+  (closed)="isModalOpen.set(false)"
+  [typeModal]="typeModal()"
+  [message]="messageModal()"
+/>
 </file>
 
 <file path="src/app/features/profile/components/settings-profile/components/delivery-address-setting/delivery-address-setting.component.scss">
@@ -12185,11 +12236,12 @@ export const productsRoutes: Routes = [
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SupabaseService } from '../../../../../../core/services/supabase.service';
+import { ModalComponent } from '../../../../../../shared/components/modal/modal.component';
 import { IUserProfile } from './../../../../../../shared/interfaces/user.interface';
 
 @Component({
   selector: 'app-delivery-address-setting',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ModalComponent],
   templateUrl: './delivery-address-setting.component.html',
   styleUrl: './delivery-address-setting.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -12199,21 +12251,38 @@ export class DeliveryAddressSettingComponent {
 
   public currentUser = signal<IUserProfile | null>(null);
 
+  public isModalOpen = signal<boolean>(false);
+  public typeModal = signal<'success' | 'error' | 'wait'>('wait');
+  public messageModal = signal<string>('');
+
+  public showModal(type: 'success' | 'error' | 'wait', message: string): void {
+    this.typeModal.set(type);
+    this.messageModal.set(message);
+    this.isModalOpen.set(true);
+  }
+
   public form = new FormGroup({
     city: new FormControl('', [
       Validators.required,
-      Validators.pattern(/^[а-яёА-ЯЁa-zA-Z\s\-]{2,50}$/),
+      Validators.minLength(2),
+      Validators.maxLength(50),
+      Validators.pattern(/^[а-яёА-ЯЁa-zA-Z\s\-]+$/),
     ]),
     index: new FormControl('', [Validators.required, Validators.pattern(/^\d{6}$/)]),
     address: new FormControl('', [
       Validators.required,
-      Validators.pattern(/^[а-яёА-ЯЁa-zA-Z0-9\s\.\,\-\/]{5,100}$/),
+      Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(150),
     ]),
   });
 
-  public async ngOnInit(): Promise<void> {
-    const data = await this.supabaseService.getUser();
-    if (!data) return;
+  public ngOnInit(): void {
+    const data = this.supabaseService.infoCurrentUser();
+    if (!data) {
+      this.showModal('error', 'Что то пошло не так.');
+      return;
+    }
     this.currentUser.set(data);
 
     this.form.patchValue({
@@ -12224,15 +12293,30 @@ export class DeliveryAddressSettingComponent {
   }
 
   public onSubmit(): void {
-    if (this.form.valid) {
-      const city = this.form.value.city;
-      const index = this.form.value.index;
-      const address = this.form.value.address;
-      if (!city || !index || !address) return;
-      console.log('Submit');
-
-      this.supabaseService.updateDeliveryAddress(city, address, index);
+    if (this.form.invalid) {
+      this.showModal(
+        'error',
+        'Пожалуйста, проверьте правильность заполнения адреса доставки:\n' +
+          '• Город — только буквы (например: Москва, Санкт-Петербург)\n' +
+          '• Индекс — ровно 6 цифр (например: 101000)\n' +
+          '• Адрес — улица, дом, квартира (например: ул. Ленина, д. 12, кв. 45)',
+      );
+      return;
     }
+
+    const city = this.form.value.city;
+    const index = this.form.value.index;
+    const address = this.form.value.address;
+    if (!city || !index || !address) return;
+    console.log('Submit');
+
+    this.supabaseService.updateDeliveryAddress(city, address, index);
+    
+    this.showModal(
+      'success',
+      'Данные успешно сохранены!\n' +
+        'Адрес доставки обновлен. Мы будем использовать его для ваших следующих заказов.',
+    );
   }
 }
 </file>
@@ -12298,6 +12382,13 @@ export class DeliveryAddressSettingComponent {
     </div>
   </form>
 </div>
+
+<app-modal
+  [isOpen]="isModalOpen()"
+  (closed)="isModalOpen.set(false)"
+  [typeModal]="typeModal()"
+  [message]="messageModal()"
+/>
 </file>
 
 <file path="src/app/features/profile/components/settings-profile/components/update-password-setting/update-password-setting.component.scss">
@@ -12379,10 +12470,11 @@ export class DeliveryAddressSettingComponent {
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SupabaseService } from '../../../../../../core/services/supabase.service';
+import { ModalComponent } from '../../../../../../shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-update-password-setting',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ModalComponent],
   templateUrl: './update-password-setting.component.html',
   styleUrl: './update-password-setting.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -12391,10 +12483,20 @@ export class UpdatePasswordSettingComponent {
   private supabaseService = inject(SupabaseService);
   public visiblePassword = signal<boolean>(true);
 
+  public isModalOpen = signal<boolean>(false);
+  public typeModal = signal<'success' | 'error' | 'wait'>('wait');
+  public messageModal = signal<string>('');
+
+  public showModal(type: 'success' | 'error' | 'wait', message: string): void {
+    this.typeModal.set(type);
+    this.messageModal.set(message);
+    this.isModalOpen.set(true);
+  }
+
   public form = new FormGroup({
     password: new FormControl('', [
       Validators.required,
-      Validators.pattern(/^(?=.*[a-zа-яё])(?=.*[A-ZА-ЯЁ])(?=.*\d)[A-Za-zА-Яа-яЁё\d]{8,}$/),
+      Validators.pattern(/^(?=.*[a-zа-яё])(?=.*[A-ZА-ЯЁ])(?=.*\d).{8,}$/),
     ]),
   });
 
@@ -12403,11 +12505,29 @@ export class UpdatePasswordSettingComponent {
   }
 
   public async onSubmit(): Promise<void> {
-    if (this.form.valid) {
-      const newPassword = this.form.value.password;
-      if (!newPassword) return;
+    if (this.form.invalid) {
+      this.showModal(
+        'error',
+        'Пароль не соответствует требованиям безопасности:\n' +
+          '• Длина — от 8 символов\n' +
+          '• Обязательно: минимум одна заглавная буква, одна строчная и одна цифра\n' +
+          '• Пример правильного пароля: Secret7Word, НовыйПароль2026',
+      );
+      return;
+    }
+
+    const newPassword = this.form.value.password;
+    if (!newPassword) return;
+    try {
       await this.supabaseService.updatePassword(newPassword);
+
+      this.showModal(
+        'success',
+        'Пароль успешно изменен!\n' + 'Новые данные сохранены, используйте их при следующем входе.',
+      );
       this.form.reset();
+    } catch (error) {
+      this.showModal('error', 'Не удалось обновить пароль. Попробуйте позже.');
     }
   }
 }
@@ -12452,6 +12572,13 @@ export class UpdatePasswordSettingComponent {
     <button (click)="onSubmit()" class="setting-form__btn-save">Сохранить изменения</button>
   </form>
 </div>
+
+<app-modal
+  [isOpen]="isModalOpen()"
+  (closed)="isModalOpen.set(false)"
+  [typeModal]="typeModal()"
+  [message]="messageModal()"
+/>
 </file>
 
 <file path="src/app/features/profile/components/settings-profile/components/user-setting/user-setting.component.scss">
@@ -12514,11 +12641,12 @@ export class UpdatePasswordSettingComponent {
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SupabaseService } from '../../../../../../core/services/supabase.service';
+import { ModalComponent } from '../../../../../../shared/components/modal/modal.component';
 import { IUserProfile } from '../../../../../../shared/interfaces/user.interface';
 
 @Component({
   selector: 'app-user-setting',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ModalComponent],
   templateUrl: './user-setting.component.html',
   styleUrl: './user-setting.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -12528,9 +12656,23 @@ export class UserSettingComponent implements OnInit {
 
   public currentUser = signal<IUserProfile | null>(null);
 
-  public async ngOnInit(): Promise<void> {
-    const data = await this.supabaseService.getUser();
-    if (!data) return;
+  public isModalOpen = signal<boolean>(false);
+  public typeModal = signal<'success' | 'error' | 'wait'>('wait');
+  public messageModal = signal<string>('');
+
+  public showModal(type: 'success' | 'error' | 'wait', message: string): void {
+    this.typeModal.set(type);
+    this.messageModal.set(message);
+    this.isModalOpen.set(true);
+  }
+
+  public ngOnInit(): void {
+    const data = this.supabaseService.infoCurrentUser();
+    if (!data) {
+      this.showModal('error', 'Что то пошло не так.');
+      return;
+    }
+
     this.currentUser.set(data);
 
     this.form.patchValue({
@@ -12551,19 +12693,21 @@ export class UserSettingComponent implements OnInit {
   });
 
   public onSubmit(): void {
-    console.log(this.form);
-
-    if (this.form.valid) {
-      console.log('submit');
-
-      const firstName = this.form.value.firstName;
-      const lastName = this.form.value.lastName;
-      const phone = this.form.value.phone;
-
-      if (!firstName || !lastName || !phone) return;
-
-      this.supabaseService.updateUserProfile(firstName, lastName, phone);
+    if (this.form.invalid) {
+      this.showModal(
+        'error',
+        'Проверьте поля: имя, фамилия и телефон обязательны. Телефон в формате +7 999 123 45 67 или 8 999 123 45 67.',
+      );
+      return;
     }
+    const firstName = this.form.value.firstName;
+    const lastName = this.form.value.lastName;
+    const phone = this.form.value.phone;
+
+    if (!firstName || !lastName || !phone) return;
+
+    this.supabaseService.updateUserProfile(firstName, lastName, phone);
+    this.showModal('success', 'Данные успешно изменены');
   }
 }
 </file>
@@ -12766,8 +12910,8 @@ export class UserProfileComponent implements OnInit {
   public dataUser = signal<User | null>(this.supabaseService.currentUser());
   public infoUser = signal<IUserProfile | null>(null);
 
-  async ngOnInit(): Promise<void> {
-    const data = await this.supabaseService.getUser();
+  ngOnInit(): void {
+    const data = this.supabaseService.infoCurrentUser();
     this.infoUser.set(data);
   }
 }
@@ -12958,6 +13102,13 @@ export class OrderCardComponent {
     }
   </div>
 </div>
+
+<app-modal
+  [isOpen]="isModalOpen()"
+  (closed)="isModalOpen.set(false)"
+  [typeModal]="typeModal()"
+  [message]="messageModal()"
+/>
 </file>
 
 <file path="src/app/features/profile/pages/history/history.component.scss">
@@ -13026,14 +13177,15 @@ export class OrderCardComponent {
 
 <file path="src/app/features/profile/pages/history/history.component.ts">
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { SupabaseService } from '../../../../core/services/supabase.service';
+import { ModalComponent } from '../../../../shared/components/modal/modal.component';
 import { IOrder } from '../../../../shared/interfaces/order.interface';
 import { OrderCardComponent } from './components/order-card/order-card.component';
-import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-history-orders',
-  imports: [OrderCardComponent, RouterLink],
+  imports: [OrderCardComponent, RouterLink, ModalComponent],
   templateUrl: './history.component.html',
   styleUrl: './history.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -13042,8 +13194,26 @@ export class HistoryComponent implements OnInit {
   private supabaseService = inject(SupabaseService);
   public orders = signal<IOrder[]>([]);
 
-  public async ngOnInit(): Promise<void> {
-    const allOrders = await this.supabaseService.getOrders();
+  public isModalOpen = signal<boolean>(false);
+  public typeModal = signal<'success' | 'error' | 'wait'>('wait');
+  public messageModal = signal<string>('');
+
+  public showModal(type: 'success' | 'error' | 'wait', message: string): void {
+    this.typeModal.set(type);
+    this.messageModal.set(message);
+    this.isModalOpen.set(true);
+  }
+
+  public ngOnInit(): void {
+    const allOrders = this.supabaseService.userOrders();
+    if (!allOrders) {
+      this.showModal(
+        'error',
+        'Не удалось загрузить историю заказов.\n' +
+          'Пожалуйста, попробуйте обновить страницу чуть позже.',
+      );
+      return;
+    }
     this.orders.set(allOrders);
   }
 }
@@ -13772,7 +13942,6 @@ export class SalePageComponent implements OnInit {
     const allProducts = this.supabaseService.products();
     const saleProducts = allProducts.filter((product) => product.badge === 'sale');
     this.products.set(saleProducts);
-    console.log('saleProducts', saleProducts);
   }
 }
 </file>
@@ -14062,7 +14231,7 @@ export const FOOTER_NAVIGATION: IFooterColumn[] = [
         </a>
       }
       @if (isSearching()) {
-        <app-search-block />
+        <app-search-block (closeSearch)="isSearching.set(false)" />
       }
     </div>
   </nav>
@@ -14318,7 +14487,7 @@ export class MainLayoutComponent {}
 <file path="src/app/layout/topbar/topbar.component.html">
 <div class="topbar">
   Бесплатная доставка при заказе от 15 000 ₽ → Используй код
-  <b class="topbar__promo" cdkCopyToClipboard="NB2026" title="Скопировать!">NB2026</b>
+  <b class="topbar__promo" cdkCopyToClipboard="nb2026" title="Скопировать!">nb2026</b>
 </div>
 </file>
 
@@ -15035,7 +15204,9 @@ export class LoaderComponent {}
       <p class="modal__text">{{ message() }}</p>
 
       @if (typeModal() !== 'wait') {
-        <button class="modal__btn" (click)="onClose()">Ок</button>
+        <button type="button" class="modal__btn" (click)="onClose()" (keydown.enter)="onClose()">
+          Ок
+        </button>
       }
     </div>
   </div>
@@ -15245,7 +15416,7 @@ export class ModalComponent {
       <p class="search-body__label">Найдено {{ products().length }}</p>
       <ul class="search-body__products">
         @for (product of products(); track product.id) {
-          <li class="search-body__product">
+          <li class="search-body__product" (click)="onProductClick()">
             <app-product-search [products]="product" />
           </li>
         }
@@ -15444,6 +15615,7 @@ import {
   DestroyRef,
   inject,
   OnInit,
+  output,
   signal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -15468,6 +15640,12 @@ export class SearchBlockComponent implements OnInit {
   public isSearching = signal<boolean>(false);
   public isEmpty = signal<boolean>(false);
   public searchTags = signal<ISearchTag[]>(SEARCH_TAGS);
+
+  public closeSearch = output<void>();
+
+  public onProductClick(): void {
+    this.closeSearch.emit();
+  }
 
   public searchInput = new FormControl('', { validators: [Validators.required] });
 
@@ -15611,6 +15789,147 @@ export interface IAdminUser {
   created_at: string;
   last_sign_in_at: string;
   profile: IUserProfile | null;
+}
+</file>
+
+<file path="src/environments/environment.ts">
+export const environment = {
+  production: false, // false = development mode, true = production mode
+  supabaseUrl: 'https://tklqheiqefcyzljblkzq.supabase.co',
+  supabaseKey: 'sb_publishable_2W_-027PceQ5O2DM53YwoQ_ou36p8xr',
+};
+</file>
+
+<file path="src/index.html">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>New Balance</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
+</html>
+</file>
+
+<file path="src/main.server.ts">
+import { BootstrapContext, bootstrapApplication } from '@angular/platform-browser';
+import { App } from './app/app';
+import { config } from './app/app.config.server';
+
+const bootstrap = (context: BootstrapContext) =>
+    bootstrapApplication(App, config, context);
+
+export default bootstrap;
+</file>
+
+<file path="src/main.ts">
+import { bootstrapApplication } from '@angular/platform-browser';
+import { appConfig } from './app/app.config';
+import { App } from './app/app';
+
+bootstrapApplication(App, appConfig)
+  .catch((err) => console.error(err));
+</file>
+
+<file path="src/server.ts">
+import {
+  AngularNodeAppEngine,
+  createNodeRequestHandler,
+  isMainModule,
+  writeResponseToNodeResponse,
+} from '@angular/ssr/node';
+import express from 'express';
+import { join } from 'node:path';
+
+const browserDistFolder = join(import.meta.dirname, '../browser');
+
+const app = express();
+const angularApp = new AngularNodeAppEngine();
+
+/**
+ * Example Express Rest API endpoints can be defined here.
+ * Uncomment and define endpoints as necessary.
+ *
+ * Example:
+ * ```ts
+ * app.get('/api/{*splat}', (req, res) => {
+ *   // Handle API request
+ * });
+ * ```
+ */
+
+/**
+ * Serve static files from /browser
+ */
+app.use(
+  express.static(browserDistFolder, {
+    maxAge: '1y',
+    index: false,
+    redirect: false,
+  }),
+);
+
+/**
+ * Handle all other requests by rendering the Angular application.
+ */
+app.use((req, res, next) => {
+  angularApp
+    .handle(req)
+    .then((response) =>
+      response ? writeResponseToNodeResponse(response, res) : next(),
+    )
+    .catch(next);
+});
+
+/**
+ * Start the server if this module is the main entry point, or it is ran via PM2.
+ * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
+ */
+if (isMainModule(import.meta.url) || process.env['pm_id']) {
+  const port = process.env['PORT'] || 4000;
+  app.listen(port, (error) => {
+    if (error) {
+      throw error;
+    }
+
+    console.log(`Node Express server listening on http://localhost:${port}`);
+  });
+}
+
+/**
+ * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
+ */
+export const reqHandler = createNodeRequestHandler(app);
+</file>
+
+<file path="src/styles.scss">
+/* You can add global styles to this file, and also import other style files */
+@use 'base';
+
+html,
+body {
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  color: #000;
+  background-color: #fff;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 </file>
 
@@ -15798,610 +16117,6 @@ serve(async (req: any) => {
 });
 </file>
 
-<file path=".editorconfig">
-# Editor configuration, see https://editorconfig.org
-root = true
-
-[*]
-charset = utf-8
-indent_style = space
-indent_size = 2
-insert_final_newline = true
-trim_trailing_whitespace = true
-
-[*.ts]
-quote_type = single
-ij_typescript_use_double_quotes = false
-
-[*.md]
-max_line_length = off
-trim_trailing_whitespace = false
-</file>
-
-<file path=".gitignore">
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
-
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
-
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
-
-# IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/mcp.json
-.history/*
-
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
-__screenshots__/
-
-# System files
-.DS_Store
-Thumbs.db
-</file>
-
-<file path="angular.json">
-{
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "cli": {
-    "packageManager": "npm",
-    "analytics": "be773cce-836c-4450-b152-baa2065b99ab"
-  },
-  "newProjectRoot": "projects",
-  "projects": {
-    "new-balance": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss",
-          "skipTests": true,
-          "changeDetection": "OnPush",
-          "type": "component"
-        },
-        "@schematics/angular:service": {
-          "skipTests": true,
-          "type": "service"
-        },
-        "@schematics/angular:pipe": {
-          "skipTests": true
-        },
-        "@schematics/angular:directive": {
-          "skipTests": true,
-          "type": "directive"
-        }
-      },
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular/build:application",
-          "options": {
-            "browser": "src/main.ts",
-            "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
-            "styles": ["src/styles.scss"]
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
-                }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "builder": "@angular/build:dev-server",
-          "configurations": {
-            "production": {
-              "buildTarget": "new-balance:build:production"
-            },
-            "development": {
-              "buildTarget": "new-balance:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "test": {
-          "builder": "@angular/build:unit-test"
-        }
-      }
-    }
-  }
-}
-</file>
-
-<file path="package.json">
-{
-  "name": "new-balance",
-  "version": "0.0.0",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:new-balance": "node dist/new-balance/server/server.mjs"
-  },
-  "prettier": {
-    "printWidth": 100,
-    "singleQuote": true,
-    "overrides": [
-      {
-        "files": "*.html",
-        "options": {
-          "parser": "angular"
-        }
-      }
-    ]
-  },
-  "private": true,
-  "packageManager": "npm@11.10.0",
-  "dependencies": {
-    "@angular/cdk": "^21.2.11",
-    "@angular/common": "^21.1.0",
-    "@angular/compiler": "^21.1.0",
-    "@angular/core": "^21.1.0",
-    "@angular/forms": "^21.1.0",
-    "@angular/platform-browser": "^21.1.0",
-    "@angular/platform-server": "^21.1.0",
-    "@angular/router": "^21.1.0",
-    "@angular/ssr": "^21.1.1",
-    "@supabase/supabase-js": "^2.108.1",
-    "express": "^5.1.0",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0"
-  },
-  "devDependencies": {
-    "@angular/build": "^21.1.1",
-    "@angular/cli": "^21.1.1",
-    "@angular/compiler-cli": "^21.1.0",
-    "@types/express": "^5.0.1",
-    "@types/node": "^20.17.19",
-    "jsdom": "^27.1.0",
-    "typescript": "~5.9.2",
-    "vitest": "^4.0.8"
-  }
-}
-</file>
-
-<file path="README.md">
-# NewBalance
-
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.1.
-
-## Development server
-
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-</file>
-
-<file path="src/app/app.config.server.ts">
-import { mergeApplicationConfig, ApplicationConfig } from '@angular/core';
-import { provideServerRendering, withRoutes } from '@angular/ssr';
-import { appConfig } from './app.config';
-import { serverRoutes } from './app.routes.server';
-
-const serverConfig: ApplicationConfig = {
-  providers: [
-    provideServerRendering(withRoutes(serverRoutes))
-  ]
-};
-
-export const config = mergeApplicationConfig(appConfig, serverConfig);
-</file>
-
-<file path="src/app/app.config.ts">
-import { ApplicationConfig, LOCALE_ID, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter, withInMemoryScrolling } from '@angular/router';
-
-import { registerLocaleData } from '@angular/common';
-import localeRu from '@angular/common/locales/ru';
-registerLocaleData(localeRu);
-
-import { routes } from './app.routes';
-
-export const appConfig: ApplicationConfig = {
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideRouter(
-      routes,
-      withInMemoryScrolling({
-        scrollPositionRestoration: 'top', // скролл вверх
-        anchorScrolling: 'enabled',
-      }),
-    ),
-    { provide: LOCALE_ID, useValue: 'ru-RU' },
-  ],
-};
-</file>
-
-<file path="src/app/app.html">
-<router-outlet></router-outlet>
-@if (isLoading()) {
-  <app-loader></app-loader>
-}
-</file>
-
-<file path="src/app/app.routes.server.ts">
-import { RenderMode, ServerRoute } from '@angular/ssr';
-
-export const serverRoutes: ServerRoute[] = [
-  {
-    path: '**',
-    renderMode: RenderMode.Server,
-  },
-];
-</file>
-
-<file path="src/app/app.routes.ts">
-import { Routes } from '@angular/router';
-import { authGuard } from './core/guards/auth.guard';
-import { adminRoutes } from './features/admin/admin.routes';
-import { productsRoutes } from './features/products/products.routes';
-import { profilesRoutes } from './features/profile/profiles.routes';
-
-export const routes: Routes = [
-  {
-    path: '',
-    loadComponent: () =>
-      import('./layout/main-layout/main-layout.component').then((m) => m.MainLayoutComponent),
-    children: [
-      {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full',
-      },
-      {
-        path: 'home',
-        loadComponent: () =>
-          import('./features/home/pages/pages.component').then((m) => m.PagesComponent),
-        title: 'New Balance',
-      },
-      {
-        path: 'cart',
-        loadComponent: () =>
-          import('./features/cart/pages/cart-page/cart-page.component').then(
-            (m) => m.CartPageComponent,
-          ),
-        title: 'New Balance - cart',
-        canActivate: [authGuard],
-      },
-      {
-        path: 'favorites',
-        loadComponent: () =>
-          import('./features/favorites/pages/favorite/favorite.component').then(
-            (m) => m.FavoriteComponent,
-          ),
-        title: 'New Balance - favorites',
-        canActivate: [authGuard],
-      },
-      {
-        path: 'new-arrivals',
-        loadComponent: () =>
-          import('./features/new-arrivals/pages/new-arrivals/new-arrivals.component').then(
-            (m) => m.NewArrivalsComponent,
-          ),
-        title: 'New Balance - new',
-      },
-      {
-        path: 'sale',
-        loadComponent: () =>
-          import('./features/sale/pages/sale-page/sale-page.component').then(
-            (m) => m.SalePageComponent,
-          ),
-        title: 'New Balance - sale',
-      },
-      {
-        path: 'checkout',
-        loadComponent: () =>
-          import('./features/checkout/pages/checkout/checkout.component').then(
-            (m) => m.CheckoutComponent,
-          ),
-        title: 'New Balance - checkout',
-        canActivate: [authGuard],
-      },
-      {
-        path: 'checkout/success',
-        loadComponent: () =>
-          import('./features/checkout/pages/checkout-success/checkout-success.component').then(
-            (m) => m.CheckoutSuccessComponent,
-          ),
-        title: 'New Balance - заказ оформлен',
-        canActivate: [authGuard],
-      },
-
-      ...productsRoutes,
-      ...profilesRoutes,
-    ],
-  },
-  ...adminRoutes,
-  // {
-  //   path: '**',
-  //   redirectTo: 'home',
-  //   pathMatch: 'full',
-  // },
-];
-</file>
-
-<file path="src/app/app.scss">
-
-</file>
-
-<file path="src/app/app.ts">
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { CartService } from './core/services/cart.service';
-import { FavoritesService } from './core/services/favorites.service';
-import { SupabaseService } from './core/services/supabase.service';
-import { LoaderComponent } from './shared/components/loader/loader.component';
-
-@Component({
-  selector: 'app-root',
-  imports: [RouterOutlet, LoaderComponent],
-  templateUrl: './app.html',
-  styleUrl: './app.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class App implements OnInit {
-  private supabaseService = inject(SupabaseService);
-  private favoritesService = inject(FavoritesService);
-  private cartService = inject(CartService);
-
-  public isLoading = signal<boolean>(false);
-
-  public async ngOnInit(): Promise<void> {
-    console.log('ngOnInit called');
-    this.isLoading.set(true);
-
-    this.supabaseService.client.auth.onAuthStateChange((event, session) => {
-      if (session?.user) {
-        return this.supabaseService.currentUser.set(session.user);
-      }
-      this.supabaseService.currentUser.set(null);
-    });
-
-    await this.supabaseService.loadProducts();
-    await this.favoritesService.getCart();
-    await this.cartService.getCart();
-
-    this.isLoading.set(false);
-  }
-}
-</file>
-
-<file path="src/index.html">
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>New Balance</title>
-    <base href="/" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <app-root></app-root>
-  </body>
-</html>
-</file>
-
-<file path="src/main.server.ts">
-import { BootstrapContext, bootstrapApplication } from '@angular/platform-browser';
-import { App } from './app/app';
-import { config } from './app/app.config.server';
-
-const bootstrap = (context: BootstrapContext) =>
-    bootstrapApplication(App, config, context);
-
-export default bootstrap;
-</file>
-
-<file path="src/main.ts">
-import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { App } from './app/app';
-
-bootstrapApplication(App, appConfig)
-  .catch((err) => console.error(err));
-</file>
-
-<file path="src/server.ts">
-import {
-  AngularNodeAppEngine,
-  createNodeRequestHandler,
-  isMainModule,
-  writeResponseToNodeResponse,
-} from '@angular/ssr/node';
-import express from 'express';
-import { join } from 'node:path';
-
-const browserDistFolder = join(import.meta.dirname, '../browser');
-
-const app = express();
-const angularApp = new AngularNodeAppEngine();
-
-/**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
- *
- * Example:
- * ```ts
- * app.get('/api/{*splat}', (req, res) => {
- *   // Handle API request
- * });
- * ```
- */
-
-/**
- * Serve static files from /browser
- */
-app.use(
-  express.static(browserDistFolder, {
-    maxAge: '1y',
-    index: false,
-    redirect: false,
-  }),
-);
-
-/**
- * Handle all other requests by rendering the Angular application.
- */
-app.use((req, res, next) => {
-  angularApp
-    .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
-    )
-    .catch(next);
-});
-
-/**
- * Start the server if this module is the main entry point, or it is ran via PM2.
- * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
- */
-if (isMainModule(import.meta.url) || process.env['pm_id']) {
-  const port = process.env['PORT'] || 4000;
-  app.listen(port, (error) => {
-    if (error) {
-      throw error;
-    }
-
-    console.log(`Node Express server listening on http://localhost:${port}`);
-  });
-}
-
-/**
- * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
- */
-export const reqHandler = createNodeRequestHandler(app);
-</file>
-
-<file path="src/styles.scss">
-/* You can add global styles to this file, and also import other style files */
-@use 'base';
-
-html,
-body {
-  font-family:
-    'Inter',
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
-  color: #000;
-  background-color: #fff;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-</file>
-
 <file path="tsconfig.app.json">
 /* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
 /* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
@@ -16474,6 +16189,677 @@ body {
     "src/**/*.spec.ts"
   ]
 }
+</file>
+
+<file path="src/app/core/auth/components/login-form/login-form.component.ts">
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { SupabaseService } from '../../../services/supabase.service';
+
+@Component({
+  selector: 'app-login-form',
+  imports: [ReactiveFormsModule],
+  templateUrl: './login-form.component.html',
+  styleUrl: './login-form.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class LoginFormComponent {
+  private supabaseService = inject(SupabaseService);
+  private route = inject(Router);
+
+  public visiblePassword = signal<boolean>(true);
+
+  public isValidLogin = signal<boolean>(true)
+  public isValidPassword = signal<boolean>(true)
+
+  public onVisiblePassword(): void {
+    this.visiblePassword.update((prev) => !prev);
+  }
+
+  public form = new FormGroup({
+    email: new FormControl('', [
+      Validators.required,
+      Validators.email,
+      Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/),
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^(?=.*[a-zа-яё])(?=.*[A-ZА-ЯЁ])(?=.*\d).{8,}$/),
+    ]),
+  });
+
+  public async onSubmit(): Promise<void> {
+    this.isValidLogin.set(this.form.controls.email.valid);
+    this.isValidPassword.set(this.form.controls.password.valid);
+
+    if (this.form.valid) {
+      const email = this.form.controls.email.value;
+      const password = this.form.controls.password.value;
+      if (!email || !password) return;
+      await this.supabaseService.signIn(email, password);
+      this.route.navigate(['/profile/']);
+    }
+  }
+}
+</file>
+
+<file path="src/app/core/auth/components/register-form/register-form.component.ts">
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { SupabaseService } from '../../../services/supabase.service';
+
+@Component({
+  selector: 'app-register-form',
+  imports: [ReactiveFormsModule],
+  templateUrl: './register-form.component.html',
+  styleUrl: './register-form.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class RegisterFormComponent {
+  private supabaseService = inject(SupabaseService);
+  private route = inject(Router);
+
+  public visiblePassword = signal<boolean>(true);
+
+  public isValidLogin = signal<boolean>(true)
+  public isValidPassword = signal<boolean>(true)
+  public isValidFirstName = signal<boolean>(true)
+  public isValidLastName = signal<boolean>(true)
+
+  public onVisiblePassword(): void {
+    this.visiblePassword.update((prev) => !prev);
+  }
+
+  public form = new FormGroup({
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.email,
+      Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/),
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^(?=.*[a-zа-яё])(?=.*[A-ZА-ЯЁ])(?=.*\d).{8,}$/),
+    ]),
+    agree: new FormControl(false, [Validators.requiredTrue]),
+  });
+
+  public async onSubmit(): Promise<void> {
+    this.isValidLogin.set(this.form.controls.email.valid);
+    this.isValidPassword.set(this.form.controls.password.valid);
+    this.isValidFirstName.set(this.form.controls.firstName.valid);
+    this.isValidLastName.set(this.form.controls.lastName.valid);
+
+
+    if (this.form.valid) {
+      const email = this.form.controls.email.value;
+      const password = this.form.controls.password.value;
+      const lastName = this.form.controls.lastName.value;
+      const firstName = this.form.controls.firstName.value;
+      if (!email || !password || !lastName || !firstName) return;
+      await this.supabaseService.signUp(email, password, firstName, lastName);
+      this.route.navigate(['/auth/login']);
+    }
+  }
+}
+</file>
+
+<file path="src/app/core/services/supabase.service.ts">
+import { Injectable, signal } from '@angular/core';
+
+import { environment } from '../../../environments/environment';
+import { IProduct } from '../../features/products/interfaces/product.interface';
+
+import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
+import { IOrder } from '../../shared/interfaces/order.interface';
+import { ITopProduct } from '../../shared/interfaces/top-product.interface';
+import { IAdminUser, IUserProfile } from '../../shared/interfaces/user.interface';
+// createClient — функция которая создаёт подключение к Supabase
+// SupabaseClient — тип для TypeScript
+
+@Injectable({
+  providedIn: 'root',
+})
+export class SupabaseService {
+  public products = signal<IProduct[]>([]);
+  public currentUser = signal<User | null>(null);
+  public infoCurrentUser = signal<IUserProfile | null>(null);
+  public userOrders = signal<IOrder[] | null>(null);
+
+  readonly client: SupabaseClient = createClient(environment.supabaseUrl, environment.supabaseKey);
+
+  public async loadProducts(): Promise<void> {
+    const { data, error } = await this.client.from('products').select('*, categories(name, slug)');
+    // * — все поля товара
+    // categories(name, slug) — подтягивает название категории по category_id
+    if (error) throw error;
+    this.products.set(data as IProduct[]);
+  }
+
+  public async loadProductById(id: number): Promise<IProduct> {
+    const { data, error } = await this.client
+      .from('products')
+      .select('*, categories(name, slug)')
+      .eq('id', id)
+      .single();
+    // eq('id', id) — фильтрует товары по id
+    // single() — возвращает один объект вместо массива
+
+    if (error) throw error;
+    return data as IProduct;
+  }
+
+  public async loadProductByGender(gender: string): Promise<IProduct[]> {
+    const { data, error } = await this.client
+      .from('products')
+      .select('*, categories(name, slug)')
+      .eq('gender', gender);
+    if (error) throw error;
+    return data as IProduct[];
+  }
+
+  public async signUp(email: string, password: string, firstName: string, lastName: string) {
+    const { data, error } = await this.client.auth.signUp({ email, password });
+    if (error) throw error;
+
+    if (data.user) {
+      await this.client.from('profiles').insert({
+        id: data.user.id,
+        first_name: firstName,
+        last_name: lastName,
+      });
+    }
+    return data;
+  }
+
+  public async signIn(email: string, password: string) {
+    const { data, error } = await this.client.auth.signInWithPassword({ email, password });
+    if (error) throw error;
+    this.currentUser.set(data.user);
+
+    return data;
+  }
+
+  public async signOut(): Promise<void> {
+    await this.client.auth.signOut();
+    this.currentUser.set(null);
+  }
+
+  public async getUser(): Promise<void | null> {
+    const user = this.currentUser();
+    if (!user) return null;
+
+    const { data, error } = await this.client
+      .from('profiles')
+      .select('*')
+      .eq('id', user.id)
+      .single();
+
+    if (error) throw error;
+    this.infoCurrentUser.set(data as IUserProfile);
+  }
+
+  public async updatePassword(newPassword: string): Promise<void> {
+    const { error } = await this.client.auth.updateUser({
+      password: newPassword,
+    });
+
+    if (error) throw error;
+  }
+
+  public async updateDeliveryAddress(
+    city: string,
+    address: string,
+    postal_code: string,
+  ): Promise<void> {
+    const { error } = await this.client
+      .from('profiles')
+      .update({ city, postal_code, address })
+      .eq('id', this.currentUser()?.id);
+
+    if (error) throw error;
+  }
+
+  public async updateUserProfile(
+    first_name: string,
+    last_name: string,
+    phone: string,
+  ): Promise<void> {
+    const { error } = await this.client
+      .from('profiles')
+      .update({ first_name, last_name, phone })
+      .eq('id', this.currentUser()?.id);
+
+    if (error) throw error;
+  }
+
+  public async checkPromoCode(code: string): Promise<{ discount: number } | null> {
+    const { data, error } = await this.client
+      .from('promo_codes')
+      .select('discount')
+      .eq('code', code.toLowerCase())
+      .eq('is_active', true)
+      .single();
+
+    if (error) return null;
+    return data;
+  }
+
+  public async createStripePayment(
+    amount: number,
+    orderId: number,
+  ): Promise<{ url: string; sessionId: string } | null> {
+    const { data, error } = await this.client.functions.invoke('create-payment', {
+      body: {
+        amount,
+        orderId,
+        successUrl: `${window.location.origin}/checkout/success?order=${orderId}`,
+        cancelUrl: `${window.location.origin}/checkout`,
+      },
+    });
+
+    if (error) throw error;
+    return data;
+  }
+
+  public async updateOrderPaymentId(orderId: number, paymentId: string): Promise<void> {
+    const { error } = await this.client
+      .from('orders')
+      .update({
+        stripe_session_id: paymentId,
+      })
+      .eq('id', orderId);
+    if (error) throw error;
+  }
+
+  public async isAdmin(): Promise<boolean> {
+    const user = this.currentUser();
+    if (!user) return false;
+
+    const { data, error } = await this.client
+      .from('admins')
+      .select('id')
+      .eq('id', user.id)
+      .maybeSingle();
+
+    return !error && !!data;
+  }
+
+  public async createOrder(total: number): Promise<number> {
+    const userId = this.currentUser()?.id;
+    const { data, error } = await this.client
+      .from('orders')
+      .insert({
+        user_id: userId,
+        status: 'pending',
+        total,
+      })
+      .select('id')
+      .single();
+
+    if (error) throw error;
+    return data.id;
+  }
+
+  public async createOrderItem(
+    orderId: number,
+    items: { product_id: number; size: number; quantity: number; price: number }[],
+  ): Promise<void> {
+    const { error } = await this.client
+      .from('order_items')
+      .insert(items.map((item) => ({ ...item, order_id: orderId })));
+
+    if (error) throw error;
+  }
+
+  public async updateOrderStatus(orderId: number, status: string): Promise<void> {
+    const { error } = await this.client.from('orders').update({ status }).eq('id', orderId);
+
+    if (error) throw error;
+  }
+  public async getOrders(): Promise<void> {
+    const { data, error } = await this.client
+      .from('orders')
+      .select(
+        `*,
+              order_items (
+                *,
+                products ( name, images, price )
+            )`,
+      )
+      .eq('user_id', this.currentUser()?.id)
+      .order('created_at', { ascending: false });
+    // ascending: false — сортировка по дате создания заказа, от новых к старым
+
+    if (error) throw error;
+    this.userOrders.set(data as IOrder[]);
+  }
+
+  public async getUsers(): Promise<IAdminUser[]> {
+    const { data, error } = await this.client.functions.invoke('get-users');
+    if (error) throw error;
+    return data as IAdminUser[];
+  }
+
+  public async getAllOrders(): Promise<IOrder[]> {
+    const { data, error } = await this.client
+      .from('orders')
+      .select(
+        `
+        *,
+        profiles (
+          first_name, 
+          last_name, 
+          phone, 
+          city, 
+          address
+        ),
+        order_items (
+          *,
+          products ( name, images, price )
+        )
+      `,
+      )
+      .order('created_at', { ascending: false });
+    // ascending: false — сортировка по дате создания заказа, от новых к старым
+    if (error) throw error;
+    return data as IOrder[];
+  }
+
+  public async getTopProducts(limit: 10): Promise<ITopProduct[]> {
+    const { data, error } = await this.client.from('top_products').select('*').limit(limit);
+    if (error) throw error;
+    return data as ITopProduct[];
+  }
+
+  public async deleteOrder(orderId: number): Promise<void> {
+    const { error } = await this.client.from('orders').delete().eq('id', orderId);
+    if (error) throw error;
+  }
+
+  public async uploadProductImage(file: File): Promise<string> {
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${crypto.randomUUID()}.${fileExt}`;
+    const filePath = `products/${fileName}`;
+
+    const { error } = await this.client.storage.from('products').upload(filePath, file);
+
+    if (error) throw error;
+
+    const { data } = this.client.storage.from('products').getPublicUrl(filePath);
+    return data.publicUrl;
+  }
+
+  public async createProduct(
+    product: Omit<IProduct, 'id' | 'created_at' | 'categories'>,
+  ): Promise<IProduct> {
+    const { data, error } = await this.client
+      .from('products')
+      .insert(product)
+      .select('*, categories(name, slug)')
+      .single();
+    if (error) throw error;
+    return data as IProduct;
+  }
+
+  public async updateProduct(
+    productId: number,
+    product: Partial<Omit<IProduct, 'id' | 'created_at' | 'categories'>>,
+  ): Promise<IProduct> {
+    const { data, error } = await this.client
+      .from('products')
+      .update(product)
+      .eq('id', productId)
+      .select('*, categories(name, slug)')
+      .single();
+    if (error) throw error;
+    return data as IProduct;
+  }
+
+  public async deleteProduct(productId: number): Promise<void> {
+    const { error } = await this.client.from('products').delete().eq('id', productId);
+    if (error) throw error;
+  }
+
+  public async deleteProductImage(url: string): Promise<void> {
+    const path = url.split('/products/').slice(1).join('/products/');
+    if (!path) return;
+
+    const { error } = await this.client.storage.from('products').remove([path]);
+    if (error) throw error;
+  }
+}
+</file>
+
+<file path="src/app/features/admin/pages/login/login.component.ts">
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { SupabaseService } from '../../../../core/services/supabase.service';
+import { ModalComponent } from '../../../../shared/components/modal/modal.component';
+
+@Component({
+  selector: 'app-login-form',
+  imports: [ReactiveFormsModule, ModalComponent],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class LoginComponent {
+  private supabaseService = inject(SupabaseService);
+  private router = inject(Router);
+  public visiblePassword = signal<boolean>(true);
+
+  public isModalOpen = signal<boolean>(false);
+  public typeModal = signal<'success' | 'error' | 'wait'>('wait');
+  public messageModal = signal<string>('');
+
+  public showModal(type: 'success' | 'error' | 'wait', message: string): void {
+    this.typeModal.set(type);
+    this.messageModal.set(message);
+    this.isModalOpen.set(true);
+  }
+
+  public onVisiblePassword(): void {
+    this.visiblePassword.update((prev) => !prev);
+  }
+
+  public form = new FormGroup({
+    email: new FormControl('', [
+      Validators.required,
+      Validators.email,
+      Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/),
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^(?=.*[a-zа-яё])(?=.*[A-ZА-ЯЁ])(?=.*\d).{8,}$/),
+    ]),
+  });
+
+  public async onSubmit(): Promise<void> {
+    if (this.form.invalid) {
+      this.showModal('error', 'Пожалуйста, заполните все поля корректно.');
+      return;
+    }
+
+    const email = this.form.value.email;
+    const password = this.form.value.password;
+    if (!email || !password) return;
+
+    await this.supabaseService.signIn(email, password);
+    const admin = await this.supabaseService.isAdmin();
+
+    if (!admin) {
+      await this.supabaseService.signOut();
+      return;
+    }
+    this.router.navigate(['/admin/dashboard']);
+  }
+}
+</file>
+
+<file path="README.md">
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:111111,100:D4FF00&height=220&section=header&text=New%20Balance&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Интернет-магазин%20кроссовок&descAlignY=55&descSize=18" width="100%"/>
+
+<p>
+  <img src="https://img.shields.io/badge/Angular-21-DD0031?style=for-the-badge&logo=angular&logoColor=white" />
+  <img src="https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/Supabase-Backend-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" />
+  <img src="https://img.shields.io/badge/Stripe-Payments-635BFF?style=for-the-badge&logo=stripe&logoColor=white" />
+  <img src="https://img.shields.io/badge/SCSS-Styles-CC6699?style=for-the-badge&logo=sass&logoColor=white" />
+</p>
+
+<p>
+  <img src="https://img.shields.io/badge/status-в%20разработке-yellow?style=flat-square" />
+  <img src="https://img.shields.io/badge/адаптив-пока%20нет-red?style=flat-square" />
+  <img src="https://img.shields.io/badge/язык-русский-blue?style=flat-square" />
+</p>
+
+</div>
+
+---
+
+## <img src="https://api.iconify.design/lucide/info.svg?color=%23D4FF00" width="20" valign="middle"/> О проекте
+
+Пет-проект интернет-магазина в стиле **New Balance**: каталог кроссовок, фильтры, корзина, избранное, оформление заказа с реальной интеграцией оплаты (в тестовом режиме) и полноценная админ-панель для управления товарами и заказами.
+
+Сделано на **Angular 21** (standalone + signals + SSR) с бэкендом на **Supabase**.
+
+---
+
+## <img src="https://api.iconify.design/lucide/clapperboard.svg?color=%23D4FF00" width="20" valign="middle"/> Демо
+
+<!-- 
+  Скриншоты лежат в папке assets-readme/ в корне репозитория.
+  Просто закинь туда свои файлы с такими же именами (или поменяй имена ниже под свои).
+-->
+
+<div align="center">
+
+<img src="./public/assets-readme/catalog.png" width="48%"/>
+<img src="./public/assets-readme/checkout.png" width="48%"/>
+
+<p><i>Каталог и фильтры &nbsp;•&nbsp; Корзина и оформление заказа</i></p>
+
+<img src="./public/assets-readme/profile.png" width="48%"/>
+<img src="./public/assets-readme/admin.png" width="48%"/>
+
+<p><i>Личный кабинет &nbsp;•&nbsp; Админ-панель</i></p>
+
+</div>
+
+---
+
+## <img src="https://api.iconify.design/lucide/layers.svg?color=%23D4FF00" width="20" valign="middle"/> Стек технологий
+
+| Категория | Технологии |
+|---|---|
+| Frontend | Angular 21, TypeScript, SCSS, Angular CDK |
+| Backend | Supabase (Auth, Database, Storage, Edge Functions) |
+| Оплата | Stripe (тестовый режим) |
+| Рендеринг | Angular SSR |
+
+---
+
+## <img src="https://api.iconify.design/lucide/sparkles.svg?color=%23D4FF00" width="20" valign="middle"/> Возможности
+
+<table>
+<tr><td width="28"><img src="https://api.iconify.design/lucide/lock.svg?color=%23D4FF00" width="18"/></td><td>Регистрация и авторизация (Supabase Auth)</td></tr>
+<tr><td><img src="https://api.iconify.design/lucide/shirt.svg?color=%23D4FF00" width="18"/></td><td>Каталог товаров с фильтрами: пол, размер, цена, рейтинг, метки (new/sale)</td></tr>
+<tr><td><img src="https://api.iconify.design/lucide/search.svg?color=%23D4FF00" width="18"/></td><td>Поиск по товарам</td></tr>
+<tr><td><img src="https://api.iconify.design/lucide/heart.svg?color=%23D4FF00" width="18"/></td><td>Избранное</td></tr>
+<tr><td><img src="https://api.iconify.design/lucide/shopping-cart.svg?color=%23D4FF00" width="18"/></td><td>Корзина с изменением количества и подсчётом стоимости</td></tr>
+<tr><td><img src="https://api.iconify.design/lucide/credit-card.svg?color=%23D4FF00" width="18"/></td><td>Оформление заказа и оплата через Stripe</td></tr>
+<tr><td><img src="https://api.iconify.design/lucide/ticket-percent.svg?color=%23D4FF00" width="18"/></td><td>Промокоды на скидку</td></tr>
+<tr><td><img src="https://api.iconify.design/lucide/user.svg?color=%23D4FF00" width="18"/></td><td>Личный кабинет: профиль, адрес доставки, смена пароля, история заказов</td></tr>
+<tr><td><img src="https://api.iconify.design/lucide/layout-dashboard.svg?color=%23D4FF00" width="18"/></td><td>Админ-панель: дашборд со статистикой, товары, заказы, пользователи</td></tr>
+</table>
+
+---
+
+## <img src="https://api.iconify.design/lucide/rocket.svg?color=%23D4FF00" width="20" valign="middle"/> Запуск проекта
+
+```bash
+# Клонировать репозиторий
+git clone https://github.com/medok-ui/newbalance-store.git
+cd newbalance-store
+
+# Установить зависимости
+npm install
+
+# Запустить дев-сервер
+ng serve
+```
+
+Приложение будет доступно на `http://localhost:4200/`.
+
+> Для полноценной работы нужен настроенный проект **Supabase** (Auth, таблицы, Storage, Edge Functions) — см. `src/environments/environment.ts` и `supabase/config.toml`.
+
+---
+
+## <img src="https://api.iconify.design/lucide/credit-card.svg?color=%23D4FF00" width="20" valign="middle"/> Тестовая оплата
+
+Оплата в проекте **полностью тестовая** (Stripe test mode) — реальные деньги не списываются, бояться нечего 🙂
+
+| Поле | Значение |
+|---|---|
+| Номер карты | `4242 4242 4242 4242` |
+| Срок действия | любая дата в будущем (например `12/34`) |
+| CVC | любые 3 цифры (например `123`) |
+| Имя на карте / индекс | любые значения |
+
+---
+
+## <img src="https://api.iconify.design/lucide/ticket-percent.svg?color=%23D4FF00" width="20" valign="middle"/> Промокоды
+
+Промокоды хранятся в таблице `promo_codes` в Supabase и применяются на странице оформления заказа:
+
+| Промокод     | Скидка |
+| ------------ | ------ |
+| `medok`      | 50%    |
+| `baryl`      | 30%    |
+| `whitemaks`  | 25%    |
+| `friend20`   | 20%    |
+| `sneaker15`  | 15%    |
+| `nb2026`     | 10%    |
+
+---
+
+## <img src="https://api.iconify.design/lucide/turtle.svg?color=%23D4FF00" width="20" valign="middle"/> Если долго грузится
+
+Supabase и Stripe иногда медленно отвечают в некоторых регионах — если страница долго грузится или зависает, попробуйте включить **VPN**.
+
+---
+
+## <img src="https://api.iconify.design/lucide/wrench.svg?color=%23D4FF00" width="20" valign="middle"/> Статус проекта
+
+| | |
+|---|---|
+| <img src="https://api.iconify.design/lucide/check.svg?color=%23D4FF00" width="16"/> | Основной функционал магазина работает стабильно |
+| <img src="https://api.iconify.design/lucide/x.svg?color=%23D4FF00" width="16"/> | Адаптив под мобильные устройства и планшеты пока не сделан — корректно отображается только на десктопе |
+| <img src="https://api.iconify.design/lucide/globe.svg?color=%23D4FF00" width="16"/> | Интерфейс только на русском языке |
+| <img src="https://api.iconify.design/lucide/bug.svg?color=%23D4FF00" width="16"/> | Возможны мелкие баги — если нашли что-то не так, пишите админу |
+
+---
+
+## <img src="https://api.iconify.design/lucide/mail.svg?color=%23D4FF00" width="20" valign="middle"/> Контакты
+
+По всем вопросам, багам и предложениям:
+
+<div align="center">
+
+[![Telegram](https://img.shields.io/badge/Telegram-@MedokDev-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/MedokDev)
+
+</div>
+
+<div align="center">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:D4FF00,100:111111&height=100&section=footer" width="100%"/>
+</div>
 </file>
 
 </files>

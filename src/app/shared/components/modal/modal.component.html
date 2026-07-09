@@ -25,7 +25,9 @@
       <p class="modal__text">{{ message() }}</p>
 
       @if (typeModal() !== 'wait') {
-        <button class="modal__btn" (click)="onClose()">Ок</button>
+        <button type="button" class="modal__btn" (click)="onClose()" (keydown.enter)="onClose()">
+          Ок
+        </button>
       }
     </div>
   </div>

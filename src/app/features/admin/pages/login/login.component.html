@@ -74,3 +74,10 @@
     <button (click)="onSubmit()" class="btn-submit" type="submit">Войти в панель</button>
   </form>
 </div>
+
+<app-modal
+  [isOpen]="isModalOpen()"
+  (closed)="isModalOpen.set(false)"
+  [typeModal]="typeModal()"
+  [message]="messageModal()"
+/>

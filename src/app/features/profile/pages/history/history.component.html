@@ -34,3 +34,10 @@
     }
   </div>
 </div>
+
+<app-modal
+  [isOpen]="isModalOpen()"
+  (closed)="isModalOpen.set(false)"
+  [typeModal]="typeModal()"
+  [message]="messageModal()"
+/>

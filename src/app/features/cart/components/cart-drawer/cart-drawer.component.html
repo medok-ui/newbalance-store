@@ -2,7 +2,7 @@
   <div class="container">
     <div class="cart__header">
       <h1 class="cart__header-title">Корзина</h1>
-      <span class="cart__header-count">{{ cartProducts()?.length }} товар</span>
+      <span class="cart__header-count">{{ cartProducts()?.length }} Моделий</span>
     </div>
     @if (cartProducts()?.length === 0) {
       <div class="carts-empty">
@@ -14,8 +14,10 @@
       <div class="cart-layout">
         <div class="cart-layout__main">
           <ul class="cart-layout__cards">
-            @for (item of cartProducts(); track item.id) {
-              <li class="cart-layout__card"><app-cart-item [dataProduct]="item" /></li>
+            @for (item of cartProducts(); track item.cartItemId) {
+              <li class="cart-layout__card">
+                <app-cart-item [dataProduct]="item.product" [cartItemId]="item.cartItemId" />
+              </li>
             }
           </ul>
           <a class="cart-layout__btn-back" routerLink="/catalog">
@@ -26,7 +28,7 @@
           <div class="cart-layout__summary-card">
             <h2 class="summary-card__title">Итого</h2>
             <div class="summary-card__summary-row">
-              <span class="summary-row__summary-count">Товары ({{ cartProducts()?.length }})</span>
+              <span class="summary-row__summary-count">Товары ({{ cartLength() }})</span>
               <span class="summary-row__summary-value">{{ totalPrice() | priceFormat }}</span>
             </div>
             <div class="summary-card__summary-row">

@@ -13,9 +13,12 @@ import { IAdminUser } from '../../../../../../shared/interfaces/user.interface';
 export class UsersTableComponent {
   public searchQuery = signal<string>('');
   public users = input.required<IAdminUser[]>();
+
   public allUsers = computed(() => {
+    const users = this.users();
+
     const query = this.searchQuery().toLowerCase();
-    return this.users().filter((user) => user.profile?.last_name!.toLowerCase().includes(query));
+    return users.filter((user) => user.profile?.first_name!.toLowerCase().includes(query));
   });
 
   public searchUser(event: Event): void {

@@ -16,8 +16,8 @@ export class UserProfileComponent implements OnInit {
   public dataUser = signal<User | null>(this.supabaseService.currentUser());
   public infoUser = signal<IUserProfile | null>(null);
 
-  async ngOnInit(): Promise<void> {
-    const data = await this.supabaseService.getUser();
+  ngOnInit(): void {
+    const data = this.supabaseService.infoCurrentUser();
     this.infoUser.set(data);
   }
 }

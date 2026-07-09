@@ -8,14 +8,16 @@ import {
 } from '@angular/core';
 import { PriceFormatPipe } from '../../../../core/pipes/price-format.pipe';
 import { SupabaseService } from '../../../../core/services/supabase.service';
+import { ModalComponent } from '../../../../shared/components/modal/modal.component';
 import { ICartItem } from '../../../../shared/interfaces/cart-item.interface';
 import { IProduct } from '../../../products/interfaces/product.interface';
 import { CartService } from './../../../../core/services/cart.service';
 import { OrderCardComponent } from './components/order-card/order-card.component';
+import { ICartDisplayItem } from '../../../../shared/interfaces/cart-display-item.interface';
 
 @Component({
   selector: 'app-order-summary',
-  imports: [OrderCardComponent, PriceFormatPipe],
+  imports: [OrderCardComponent, PriceFormatPipe, ModalComponent],
   templateUrl: './order-summary.component.html',
   styleUrl: './order-summary.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,7 +26,7 @@ export class OrderSummaryComponent {
   private cartService = inject(CartService);
   private supabaseService = inject(SupabaseService);
 
-  public currentProducts = signal<IProduct[] | null>([]);
+  public currentProducts = signal<ICartDisplayItem[] | null>([]);
   public currentInfoProducts = signal<ICartItem[] | null>(null);
   public deliveryPrice = signal<number>(990);
 
@@ -56,9 +58,9 @@ export class OrderSummaryComponent {
     if (!products || !cartInfo) return 0;
 
     const subtotal = products.reduce((sum, product) => {
-      const cartItem = cartInfo.find((item) => item.product_id === product.id);
+      const cartItem = cartInfo.find((item) => item.id === product.cartItemId);
       const quantity = cartItem?.quantity ?? 1;
-      return sum + product.price * quantity;
+      return sum + product.product.price * quantity;
     }, 0);
 
     const discount = this.promoDiscount();
@@ -72,8 +74,8 @@ export class OrderSummaryComponent {
     if (!products || !cartInfo) return 990;
 
     const subtotal = products.reduce((sum, product) => {
-      const cartItem = cartInfo.find((item) => item.product_id === product.id);
-      return sum + product.price * (cartItem?.quantity ?? 1);
+      const cartItem = cartInfo.find((item) => item.id === product.cartItemId);
+      return sum + product.product.price * (cartItem?.quantity ?? 1);
     }, 0);
 
     return subtotal < 15000 ? delivery : 0;

@@ -36,3 +36,10 @@
     <button (click)="onSubmit()" class="setting-form__btn-save">Сохранить изменения</button>
   </form>
 </div>
+
+<app-modal
+  [isOpen]="isModalOpen()"
+  (closed)="isModalOpen.set(false)"
+  [typeModal]="typeModal()"
+  [message]="messageModal()"
+/>

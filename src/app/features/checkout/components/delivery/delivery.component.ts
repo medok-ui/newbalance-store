@@ -33,8 +33,8 @@ export class DeliveryComponent implements OnInit {
     });
   }
 
-  public async ngOnInit(): Promise<void> {
-    const data = await this.supabaseService.getUser();
+  public  ngOnInit(): void {
+    const data = this.supabaseService.infoCurrentUser();
     this.userData.set(data);
 
     this.checkoutService.isCheckoutUserDataValid.set(!!data?.address);

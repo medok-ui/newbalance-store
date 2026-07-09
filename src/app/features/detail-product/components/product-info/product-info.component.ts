@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
+import { PriceFormatPipe } from '../../../../core/pipes/price-format.pipe';
 import { CartService } from '../../../../core/services/cart.service';
 import { FavoritesService } from '../../../../core/services/favorites.service';
 import { IProduct } from '../../../products/interfaces/product.interface';
-import { PriceFormatPipe } from '../../../../core/pipes/price-format.pipe';
 
 @Component({
   selector: 'app-product-info',
@@ -17,7 +17,7 @@ export class ProductInfoComponent {
 
   public dataProduct = input.required<IProduct | null>();
 
-  public currentSize = signal<number>(0);
+  public currentSize = signal<number | null>(null);
   public isAddSizeText = signal<boolean>(false);
 
   public isFavorite = signal<boolean>(false);
@@ -26,6 +26,7 @@ export class ProductInfoComponent {
   constructor() {
     effect(() => {
       const product = this.dataProduct();
+
       if (!product) return;
 
       const isFav = this.favoritesService.isFavorite(product.id);
@@ -52,6 +53,7 @@ export class ProductInfoComponent {
   public async addToCart() {
     const productId = this.dataProduct()?.id;
     const size = this.currentSize();
+
     const quantity = 1;
 
     if (!size) {

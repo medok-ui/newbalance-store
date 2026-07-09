@@ -23,16 +23,17 @@ import { IProduct } from '../../../products/interfaces/product.interface';
 export class CartItemComponent implements OnInit {
   private cartService = inject(CartService);
   public dataProduct = input.required<IProduct>();
+  public cartItemId = input.required<number>();
   public cartInfoProducts = signal<ICartItem | null>(null);
   public quantity = signal<number>(1);
 
   constructor() {
     effect(() => {
-      const dataProduct = this.dataProduct();
+      const id = this.cartItemId();
       const infoProduct = this.cartService.cartsData();
       if (!infoProduct) return;
 
-      const currentInfoProduct = infoProduct.find((p) => p.product_id === dataProduct.id) ?? null;
+      const currentInfoProduct = infoProduct.find((p) => p.id === id) ?? null;
 
       this.cartInfoProducts.set(currentInfoProduct);
     });
@@ -40,31 +41,20 @@ export class CartItemComponent implements OnInit {
 
   public ngOnInit(): void {
     const infoProduct = this.cartService.cartsData();
-    const currentInfoProduct =
-      infoProduct.find((p) => p.product_id === this.dataProduct().id) ?? null;
+    const currentInfoProduct = infoProduct.find((p) => p.id === this.cartItemId()) ?? null;
     this.quantity.set(currentInfoProduct?.quantity ?? 1);
   }
 
   public deleteProduct(): void {
-    const productId = this.dataProduct().id;
-    const cartItemId = this.cartInfoProducts()?.id;
-    if (!cartItemId) return;
-
-    this.cartService.removeFromCart(productId, cartItemId);
+    this.cartService.removeFromCart(this.cartItemId());
   }
 
   public onPlusQuantity(): void {
-    const cartItemId = this.cartInfoProducts()?.id;
-    if (!cartItemId) return;
-
     this.quantity.update((val) => val + 1);
-    this.cartService.updateQuantity(cartItemId, this.quantity());
+    this.cartService.updateQuantity(this.cartItemId(), this.quantity());
   }
   public onMinusQuantity(): void {
-    const cartItemId = this.cartInfoProducts()?.id;
-    if (!cartItemId) return;
-
     this.quantity.update((val) => (val > 1 ? val - 1 : val));
-    this.cartService.updateQuantity(cartItemId, this.quantity());
+    this.cartService.updateQuantity(this.cartItemId(), this.quantity());
   }
 }

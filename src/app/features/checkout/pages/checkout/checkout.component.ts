@@ -56,12 +56,12 @@ export class CheckoutComponent {
       const orderId = await this.supabaseService.createOrder(this.totalPrice());
 
       const orderItems = cartItems.map((cartItem) => {
-        const product = products?.find((p) => p.id === cartItem.product_id);
+        const product = products?.find((p) => p.cartItemId === cartItem.product_id);
         return {
           product_id: cartItem.product_id,
           size: cartItem.size,
           quantity: cartItem.quantity,
-          price: product?.price ?? 0,
+          price: product?.product.price ?? 0,
         };
       });
 

@@ -75,6 +75,25 @@
   border-radius: 4px;
 }
 
+.product-detail-badge {
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 4px;
+  line-height: 1.4;
+  padding: 4px 10px;
+
+  &--new {
+    background-color: #d4ff00;
+    color: #111;
+  }
+
+  &--sale {
+    background-color: #111;
+    color: #fff;
+  }
+}
+
 .product-detail__divider-hr {
   margin: 0 0 24px;
   border: 1px solid #eaeaea;

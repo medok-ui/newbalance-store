@@ -30,6 +30,8 @@ export class App implements OnInit {
     });
 
     await this.supabaseService.loadProducts();
+    await this.supabaseService.getOrders()
+    await this.supabaseService.getUser();
     await this.favoritesService.getCart();
     await this.cartService.getCart();
 

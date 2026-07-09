@@ -4,6 +4,7 @@ import {
   DestroyRef,
   inject,
   OnInit,
+  output,
   signal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -28,6 +29,12 @@ export class SearchBlockComponent implements OnInit {
   public isSearching = signal<boolean>(false);
   public isEmpty = signal<boolean>(false);
   public searchTags = signal<ISearchTag[]>(SEARCH_TAGS);
+
+  public closeSearch = output<void>();
+
+  public onProductClick(): void {
+    this.closeSearch.emit();
+  }
 
   public searchInput = new FormControl('', { validators: [Validators.required] });
 

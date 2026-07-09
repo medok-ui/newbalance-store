@@ -68,6 +68,8 @@ export class ProductEditComponent {
   });
 
   public async onSubmit(): Promise<void> {
+    this.showModal('wait', 'Сохраняем изменения...');
+
     if (
       !this.basicInfo().form.valid ||
       !this.characteristics().form.valid ||
@@ -77,8 +79,6 @@ export class ProductEditComponent {
       this.showModal('error', 'Форма не валидна. Пожалуйста, заполните все обязательные поля.');
       return;
     }
-
-    this.showModal('wait', 'Сохраняем изменения...');
 
     const basicInfo = this.basicInfo().form.getRawValue();
     const characteristics = this.characteristics().form.getRawValue();

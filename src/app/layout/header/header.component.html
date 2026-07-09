@@ -35,7 +35,7 @@
         </a>
       }
       @if (isSearching()) {
-        <app-search-block />
+        <app-search-block (closeSearch)="isSearching.set(false)" />
       }
     </div>
   </nav>

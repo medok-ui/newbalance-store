@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { SupabaseService } from '../../../../core/services/supabase.service';
 import { CartService } from '../../../../core/services/cart.service';
+import { SupabaseService } from '../../../../core/services/supabase.service';
 
 @Component({
   selector: 'app-checkout-success',
@@ -26,7 +26,7 @@ export class CheckoutSuccessComponent implements OnInit {
     this.orderId.set(orderId);
 
     await this.supabaseService.updateOrderStatus(orderId, 'paid');
-    const user = await this.supabaseService.getUser();
+    const user = this.supabaseService.infoCurrentUser();
     const authUser = this.supabaseService.currentUser();
 
     this.userName.set(user?.first_name ?? '');

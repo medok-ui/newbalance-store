@@ -1,8 +1,8 @@
 <div class="order-summary">
   <h2 class="order-summary__title">Ваш заказ</h2>
   <div class="order-summary__items">
-    @for (item of currentProducts(); track item.id) {
-      <app-order-card [productData]="item" />
+    @for (item of currentProducts(); track item.cartItemId) {
+      <app-order-card [productData]="item.product" [cartItemId]="item.cartItemId" />
     }
   </div>
   <div class="order-summary__row">
