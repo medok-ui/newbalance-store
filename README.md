@@ -12,7 +12,7 @@
 
 <p>
   <img src="https://img.shields.io/badge/status-в%20разработке-yellow?style=flat-square" />
-  <img src="https://img.shields.io/badge/адаптив-пока%20нет-red?style=flat-square" />
+  <img src="https://img.shields.io/badge/адаптив-есть%20нет-red?style=flat-square" />
   <img src="https://img.shields.io/badge/язык-русский-blue?style=flat-square" />
 </p>
 
