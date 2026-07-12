@@ -32,8 +32,9 @@ export class OrderDetailComponent {
 
   public currentOrder = signal<IOrder | null>(null);
 
-  public async ngOnInit() {
-    const orders = await this.supabaseService.getAllOrders();
+  public ngOnInit(): void {
+    const orders = this.supabaseService.allOrders();
+    if (!orders) return;
     const currentOrder = orders.find((p) => p.id === this.orderId()) ?? null;
     this.currentOrder.set(currentOrder);
   }

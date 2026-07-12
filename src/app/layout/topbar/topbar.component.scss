@@ -11,3 +11,17 @@
 .topbar__promo {
   cursor: pointer;
 }
+
+@media (max-width: 480px) {
+  .topbar {
+    font-size: 11px;
+    padding: 8px 10px;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 360px) {
+  .topbar {
+    font-size: 10px;
+  }
+}

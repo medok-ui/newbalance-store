@@ -31,3 +31,23 @@
   font-size: 15px;
   color: #666;
 }
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 40px 16px 30px;
+  }
+
+  .hero__title {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero__title {
+    font-size: 25px;
+  }
+
+  .hero__description {
+    font-size: 13px;
+  }
+}

@@ -40,3 +40,15 @@
   font-weight: 700;
   white-space: nowrap;
 }
+
+@media (max-width: 360px) {
+  .order-summary__item-img {
+    width: 46px;
+    height: 46px;
+  }
+
+  .order-summary__item-name {
+    max-width: 160px;
+    font-size: 12px;
+  }
+}

@@ -95,8 +95,9 @@
 
 .new-arrivals-card__list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px 0;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  flex-wrap: wrap;
   margin-bottom: 30px;
 }
 
@@ -118,5 +119,25 @@
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .new-arrivals-card__list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .new-arrivals__title {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 360px) {
+  .new-arrivals__title {
+    font-size: 19px;
   }
 }

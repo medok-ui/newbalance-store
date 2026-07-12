@@ -165,3 +165,26 @@
   line-height: 1.4;
   margin-bottom: 20px;
 }
+
+@media (max-width: 480px) {
+  .search {
+    width: 92vw;
+    right: -10px;
+  }
+
+  .search::before {
+    right: 30px;
+  }
+}
+
+@media (max-width: 360px) {
+  .search {
+    width: 96vw;
+    right: -14px;
+  }
+
+  .search-input__search {
+    padding: 0 10px;
+    font-size: 12px;
+  }
+}

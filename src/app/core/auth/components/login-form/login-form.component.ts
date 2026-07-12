@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CartService } from '../../../services/cart.service';
+import { FavoritesService } from '../../../services/favorites.service';
 import { SupabaseService } from '../../../services/supabase.service';
 
 @Component({
@@ -13,11 +15,13 @@ import { SupabaseService } from '../../../services/supabase.service';
 export class LoginFormComponent {
   private supabaseService = inject(SupabaseService);
   private route = inject(Router);
+  private favoritesService = inject(FavoritesService);
+  private cartService = inject(CartService);
 
   public visiblePassword = signal<boolean>(true);
 
-  public isValidLogin = signal<boolean>(true)
-  public isValidPassword = signal<boolean>(true)
+  public isValidLogin = signal<boolean>(true);
+  public isValidPassword = signal<boolean>(true);
 
   public onVisiblePassword(): void {
     this.visiblePassword.update((prev) => !prev);
@@ -44,7 +48,13 @@ export class LoginFormComponent {
       const password = this.form.controls.password.value;
       if (!email || !password) return;
       await this.supabaseService.signIn(email, password);
+      await this.supabaseService.getUser();
+      await this.cartService.getCart();
+      await this.favoritesService.getCart();
+      await this.supabaseService.getOrders();
       this.route.navigate(['/profile/']);
     }
   }
+
+  public resetPassword(event: Event): void {}
 }

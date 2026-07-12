@@ -26,9 +26,10 @@ export class DashboardComponent implements OnInit {
   public allOrders = signal<IOrder[]>([]);
   public allUsers = signal<IAdminUser[]>([]);
 
-  public async ngOnInit(): Promise<void> {
-    const orders = await this.supabaseService.getAllOrders();
-    const users = await this.supabaseService.getUsers();
+  public ngOnInit(): void {
+    const orders = this.supabaseService.allOrders();
+    const users = this.supabaseService.allUsers();
+    if (!users || !orders) return;
     this.allOrders.set(orders);
     this.allUsers.set(users);
   }

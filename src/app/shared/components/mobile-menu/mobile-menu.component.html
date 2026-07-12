@@ -1,0 +1,19 @@
+<div class="menu-overlay" [class.active]="isOpen()" (click)="closeModal()"></div>
+
+<div class="menu" [class.active]="isOpen()">
+  <nav class="menu-nav">
+    <div class="menu-header">
+      <a routerLink="/" class="logo" (click)="closeModal()">New Balance</a>
+      <button (click)="closeModal()">
+        <img src="/assets/svgs/close.svg" alt="close" />
+      </button>
+    </div>
+    <ul class="menu-links">
+      @for (link of navLinks(); track link.label) {
+        <li (click)="closeModal()" class="menu-link">
+          <a [routerLink]="link.path">{{ link.label }}</a>
+        </li>
+      }
+    </ul>
+  </nav>
+</div>

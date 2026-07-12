@@ -67,3 +67,24 @@
   line-height: 1.7;
   margin-top: 10px;
 }
+
+@media (max-width: 768px) {
+  .desc__grid {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .desc__list-item {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 360px) {
+  .desc__lead {
+    font-size: 15px;
+  }
+
+  .desc__text {
+    font-size: 13px;
+  }
+}

@@ -86,3 +86,29 @@
   font-weight: 500;
   color: #111;
 }
+
+@media (max-width: 480px) {
+  .profile-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+    padding: 18px;
+  }
+
+  .profile-details__row {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .profile-card__avatar {
+    width: 56px;
+    height: 56px;
+    font-size: 18px;
+  }
+
+  .user-profile__title {
+    font-size: 18px;
+  }
+}

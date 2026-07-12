@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { PriceFormatPipe } from '../../../../core/pipes/price-format.pipe';
 import { SupabaseService } from '../../../../core/services/supabase.service';
 import { ITopProduct } from '../../../../shared/interfaces/top-product.interface';
-import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-top-products',
@@ -15,8 +15,9 @@ export class TopProductsComponent {
   private supabaseService = inject(SupabaseService);
   public topProducts = signal<ITopProduct[]>([]);
 
-  public async ngOnInit(): Promise<void> {
-    const data = await this.supabaseService.getTopProducts(10);
+  public ngOnInit(): void {
+    const data = this.supabaseService.topProducts();
+    if (!data) return;
     this.topProducts.set(data);
   }
 }

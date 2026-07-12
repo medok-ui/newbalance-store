@@ -1,4 +1,3 @@
-
 .full-screen-loader {
   position: fixed;
   top: 0;
@@ -47,5 +46,17 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .full-screen-loader__spinner {
+    width: 48px;
+    height: 48px;
+    border-width: 5px;
+  }
+
+  .full-screen-loader__text {
+    font-size: 15px;
   }
 }

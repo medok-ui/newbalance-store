@@ -13,6 +13,9 @@
         </li>
       }
     </ul>
+    <button (click)="showMenu()" class="header__nav-menu">
+      <img src="/assets/svgs/menu-icon.svg" alt="Меню" />
+    </button>
     <strong class="header__nav-logo"
       ><a class="header__nav-logo" routerLink="/">New Balance</a></strong
     >
@@ -40,3 +43,5 @@
     </div>
   </nav>
 </header>
+
+<app-mobile-menu [isOpen]="isMenu()" (isCloseModal)="isMenu.set(false)" />

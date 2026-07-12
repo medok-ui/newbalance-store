@@ -71,3 +71,25 @@
     color: #fff;
   }
 }
+
+@media (max-width: 480px) {
+  .delivery-address__row {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .delivery-address__group:last-child {
+    flex: 1;
+  }
+}
+
+@media (max-width: 360px) {
+  .delivery-address__title {
+    font-size: 17px;
+  }
+
+  .delivery-address__btn-save {
+    width: 100%;
+    text-align: center;
+  }
+}

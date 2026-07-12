@@ -18,6 +18,9 @@ export class SupabaseService {
   public currentUser = signal<User | null>(null);
   public infoCurrentUser = signal<IUserProfile | null>(null);
   public userOrders = signal<IOrder[] | null>(null);
+  public allUsers = signal<IAdminUser[] | null>(null);
+  public allOrders = signal<IOrder[] | null>(null);
+  public topProducts = signal<ITopProduct[] | null>(null);
 
   readonly client: SupabaseClient = createClient(environment.supabaseUrl, environment.supabaseKey);
 
@@ -228,13 +231,13 @@ export class SupabaseService {
     this.userOrders.set(data as IOrder[]);
   }
 
-  public async getUsers(): Promise<IAdminUser[]> {
+  public async getUsers(): Promise<void> {
     const { data, error } = await this.client.functions.invoke('get-users');
     if (error) throw error;
-    return data as IAdminUser[];
+    this.allUsers.set(data as IAdminUser[]);
   }
 
-  public async getAllOrders(): Promise<IOrder[]> {
+  public async getAllOrders(): Promise<void> {
     const { data, error } = await this.client
       .from('orders')
       .select(
@@ -256,13 +259,13 @@ export class SupabaseService {
       .order('created_at', { ascending: false });
     // ascending: false — сортировка по дате создания заказа, от новых к старым
     if (error) throw error;
-    return data as IOrder[];
+    this.allOrders.set(data as IOrder[]);
   }
 
-  public async getTopProducts(limit: 10): Promise<ITopProduct[]> {
+  public async getTopProducts(limit: 10): Promise<void> {
     const { data, error } = await this.client.from('top_products').select('*').limit(limit);
     if (error) throw error;
-    return data as ITopProduct[];
+    this.topProducts.set(data as ITopProduct[]);
   }
 
   public async deleteOrder(orderId: number): Promise<void> {

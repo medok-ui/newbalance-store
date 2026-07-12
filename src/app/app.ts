@@ -16,7 +16,6 @@ export class App implements OnInit {
   private supabaseService = inject(SupabaseService);
   private favoritesService = inject(FavoritesService);
   private cartService = inject(CartService);
-
   public isLoading = signal<boolean>(false);
 
   public async ngOnInit(): Promise<void> {
@@ -28,13 +27,23 @@ export class App implements OnInit {
       }
       this.supabaseService.currentUser.set(null);
     });
+    this.initAppData();
+  }
 
-    await this.supabaseService.loadProducts();
-    await this.supabaseService.getOrders()
-    await this.supabaseService.getUser();
-    await this.favoritesService.getCart();
-    await this.cartService.getCart();
-
-    this.isLoading.set(false);
+  private async initAppData(): Promise<void> {
+    try {
+      await this.supabaseService.loadProducts();
+      await this.supabaseService.getTopProducts(10);
+      await this.supabaseService.getOrders();
+      await this.supabaseService.getUsers();
+      await this.supabaseService.getAllOrders();
+      await this.supabaseService.getUser();
+      await this.cartService.getCart();
+      await this.favoritesService.getCart();
+    } catch (err) {
+      console.error('Ошибка при загрузке данных юзера:', err);
+    } finally {
+      this.isLoading.set(false);
+    }
   }
 }

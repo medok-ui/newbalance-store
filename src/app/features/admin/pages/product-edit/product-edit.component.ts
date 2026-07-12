@@ -135,6 +135,8 @@ export class ProductEditComponent {
 
     try {
       await this.supabaseService.updateProduct(this.productId()!, product);
+      await this.supabaseService.loadProducts();
+
       this.showModal('success', 'Товар успешно обновлён');
     } catch {
       this.showModal('error', 'Не удалось сохранить изменения');

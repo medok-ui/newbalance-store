@@ -28,3 +28,21 @@
   color: #111;
   font-weight: 500;
 }
+
+@media (max-width: 480px) {
+  .specs-table__td {
+    font-size: 13px;
+  }
+
+  .specs-table__first-child {
+    width: 50%;
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .specs-table__td {
+    font-size: 12px;
+    padding: 9px 0;
+  }
+}

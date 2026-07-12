@@ -18,7 +18,6 @@ export class FavoritesGridComponent {
   constructor() {
     effect(() => {
       const favoriteProduct = this.favoritesService.favorites();
-      console.log(this.favoritesService.favorites());
 
       this.favoriteProducts.set(favoriteProduct);
     });

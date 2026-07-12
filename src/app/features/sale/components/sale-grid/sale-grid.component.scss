@@ -98,3 +98,27 @@
     pointer-events: auto;
   }
 }
+
+@media (max-width: 900px) {
+  .sale-card__list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sale-card__list {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .sale__title {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 360px) {
+  .sale__title {
+    font-size: 19px;
+  }
+}

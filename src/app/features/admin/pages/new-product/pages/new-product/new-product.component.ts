@@ -113,6 +113,7 @@ export class NewProductComponent {
 
     try {
       await this.supabaseService.createProduct(product);
+      await this.supabaseService.loadProducts();
       this.showModal('success', 'Товар успешно создан!');
     } catch (error) {
       this.showModal('error', 'Не удалось создать товар. Попробуйте снова');

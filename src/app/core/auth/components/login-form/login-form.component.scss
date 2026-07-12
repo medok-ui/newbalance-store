@@ -95,3 +95,28 @@
     box-shadow: 0 0 0 4px rgba(229, 62, 62, 0.12);
   }
 }
+@media (max-width: 576px) {
+  .form-row {
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .form-group {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-actions {
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .btn-primary {
+    width: 100%;
+    padding: 0 16px;
+  }
+  .btn-link {
+    padding: 8px 0;
+  }
+}

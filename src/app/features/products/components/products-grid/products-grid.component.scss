@@ -19,7 +19,38 @@
 }
 
 .products-grid__list {
+  overflow-x: auto;
+  scrollbar-width: none;
   display: flex;
+  gap: 20px;
   justify-content: space-between;
   align-items: center;
+}
+
+@media (max-width: 768px) {
+  .products-grid__list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .products-grid {
+    padding: 40px 16px;
+  }
+
+  .products-grid__header {
+    margin-bottom: 20px;
+  }
+
+  .products-grid__title {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .products-grid__list {
+    gap: 16px;
+  }
 }

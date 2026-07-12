@@ -58,3 +58,47 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 60px 20px;
+  }
+
+  .hero__title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 50px 16px;
+  }
+
+  .hero__title {
+    font-size: 28px;
+  }
+
+  .hero__description {
+    font-size: 14px;
+  }
+
+  .hero__buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .hero__button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero__title {
+    font-size: 24px;
+  }
+
+  .hero__label {
+    font-size: 11px;
+  }
+}

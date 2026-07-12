@@ -51,4 +51,21 @@
   border-radius: 4px;
   width: fit-content;
 }
-    
+
+@media (max-width: 480px) {
+  .setting-form__row {
+    flex-direction: column;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  .setting__title {
+    font-size: 17px;
+  }
+
+  .setting-form__btn-save {
+    width: 100%;
+    text-align: center;
+  }
+}

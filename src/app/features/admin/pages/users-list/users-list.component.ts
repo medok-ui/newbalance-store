@@ -14,8 +14,9 @@ export class UsersListComponent {
   private supabaseService = inject(SupabaseService);
   public allUsers = signal<IAdminUser[]>([]);
 
-  public async ngOnInit(): Promise<void> {
-    const users = await this.supabaseService.getUsers();
+  public ngOnInit(): void {
+    const users = this.supabaseService.allUsers();
+    if (!users) return;
     this.allUsers.set(users);
   }
 }

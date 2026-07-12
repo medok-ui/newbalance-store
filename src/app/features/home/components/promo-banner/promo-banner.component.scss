@@ -53,3 +53,24 @@
     transform: scale(0.97);
   }
 }
+
+@media (max-width: 480px) {
+  .promo-banner {
+    padding: 50px 16px;
+  }
+
+  .promo-banner__title {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 360px) {
+  .promo-banner__title {
+    font-size: 22px;
+  }
+
+  .promo-banner__btn {
+    width: 100%;
+    padding: 14px 20px;
+  }
+}

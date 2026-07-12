@@ -34,3 +34,31 @@
     border-color: #111;
   }
 }
+
+@media (max-width: 900px) {
+  .gallery__main-img {
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery__thumbs {
+    gap: 6px;
+    overflow-x: auto;
+  }
+
+  .gallery__thumb {
+    width: 54px;
+    height: 54px;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 360px) {
+  .gallery__thumb {
+    width: 48px;
+    height: 48px;
+  }
+}

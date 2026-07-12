@@ -111,3 +111,59 @@
   flex: 1;
   min-width: 0;
 }
+
+@media (max-width: 900px) {
+  .profile-sidebar_exit-profile {
+    background-color: rgba(255, 18, 18, 0.09);
+    width: 100%;
+    text-align: center;
+  }
+
+  .profile-layout {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .profile-sidebar {
+    max-width: 100%;
+    position: static;
+  }
+
+  .profile-sidebar__menu {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .profile-sidebar__link {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+    .profile {
+    margin: 24px 0;
+  }
+
+  .profile__title {
+    font-size: 24px;
+  }
+
+  .profile-sidebar {
+    padding: 14px;
+  }
+
+  .profile-sidebar__link {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .profile__title {
+    font-size: 20px;
+  }
+
+  .profile-sidebar__menu {
+    flex-direction: column;
+  }
+}

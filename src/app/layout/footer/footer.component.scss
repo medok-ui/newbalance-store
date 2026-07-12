@@ -103,3 +103,48 @@
   color: #888;
   font-size: 12px;
 }
+
+@media (max-width: 768px) {
+  .footer__container {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .footer__links {
+    flex-wrap: wrap;
+    gap: 30px 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 40px 0 16px;
+  }
+
+  .footer__subscribe-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .footer__subscribe-input {
+    max-width: 100%;
+  }
+
+  .footer__links {
+    gap: 24px 20px;
+  }
+
+  .footer__link-column {
+    flex: 1 1 40%;
+  }
+}
+
+@media (max-width: 360px) {
+  .footer__link-column {
+    flex: 1 1 100%;
+  }
+
+  .footer__logo {
+    font-size: 16px;
+  }
+}

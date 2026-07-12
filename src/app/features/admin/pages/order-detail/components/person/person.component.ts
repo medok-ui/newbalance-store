@@ -18,11 +18,12 @@ export class PersonComponent {
   public allOrdersUser = signal<IOrder[]>([]);
   public currentUser = signal<IAdminUser | undefined>(undefined);
 
-  public async ngOnInit(): Promise<void> {
+  public ngOnInit(): void {
     const orders = this.supabaseService.userOrders();
-    const users = await this.supabaseService.getUsers();
+    const users = this.supabaseService.allUsers();
+    if (!orders || !users) return;
+
     const currentUser = users.find((user) => user.id === this.order()?.user_id);
-    if (!orders) return;
     this.allOrdersUser.set(orders);
     this.currentUser.set(currentUser);
   }

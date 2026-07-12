@@ -35,3 +35,20 @@
   align-items: start;
   gap: 60px;
 }
+
+@media (max-width: 900px) {
+  .product-detail__layout {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-detail {
+    padding: 16px 0 50px;
+  }
+
+  .breadcrumb {
+    font-size: 12px;
+  }
+}

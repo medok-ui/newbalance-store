@@ -92,3 +92,14 @@
   justify-content: center;
   color: #ccc;
 }
+
+@media (max-width: 360px) {
+  .product-img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .product-info__name {
+    font-size: 12px;
+  }
+}

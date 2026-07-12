@@ -24,3 +24,21 @@
     border-bottom-color: #111;
   }
 }
+
+@media (max-width: 480px) {
+  .product-detail__tabs {
+    margin-top: 36px;
+  }
+
+  .product-tabs__tab {
+    padding: 14px 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .product-tabs__tab {
+    padding: 12px 10px;
+    font-size: 12px;
+  }
+}

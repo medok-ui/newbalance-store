@@ -136,3 +136,24 @@
   background: #fff;
   outline: none;
 }
+
+@media (max-width: 480px) {
+  .delivery-option {
+    padding: 13px 14px;
+    gap: 10px;
+  }
+
+  .delivery-option__name {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .checkout-section__title {
+    font-size: 15px;
+  }
+
+  .delivery-option__desc {
+    font-size: 11px;
+  }
+}

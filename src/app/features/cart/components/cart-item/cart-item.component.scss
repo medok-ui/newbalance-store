@@ -92,3 +92,41 @@
   font-size: 16px;
   font-weight: 600;
 }
+
+@media (max-width: 480px) {
+  .cart-item {
+    gap: 12px;
+  }
+
+  .cart-item__image {
+    width: 76px;
+    height: 76px;
+    flex-shrink: 0;
+  }
+
+  .details-top__title {
+    font-size: 14px;
+  }
+
+  .details-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .cart-item__image {
+    width: 64px;
+    height: 64px;
+  }
+
+  .details-bottom__price {
+    font-size: 14px;
+  }
+
+  .quantity-controls__qty-btn {
+    width: 32px;
+    height: 32px;
+  }
+}

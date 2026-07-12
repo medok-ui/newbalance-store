@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { IOrder } from '../../../../../../shared/interfaces/order.interface';
+import { ChangeDetectionStrategy, Component, effect, input } from '@angular/core';
 import { PriceFormatPipe } from '../../../../../../core/pipes/price-format.pipe';
+import { IOrder } from '../../../../../../shared/interfaces/order.interface';
 
 @Component({
   selector: 'app-total',
@@ -11,4 +11,9 @@ import { PriceFormatPipe } from '../../../../../../core/pipes/price-format.pipe'
 })
 export class TotalComponent {
   public order = input.required<IOrder | null>();
+  constructor() {
+    effect(() => {
+      console.log(this.order());
+    });
+  }
 }

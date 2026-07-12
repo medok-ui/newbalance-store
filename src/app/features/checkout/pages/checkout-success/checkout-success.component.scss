@@ -101,3 +101,36 @@
   border: 1px solid #eaeaea;
   border-radius: 8px;
 }
+
+@media (max-width: 480px) {
+  :host {
+    padding: 40px 14px;
+  }
+
+  .success-card {
+    padding: 34px 22px;
+  }
+
+  .success-title {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 360px) {
+  .success-icon {
+    width: 56px;
+    height: 56px;
+    font-size: 28px;
+    line-height: 56px;
+  }
+
+  .success-title {
+    font-size: 20px;
+  }
+
+  .info-row {
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+  }
+}
