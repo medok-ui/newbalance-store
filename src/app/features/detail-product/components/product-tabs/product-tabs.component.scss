@@ -24,7 +24,6 @@
     border-bottom-color: #111;
   }
 }
-
 @media (max-width: 480px) {
   .product-detail__tabs {
     margin-top: 36px;
@@ -38,7 +37,8 @@
 
 @media (max-width: 360px) {
   .product-tabs__tab {
-    padding: 12px 10px;
+    padding: 12px 12px;
     font-size: 12px;
+    flex: 1;
   }
 }

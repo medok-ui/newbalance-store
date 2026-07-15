@@ -36,17 +36,33 @@
 }
 
 @media (max-width: 900px) {
+  .gallery__main {
+    margin-bottom: 12px;
+  }
+
   .gallery__main-img {
     max-width: 100%;
+    width: 100%;
     height: auto;
     aspect-ratio: 1 / 1;
+    object-fit: cover;
   }
 }
 
 @media (max-width: 480px) {
+  .gallery__main {
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+
   .gallery__thumbs {
     gap: 6px;
     overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   .gallery__thumb {

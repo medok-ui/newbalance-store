@@ -28,8 +28,17 @@
   color: #111;
   font-weight: 500;
 }
+@media (max-width: 768px) {
+  .specs-table {
+    max-width: 100%;
+  }
+}
 
 @media (max-width: 480px) {
+  .product-tabs__panel {
+    margin-top: 20px;
+  }
+
   .specs-table__td {
     font-size: 13px;
   }

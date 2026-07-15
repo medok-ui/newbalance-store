@@ -56,12 +56,13 @@
         <p class="error-text">Пожалуйста, выберите размер</p>
       </div>
     }
+    <div class="product-detail__qty-controls">
+      <button (click)="decreaseQty()" class="qty-btn">-</button>
+      <span class="qty-value">{{ quantity() }}</span>
+      <button (click)="increaseQty()" class="qty-btn">+</button>
+    </div>
     <button (click)="addToCart()" class="product-detail__btn-cart">
-      <!-- @if (isCart()) { -->
-        <!-- <img src="/assets/svgs/add-cart.svg" alt="add-cart" /> Уже в корзине ! -->
-      <!-- } @else { -->
-        <img src="/assets/svgs/add-cart.svg" alt="add-cart" />Добавить в корзину
-      <!-- } -->
+      <img src="/assets/svgs/add-cart.svg" alt="add-cart" />Добавить в корзину
     </button>
     <button (click)="toggleFavoriteList()" class="product-detail__btn-wishlist">
       @if (isFavorite()) {

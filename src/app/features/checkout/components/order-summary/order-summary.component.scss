@@ -93,24 +93,55 @@
     color: #16a34a;
   }
 }
+@media (max-width: 768px) {
+  .order-summary {
+    padding: 20px;
+  }
+}
 
 @media (max-width: 480px) {
   .order-summary {
-    padding: 18px;
+    padding: 16px;
   }
 
   .order-summary__title {
     font-size: 15px;
+    margin-bottom: 16px;
+  }
+
+  .order-summary__items {
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .summary-card__promo {
+    margin: 16px 0;
+  }
+
+  .order-summary__total {
+    padding-top: 14px;
+  }
+
+  .order-summary__total-value {
+    font-size: 18px;
   }
 }
 
 @media (max-width: 360px) {
-  .order-summary__total-value {
-    font-size: 17px;
+  .order-summary {
+    padding: 14px;
+  }
+
+  .order-summary__title {
+    font-size: 14px;
   }
 
   .promo__input {
     padding: 10px 40px 10px 10px;
     font-size: 13px;
+  }
+
+  .order-summary__total-value {
+    font-size: 16px;
   }
 }

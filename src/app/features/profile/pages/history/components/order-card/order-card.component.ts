@@ -13,4 +13,8 @@ import { IOrder } from '../../../../../../shared/interfaces/order.interface';
 })
 export class OrderCardComponent {
   public order = input.required<IOrder>();
+
+  ngOnInit() {
+    console.log(this.order());
+  }
 }

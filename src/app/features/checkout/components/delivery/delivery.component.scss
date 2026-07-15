@@ -136,24 +136,47 @@
   background: #fff;
   outline: none;
 }
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 @media (max-width: 480px) {
+  .checkout-section__title {
+    font-size: 15px;
+    margin-bottom: 16px;
+  }
+
   .delivery-option {
-    padding: 13px 14px;
+    padding: 12px 14px;
     gap: 10px;
   }
 
   .delivery-option__name {
     font-size: 13px;
   }
+
+  .delivery-option__price {
+    font-size: 13px;
+  }
+
+  .form-group__input {
+    padding: 10px 12px;
+  }
 }
 
 @media (max-width: 360px) {
-  .checkout-section__title {
-    font-size: 15px;
+  .delivery-option {
+    padding: 10px 12px;
+    gap: 8px;
   }
 
   .delivery-option__desc {
     font-size: 11px;
+  }
+
+  .delivery-option__price {
+    font-size: 12px;
   }
 }

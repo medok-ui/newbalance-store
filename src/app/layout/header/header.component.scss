@@ -61,10 +61,10 @@
   font-size: 20px;
   letter-spacing: -0.5px;
   color: inherit;
-  transition: opacity 0.2s ease;
+  transition: 0.2s ease;
 
   &:hover {
-    opacity: 0.6;
+    color: #d4ff00;
   }
 }
 

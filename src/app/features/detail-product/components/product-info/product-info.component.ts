@@ -16,6 +16,7 @@ export class ProductInfoComponent {
   private favoritesService = inject(FavoritesService);
 
   public dataProduct = input.required<IProduct | null>();
+  public quantity = signal<number>(1);
 
   public currentSize = signal<number | null>(null);
   public isAddSizeText = signal<boolean>(false);
@@ -50,11 +51,18 @@ export class ProductInfoComponent {
     return new Array(roundedCount);
   }
 
+  public decreaseQty(): void {
+    this.quantity.update((val) => (val > 1 ? val - 1 : val));
+  }
+  public increaseQty(): void {
+    this.quantity.update((val) => val + 1);
+  }
+
   public async addToCart() {
     const productId = this.dataProduct()?.id;
     const size = this.currentSize();
 
-    const quantity = 1;
+    const quantity = this.quantity();
 
     if (!size) {
       this.isAddSizeText.set(true);

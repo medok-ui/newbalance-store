@@ -35,7 +35,6 @@
   align-items: start;
   gap: 60px;
 }
-
 @media (max-width: 900px) {
   .product-detail__layout {
     flex-direction: column;
@@ -49,6 +48,13 @@
   }
 
   .breadcrumb {
+    padding: 12px 0 0;
     font-size: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .breadcrumb {
+    gap: 4px;
   }
 }

@@ -67,7 +67,6 @@
   line-height: 1.7;
   margin-top: 10px;
 }
-
 @media (max-width: 768px) {
   .desc__grid {
     flex-direction: column;
@@ -79,12 +78,33 @@
   }
 }
 
+@media (max-width: 480px) {
+  .product-tabs__panel {
+    margin-top: 20px;
+  }
+
+  .desc__lead {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .desc__grid-label,
+  .desc__label {
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 360px) {
   .desc__lead {
     font-size: 15px;
   }
 
+  .desc__list-item {
+    font-size: 13px;
+  }
+
   .desc__text {
     font-size: 13px;
+    line-height: 1.6;
   }
 }

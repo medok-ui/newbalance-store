@@ -38,6 +38,17 @@ export class CartService {
   public async addToCart(productId: number, size: number, quantity: number): Promise<void> {
     const userId = this.supabaseService.currentUser()?.id;
 
+    const { data: existingItem, error: fetchError } = await this.client
+      .from('cart')
+      .select('id, quantity')
+      .eq('user_id', userId)
+      .eq('product_id', productId)
+      .eq('size', size)
+      .maybeSingle();
+
+    if (fetchError) throw fetchError;
+    const finalQuantity = existingItem ? existingItem.quantity + quantity : quantity;
+
     const { data, error } = await this.client
       .from('cart')
       .upsert(
@@ -45,12 +56,13 @@ export class CartService {
           user_id: userId,
           product_id: productId,
           size,
-          quantity,
+          quantity: finalQuantity,
         },
         { onConflict: 'user_id,product_id,size' },
       )
       .select()
       .single();
+
     if (error) throw error;
 
     this.cartsData.update((prev) => {
@@ -64,7 +76,8 @@ export class CartService {
 
     this.carts.update((prev) => {
       const current = prev || [];
-      const exists = current.some((p) => p.cartItemId === product.id);
+
+      const exists = current.some((p) => p.cartItemId === data.id);
       return exists
         ? current.map((item) =>
             item.cartItemId === data.id ? { cartItemId: data.id, product } : item,

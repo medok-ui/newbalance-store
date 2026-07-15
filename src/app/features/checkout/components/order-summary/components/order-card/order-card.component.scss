@@ -41,6 +41,16 @@
   white-space: nowrap;
 }
 
+@media (max-width: 480px) {
+  .order-summary__item {
+    gap: 10px;
+  }
+
+  .order-summary__item-name {
+    max-width: 200px;
+  }
+}
+
 @media (max-width: 360px) {
   .order-summary__item-img {
     width: 46px;
@@ -48,7 +58,11 @@
   }
 
   .order-summary__item-name {
-    max-width: 160px;
+    max-width: 150px;
     font-size: 12px;
+  }
+
+  .order-summary__item-price {
+    font-size: 13px;
   }
 }
