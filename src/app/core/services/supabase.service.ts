@@ -3,11 +3,11 @@ import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { IProduct } from '../../features/products/interfaces/product.interface';
 
+import { Router } from '@angular/router';
 import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
 import { IOrder } from '../../shared/interfaces/order.interface';
 import { ITopProduct } from '../../shared/interfaces/top-product.interface';
 import { IAdminUser, IUserProfile } from '../../shared/interfaces/user.interface';
-import { Router } from 'express';
 // createClient — функция которая создаёт подключение к Supabase
 // SupabaseClient — тип для TypeScript
 
@@ -233,7 +233,7 @@ export class SupabaseService {
   ): Promise<void> {
     const { error } = await this.client
       .from('order_items')
-      .insert(items.map((item) => ({ ...item, order_id: orderId })));
+      .insert(items?.map((item) => ({ ...item, order_id: orderId })));
 
     if (error) throw error;
   }
