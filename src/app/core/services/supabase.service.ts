@@ -356,7 +356,7 @@ export class SupabaseService {
   }
 
   public async resetPassword(email: string): Promise<void> {
-    const getUrl = window.location.origin;
+    const getUrl = 'https://newbalance-store.vercel.app';
 
     const { error } = await this.client.auth.resetPasswordForEmail(email, {
       redirectTo: `${getUrl}/update-password`,
