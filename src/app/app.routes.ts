@@ -90,9 +90,18 @@ export const routes: Routes = [
     canActivate: [recoveryGuard],
   },
 
-  // {
-  //   path: '**',
-  //   redirectTo: 'home',
-  //   pathMatch: 'full',
-  // },
+  {
+    path: 'not-found',
+    loadComponent: () =>
+      import('./features/not-found/pages/not-found/not-found.component').then(
+        (m) => m.NotFoundComponent,
+      ),
+    title: 'New Balance - страница не найдена',
+  },
+
+  {
+    path: '**',
+    redirectTo: 'not-found',
+    pathMatch: 'full',
+  },
 ];

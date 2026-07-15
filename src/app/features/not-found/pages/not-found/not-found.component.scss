@@ -1,0 +1,103 @@
+.not-found-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #0d0d0d;
+  color: #ffffff;
+  overflow: hidden;
+  position: relative;
+  padding: 20px;
+}
+
+.not-found-bg-text {
+  position: absolute;
+  font-size: 35vh;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.03);
+  z-index: 0;
+  user-select: none;
+  pointer-events: none;
+}
+
+.not-found-content-card {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 40px;
+}
+
+.not-found-code {
+  font-size: 80px;
+  font-weight: 700;
+  color: #d4ff00;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.not-found-message {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+.not-found-description {
+  font-size: 16px;
+  color: #a0a0a0;
+  margin-bottom: 40px;
+  line-height: 1.5;
+}
+
+.not-found-button {
+  display: inline-block;
+  padding: 14px 40px;
+
+  background-color: #ffffff;
+  color: #0d0d0d;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  border: 2px solid #ffffff;
+
+  &:hover {
+    background-color: transparent;
+    color: #d4ff00;
+    border-color: #d4ff00;
+  }
+}
+
+@media (max-width: 768px) {
+  .not-found-code {
+    font-size: 50px;
+  }
+
+  .not-found-message {
+    font-size: 20px;
+  }
+
+  .not-found-content-card {
+    padding: 20px;
+  }
+
+  .not-found-bg-text {
+    font-size: 25vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .not-found-code {
+    font-size: 40px;
+  }
+
+  .not-found-message {
+    font-size: 18px;
+  }
+
+  .not-found-button {
+    padding: 12px 30px;
+    width: 100%;
+  }
+}
