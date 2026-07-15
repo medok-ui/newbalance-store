@@ -22,9 +22,24 @@
         </div>
       </div>
       <div class="profile-details__row">
-        <div class="profile-details__group">
-          <span class="profile-details__label">Телефон</span>
-          <span class="profile-details__value">{{ infoUser()?.phone ?? '—' }}</span>
+        <!-- Группа Телефон с модификатором --phone -->
+        <div class="profile-details__group profile-details__group--phone">
+          <div class="profile-details__phone-content">
+            <span class="profile-details__label">Телефон</span>
+            <span
+              class="profile-details__value"
+              [class.profile-details__value--hidden]="!isVisiblePhone()"
+            >
+              {{ infoUser()?.phone ?? '—' }}
+            </span>
+          </div>
+
+          <button
+            class="profile-details__toggle-btn profile-details__phone-action"
+            (click)="onVisiblePhone()"
+          >
+            {{ !isVisiblePhone() ? 'показать' : 'скрыть' }}
+          </button>
         </div>
         <div class="profile-details__group">
           <span class="profile-details__label">Email</span>

@@ -15,6 +15,7 @@ export class LoginComponent {
   private supabaseService = inject(SupabaseService);
   private router = inject(Router);
   public visiblePassword = signal<boolean>(true);
+  public isErrorLogIn = signal<boolean>(false);
 
   public isModalOpen = signal<boolean>(false);
   public typeModal = signal<'success' | 'error' | 'wait'>('wait');
@@ -52,13 +53,18 @@ export class LoginComponent {
     const password = this.form.value.password;
     if (!email || !password) return;
 
-    await this.supabaseService.signIn(email, password);
-    const admin = await this.supabaseService.isAdmin();
+    try {
+      await this.supabaseService.signIn(email, password);
+      const admin = await this.supabaseService.isAdmin();
 
-    if (!admin) {
-      await this.supabaseService.signOut();
-      return;
+      if (!admin) {
+        await this.supabaseService.signOut();
+        return;
+      }
+      this.router.navigate(['/admin/dashboard']);
+    } catch (err) {
+      console.log(err);
+      this.isErrorLogIn.set(true);
     }
-    this.router.navigate(['/admin/dashboard']);
   }
 }

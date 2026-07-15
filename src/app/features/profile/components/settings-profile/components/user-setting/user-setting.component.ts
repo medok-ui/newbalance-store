@@ -28,7 +28,7 @@ export class UserSettingComponent implements OnInit {
 
   public ngOnInit(): void {
     const data = this.supabaseService.infoCurrentUser();
-    if (!data) {
+    if (!data ) {
       this.showModal('error', 'Что то пошло не так.');
       return;
     }
@@ -65,8 +65,9 @@ export class UserSettingComponent implements OnInit {
     const phone = this.form.value.phone;
 
     if (!firstName || !lastName || !phone) return;
-
     this.supabaseService.updateUserProfile(firstName, lastName, phone);
+
     this.showModal('success', 'Данные успешно изменены');
   }
+
 }

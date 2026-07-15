@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SupabaseService } from '../../../../core/services/supabase.service';
 import { ModalComponent } from '../../../../shared/components/modal/modal.component';
@@ -12,7 +12,7 @@ import { OrderCardComponent } from './components/order-card/order-card.component
   styleUrl: './history.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HistoryComponent implements OnInit {
+export class HistoryComponent {
   private supabaseService = inject(SupabaseService);
   public orders = signal<IOrder[]>([]);
 
@@ -26,16 +26,18 @@ export class HistoryComponent implements OnInit {
     this.isModalOpen.set(true);
   }
 
-  public ngOnInit(): void {
-    const allOrders = this.supabaseService.userOrders();
-    if (!allOrders) {
-      this.showModal(
-        'error',
-        'Не удалось загрузить историю заказов.\n' +
-          'Пожалуйста, попробуйте обновить страницу чуть позже.',
-      );
-      return;
-    }
-    this.orders.set(allOrders);
+  constructor() {
+    effect(() => {
+      const allOrders = this.supabaseService.userOrders();
+      if (!allOrders) {
+        this.showModal(
+          'error',
+          'Не удалось загрузить историю заказов.\n' +
+            'Пожалуйста, попробуйте обновить страницу чуть позже.',
+        );
+        return;
+      }
+      this.orders.set(allOrders);
+    });
   }
 }

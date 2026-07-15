@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
 import { User } from '@supabase/supabase-js';
 import { SupabaseService } from '../../../../core/services/supabase.service';
 import { IUserProfile } from '../../../../shared/interfaces/user.interface';
@@ -11,13 +11,20 @@ import { IUserProfile } from '../../../../shared/interfaces/user.interface';
   styleUrl: './user-profile.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent {
   private supabaseService = inject(SupabaseService);
   public dataUser = signal<User | null>(this.supabaseService.currentUser());
   public infoUser = signal<IUserProfile | null>(null);
+  public isVisiblePhone = signal<boolean>(false);
 
-  ngOnInit(): void {
-    const data = this.supabaseService.infoCurrentUser();
-    this.infoUser.set(data);
+  constructor() {
+    effect(() => {
+      this.dataUser.set(this.supabaseService.currentUser());
+      this.infoUser.set(this.supabaseService.infoCurrentUser());
+    });
+  }
+
+  public onVisiblePhone(): void {
+    this.isVisiblePhone.update((prev) => !prev);
   }
 }

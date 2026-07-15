@@ -1,0 +1,51 @@
+<div class="setting">
+  <h2 class="setting__title">Email</h2>
+
+  @if (!isSubmit()) {
+    <p class="setting__desc">Для смены email мы отправим письмо с подтверждением на новый адрес.</p>
+    <form [formGroup]="form" class="setting-form">
+      <div class="setting-form__group">
+        <label class="setting-form__label" for="email">Email</label>
+        <input
+          formControlName="email"
+          class="setting-form__input"
+          [class.setting-form__input--error]="isEmailUnchanged()"
+          id="email"
+          type="email"
+          placeholder="name@example.com"
+        />
+        @if (isEmailUnchanged()) {
+          <span class="setting-form__hint">Вы указали текущий email</span>
+        }
+      </div>
+      <button
+        (click)="onSubmitEmail()"
+        class="setting-form__btn-save setting-form__btn-save--outline"
+      >
+        Изменить email
+      </button>
+    </form>
+  } @else {
+    <div class="setting-confirm">
+      <p class="setting-confirm__text">
+        Письмо отправлено на <strong>{{ currentEmail() }}</strong
+        >. Проверьте почту и перейдите по ссылке для подтверждения нового адреса.
+      </p>
+
+      <div class="setting-actions">
+        <button
+          (click)="onSubmitEmail()"
+          class="setting-form__btn-save"
+          [disabled]="timeRemaining() > 0"
+        >
+          Отправить повторно
+        </button>
+        @if (timeRemaining() > 0) {
+          <span class="setting-timer"
+            >0:{{ timeRemaining() < 10 ? '0' + timeRemaining() : timeRemaining() }}</span
+          >
+        }
+      </div>
+    </div>
+  }
+</div>

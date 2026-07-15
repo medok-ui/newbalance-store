@@ -14,6 +14,7 @@ import { IAdminUser, IUserProfile } from '../../shared/interfaces/user.interface
   providedIn: 'root',
 })
 export class SupabaseService {
+  private sessionReady: Promise<void>;
   public products = signal<IProduct[]>([]);
   public currentUser = signal<User | null>(null);
   public infoCurrentUser = signal<IUserProfile | null>(null);
@@ -23,6 +24,10 @@ export class SupabaseService {
   public topProducts = signal<ITopProduct[] | null>(null);
 
   readonly client: SupabaseClient = createClient(environment.supabaseUrl, environment.supabaseKey);
+
+  constructor() {
+    this.sessionReady = this.initSession();
+  }
 
   public async loadProducts(): Promise<void> {
     const { data, error } = await this.client.from('products').select('*, categories(name, slug)');
@@ -54,6 +59,20 @@ export class SupabaseService {
     return data as IProduct[];
   }
 
+  private async initSession(): Promise<void> {
+    const {
+      data: { session },
+    } = await this.client.auth.getSession();
+    this.currentUser.set(session?.user ?? null);
+    this.client.auth.onAuthStateChange((event, session) => {
+      this.currentUser.set(session?.user ?? null);
+    });
+  }
+
+  public async waitForSession(): Promise<void> {
+    return this.sessionReady;
+  }
+
   public async signUp(email: string, password: string, firstName: string, lastName: string) {
     const { data, error } = await this.client.auth.signUp({ email, password });
     if (error) throw error;
@@ -72,7 +91,6 @@ export class SupabaseService {
     const { data, error } = await this.client.auth.signInWithPassword({ email, password });
     if (error) throw error;
     this.currentUser.set(data.user);
-
     return data;
   }
 
@@ -93,6 +111,12 @@ export class SupabaseService {
 
     if (error) throw error;
     this.infoCurrentUser.set(data as IUserProfile);
+  }
+
+  public async updateEmail(email: string): Promise<void> {
+    const { data, error } = await this.client.auth.updateUser({ email });
+    console.log(data);
+    if (error) throw error;
   }
 
   public async updatePassword(newPassword: string): Promise<void> {
@@ -323,5 +347,18 @@ export class SupabaseService {
 
     const { error } = await this.client.storage.from('products').remove([path]);
     if (error) throw error;
+  }
+
+  public async resetPassword(email: string): Promise<void> {
+    const getUrl = window.location.origin;
+
+    const { error } = await this.client.auth.resetPasswordForEmail(email, {
+      redirectTo: `${getUrl}/update-password`,
+    });
+
+    if (error) {
+      console.error('Ошибка при отправке письма:', error.message);
+      throw error;
+    }
   }
 }

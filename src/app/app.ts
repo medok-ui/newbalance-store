@@ -21,27 +21,25 @@ export class App implements OnInit {
   public async ngOnInit(): Promise<void> {
     this.isLoading.set(true);
 
-    this.supabaseService.client.auth.onAuthStateChange((event, session) => {
-      if (session?.user) {
-        return this.supabaseService.currentUser.set(session.user);
-      }
-      this.supabaseService.currentUser.set(null);
-    });
-    this.initAppData();
+    await this.supabaseService.waitForSession();
+    await this.initAppData();
   }
 
   private async initAppData(): Promise<void> {
+    await this.supabaseService.loadProducts();
     try {
-      await this.supabaseService.loadProducts();
-      await this.supabaseService.getTopProducts(10);
-      await this.supabaseService.getOrders();
-      await this.supabaseService.getUsers();
-      await this.supabaseService.getAllOrders();
-      await this.supabaseService.getUser();
-      await this.cartService.getCart();
-      await this.favoritesService.getCart();
+      await Promise.all([
+        this.supabaseService.getTopProducts(10),
+        this.supabaseService.getUser(),
+        this.cartService.getCart(),
+        this.favoritesService.getCart(),
+        this.supabaseService.getOrders(),
+        this.supabaseService.getUsers(),
+        this.supabaseService.getAllOrders(),
+      ]);
     } catch (err) {
       console.error('Ошибка при загрузке данных юзера:', err);
+      this.supabaseService.signOut();
     } finally {
       this.isLoading.set(false);
     }

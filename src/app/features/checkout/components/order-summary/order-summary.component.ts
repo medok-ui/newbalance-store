@@ -9,11 +9,10 @@ import {
 import { PriceFormatPipe } from '../../../../core/pipes/price-format.pipe';
 import { SupabaseService } from '../../../../core/services/supabase.service';
 import { ModalComponent } from '../../../../shared/components/modal/modal.component';
+import { ICartDisplayItem } from '../../../../shared/interfaces/cart-display-item.interface';
 import { ICartItem } from '../../../../shared/interfaces/cart-item.interface';
-import { IProduct } from '../../../products/interfaces/product.interface';
 import { CartService } from './../../../../core/services/cart.service';
 import { OrderCardComponent } from './components/order-card/order-card.component';
-import { ICartDisplayItem } from '../../../../shared/interfaces/cart-display-item.interface';
 
 @Component({
   selector: 'app-order-summary',
@@ -68,17 +67,9 @@ export class OrderSummaryComponent {
   });
 
   public delivery = computed(() => {
-    const products = this.currentProducts();
-    const cartInfo = this.currentInfoProducts();
+    const total = this.totalPrice();
     const delivery = this.deliveryPrice();
-    if (!products || !cartInfo) return 990;
-
-    const subtotal = products.reduce((sum, product) => {
-      const cartItem = cartInfo.find((item) => item.id === product.cartItemId);
-      return sum + product.product.price * (cartItem?.quantity ?? 1);
-    }, 0);
-
-    return subtotal < 15000 ? delivery : 0;
+    return total < 15000 ? delivery : 0;
   });
 
   public onPromoInput(event: Event): void {
@@ -88,15 +79,25 @@ export class OrderSummaryComponent {
 
   public async applyPromo(): Promise<void> {
     const code = this.promoCode().trim().toUpperCase();
-    const result = await this.supabaseService.checkPromoCode(code);
-    if (result) {
-      this.promoSuccess.set(true);
-      this.promoDiscount.set(result.discount);
-      this.promoError.set('');
-    } else {
+    if (!code) {
+      this.promoError.set('Введите промокод');
+      return;
+    }
+
+    try {
+      const result = await this.supabaseService.checkPromoCode(code);
+      if (result) {
+        this.promoSuccess.set(true);
+        this.promoDiscount.set(result.discount);
+        this.promoError.set('');
+        return;
+      }
       this.promoError.set('Неверный промокод');
       this.promoSuccess.set(false);
       this.promoDiscount.set(0);
+    } catch (err) {
+      this.promoError.set('Не удалось проверить промокод. Попробуйте позже');
+      console.error(err);
     }
   }
 }

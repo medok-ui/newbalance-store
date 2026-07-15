@@ -1,5 +1,8 @@
 <div class="history-orders">
-  <h2 class="history-orders__title">История заказов</h2>
+  <div class="history-orders__header">
+    <h2 class="history-orders__title">История заказов</h2>
+    <span class="history-orders__count">{{ orders().length }} заказов</span>
+  </div>
   <div class="history-orders__list">
     @if (orders().length === 0) {
       <div class="empty-orders-container">

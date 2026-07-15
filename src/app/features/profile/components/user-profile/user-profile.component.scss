@@ -85,6 +85,50 @@
   font-size: 15px;
   font-weight: 500;
   color: #111;
+
+  &--hidden {
+    filter: blur(5px);
+    pointer-events: none;
+    user-select: none;
+    transition: filter 0.3s ease;
+  }
+}
+
+.profile-details__status-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #9a9a9a;
+}
+
+.profile-details__toggle-btn {
+  color: #ccc;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &.profile-details__phone-action {
+    flex-shrink: 0;
+    margin-top: 14px;
+  }
+
+  &:hover {
+    color: #c8f000;
+  }
+}
+
+.profile-details__group--phone {
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-details__phone-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 @media (max-width: 480px) {

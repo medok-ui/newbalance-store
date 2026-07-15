@@ -21,7 +21,16 @@ export const authRoutes: Routes = [
             (m) => m.RegisterFormComponent,
           ),
         title: 'New Balance - register',
-        canActivate: [authLoginGuard],  
+        canActivate: [authLoginGuard],
+      },
+      {
+        path: 'reset',
+        loadComponent: () =>
+          import('./components/reset-password/reset-password.component').then(
+            (m) => m.ResetPasswordComponent,
+          ),
+        title: 'New Balance - reset',
+        canActivate: [authLoginGuard],
       },
     ],
   },

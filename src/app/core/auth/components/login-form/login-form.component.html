@@ -72,7 +72,14 @@
     </div>
     <div class="form-actions">
       <button (click)="onSubmit()" class="btn-primary">Войти</button>
-      <a href="#!" (click)="resetPassword($event)" class="btn-link">Забыли пароль?</a>
+      <a routerLink="/auth/reset" class="btn-link">Забыли пароль?</a>
     </div>
   </div>
 </form>
+
+<app-modal
+  [isOpen]="isModalOpen()"
+  (closed)="isModalOpen.set(false)"
+  [typeModal]="typeModal()"
+  [message]="messageModal()"
+/>

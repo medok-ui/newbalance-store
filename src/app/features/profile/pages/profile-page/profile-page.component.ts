@@ -17,6 +17,7 @@ export class ProfilePageComponent {
 
   public async onLogOut(): Promise<void> {
     await this.supabaseService.signOut();
+
     this.route.navigate(['/auth/login']);
   }
 }

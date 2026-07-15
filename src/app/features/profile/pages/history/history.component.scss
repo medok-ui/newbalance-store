@@ -1,7 +1,18 @@
+.history-orders__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
 .history-orders__title {
   font-size: 20px;
   font-weight: 600;
-  margin-bottom: 24px;
+}
+
+.history-orders__count {
+  font-size: 15px;
+  color: #666666;
 }
 
 .history-orders__list {
@@ -61,6 +72,10 @@
 }
 
 @media (max-width: 480px) {
+  .history-orders__header {
+    margin-bottom: 16px;
+  }
+
   .history-orders__title {
     font-size: 18px;
   }

@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
+import { recoveryGuard } from './core/guards/recovery.guard';
 import { adminRoutes } from './features/admin/admin.routes';
 import { productsRoutes } from './features/products/products.routes';
 import { profilesRoutes } from './features/profile/profiles.routes';
@@ -79,6 +80,16 @@ export const routes: Routes = [
     ],
   },
   ...adminRoutes,
+  {
+    path: 'update-password',
+    loadComponent: () =>
+      import('./features/update-password/pages/update-password/update-password.component').then(
+        (m) => m.UpdatePasswordComponent,
+      ),
+    title: 'New Balance - обновление пароля',
+    canActivate: [recoveryGuard],
+  },
+
   // {
   //   path: '**',
   //   redirectTo: 'home',

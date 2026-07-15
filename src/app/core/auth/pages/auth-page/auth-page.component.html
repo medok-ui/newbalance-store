@@ -16,6 +16,13 @@
     >
       Регистрация
     </a>
+    <a
+      routerLink="reset"
+      class="sidebar__item"
+      routerLinkActive="sidebar__item--active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Зыбыли пароль?</a
+    >
   </aside>
   <div class="auth-panel">
     <div class="tabs">
@@ -34,6 +41,13 @@
       >
         Регистрация
       </a>
+      <a
+        routerLink="reset"
+        class="tabs__btn"
+        routerLinkActive="tabs__btn--active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Зыбыли пароль?</a
+      >
     </div>
 
     <router-outlet></router-outlet>

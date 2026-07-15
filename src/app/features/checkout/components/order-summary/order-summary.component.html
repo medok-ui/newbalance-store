@@ -11,7 +11,7 @@
   </div>
   <div class="order-summary__row">
     <span>Доставка</span>
-    <span class="order-summary__row-value">{{
+    <span class="order-summary__row-value" [class.free]="delivery() === 0">{{
       delivery() === 0 ? 'Бесплатно' : (delivery() | priceFormat)
     }}</span>
   </div>

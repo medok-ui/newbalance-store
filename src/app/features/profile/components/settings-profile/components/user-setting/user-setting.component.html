@@ -24,15 +24,16 @@
       </div>
     </div>
     <div class="setting-form__group">
-      <label class="setting-form__label" for="number">Телефон</label>
+      <label class="setting-form__label" for="phone">Телефон</label>
       <input
         formControlName="phone"
         class="setting-form__input"
-        id="number"
-        type="text"
+        id="phone"
+        type="email"
         placeholder="+7 (999) 000-00-00"
       />
     </div>
+
     <button (click)="onSubmit()" class="setting-form__btn-save">Сохранить изменения</button>
   </form>
 </div>
