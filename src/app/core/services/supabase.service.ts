@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 
 import { environment } from '../../../environments/environment';
 import { IProduct } from '../../features/products/interfaces/product.interface';
@@ -7,6 +7,7 @@ import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
 import { IOrder } from '../../shared/interfaces/order.interface';
 import { ITopProduct } from '../../shared/interfaces/top-product.interface';
 import { IAdminUser, IUserProfile } from '../../shared/interfaces/user.interface';
+import { Router } from 'express';
 // createClient — функция которая создаёт подключение к Supabase
 // SupabaseClient — тип для TypeScript
 
@@ -15,6 +16,7 @@ import { IAdminUser, IUserProfile } from '../../shared/interfaces/user.interface
 })
 export class SupabaseService {
   private sessionReady: Promise<void>;
+  private router = inject(Router);
   public products = signal<IProduct[]>([]);
   public currentUser = signal<User | null>(null);
   public infoCurrentUser = signal<IUserProfile | null>(null);
@@ -64,8 +66,12 @@ export class SupabaseService {
       data: { session },
     } = await this.client.auth.getSession();
     this.currentUser.set(session?.user ?? null);
+
     this.client.auth.onAuthStateChange((event, session) => {
       this.currentUser.set(session?.user ?? null);
+      if (event === 'PASSWORD_RECOVERY') {
+        this.router.navigate(['/update-password']);
+      }
     });
   }
 
