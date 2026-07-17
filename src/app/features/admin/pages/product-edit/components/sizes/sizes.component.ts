@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, OnInit, signal } from '@angular/core';
 import { IProduct } from '../../../../../products/interfaces/product.interface';
 
 @Component({
@@ -12,6 +12,7 @@ export class SizesComponent implements OnInit {
   public product = input.required<IProduct | undefined>();
 
   public sizes = signal<number[]>([]);
+
 
   public ngOnInit(): void {
     const currentSizes = this.product()?.sizes;

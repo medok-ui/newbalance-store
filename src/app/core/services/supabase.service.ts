@@ -8,6 +8,7 @@ import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
 import { IOrder } from '../../shared/interfaces/order.interface';
 import { ITopProduct } from '../../shared/interfaces/top-product.interface';
 import { IAdminUser, IUserProfile } from '../../shared/interfaces/user.interface';
+import { TOrderStatus } from '../../shared/interfaces/order-status.interface';
 // createClient — функция которая создаёт подключение к Supabase
 // SupabaseClient — тип для TypeScript
 
@@ -238,10 +239,16 @@ export class SupabaseService {
     if (error) throw error;
   }
 
-  public async updateOrderStatus(orderId: number, status: string): Promise<void> {
+  public async updateOrderStatus(orderId: number, status: TOrderStatus): Promise<void> {
     const { error } = await this.client.from('orders').update({ status }).eq('id', orderId);
 
     if (error) throw error;
+    this.allOrders.update((orders) => {
+      if (!orders) return null;
+      return orders.map((order) =>
+        order.id === orderId ? { ...order, status } : order,
+      );
+    });
   }
   public async getOrders(): Promise<void> {
     const { data, error } = await this.client
